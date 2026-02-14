@@ -30,6 +30,14 @@
                         <li class="nav-item">
                             <a href="index.php" class="nav-link active">Home</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle">Divisions</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="techno.php" class="dropdown-link">Abhinaya Techno</a></li>
+                                <li><a href="creative.php" class="dropdown-link">Abhinaya Creative</a></li>
+                                <li><a href="publisher.php" class="dropdown-link">Abhinaya Publisher</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="events" class="nav-link">Events</a>
                         </li>
@@ -38,9 +46,6 @@
                         </li>
                         <li class="nav-item">
                             <a href="https://news.abhinaya.co.id/" class="nav-link" target="_blank">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="team-management" class="nav-link">Team Management</a>
                         </li>
                         <li class="nav-item">
                             <a href="contact" class="nav-link">Contact</a>

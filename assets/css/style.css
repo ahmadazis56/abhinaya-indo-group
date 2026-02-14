@@ -117,6 +117,85 @@ body {
     display: none;
 }
 
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    position: relative;
+    padding-right: 20px;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(135deg, #14aecf 0%, #0f8c9f 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(20, 174, 207, 0.3);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(10px);
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-link:last-child {
+    border-bottom: none;
+}
+
+.dropdown-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding-left: 25px;
+}
+
+.dropdown-menu li:first-child .dropdown-link {
+    border-radius: 8px 8px 0 0;
+}
+
+.dropdown-menu li:last-child .dropdown-link {
+    border-radius: 0 0 8px 8px;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -699,6 +778,37 @@ section {
     .nav-list {
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown-toggle::after {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    .dropdown:hover .dropdown-toggle::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .dropdown-link {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+    }
+
+    .dropdown-link:hover {
+        background: rgba(255, 255, 255, 0.15);
+        padding-left: 20px;
     }
 
     .nav-toggle {

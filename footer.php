@@ -28,10 +28,9 @@
             <div class="footer-section">
                 <h3 class="footer-title">Services</h3>
                 <ul class="footer-links">
-                    <li><a href="abhinaya-techno">Web Development</a></li>
-                    <li><a href="abhinaya-techno">Mobile Apps</a></li>
-                    <li><a href="abhinaya-creative">Branding</a></li>
-                    <li><a href="abhinaya-publisher">Publishing</a></li>
+                    <li><a href="techno.php">Abhinaya Techno</a></li>
+                    <li><a href="creative.php">Abhinaya Creative</a></li>
+                    <li><a href="publisher.php">Abhinaya Publisher</a></li>
                 </ul>
             </div>
             
