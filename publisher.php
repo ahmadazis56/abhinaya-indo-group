@@ -1,157 +1,139 @@
 <?php include 'header.php'; ?>
 
-<!-- Hero Section -->
 <section class="hero" id="hero">
-    <!-- Video Background -->
     <video class="hero-video" autoplay muted loop playsinline>
         <source src="assets/video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    
-    <!-- Video Overlay -->
     <div class="hero-overlay"></div>
-    
+
     <div class="hero-container">
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="hero-title-main">Abhinaya Publisher</span>
-            </h1>
-            <p class="hero-subtitle">
-                Scientific Publishing, Journals, and Academic Conferences
-            </p>
+            <h1 class="hero-title"><span class="hero-title-main">Abhinaya Publisher</span></h1>
+            <p class="hero-subtitle">Academic Publishing, Journal Management, and Research Support</p>
             <p class="hero-description">
-                Advancing knowledge through quality academic publishing. We provide comprehensive publishing services for researchers, academics, and institutions worldwide.
+                Advancing academic excellence through professional publishing services. We provide comprehensive
+                journal management, publication support, and research dissemination solutions for scholars worldwide.
             </p>
             <div class="hero-cta">
-                <a href="#services" class="btn btn-primary">
-                    Explore Our Services
-                </a>
-                <a href="contact" class="btn btn-secondary">
-                    Submit Your Paper
-                </a>
+                <a href="#publisher-services" class="btn btn-primary">Explore Our Services</a>
+                <a href="contact" class="btn btn-secondary">Submit Manuscript</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<section class="services" id="services">
+<section class="unit-section publisher-page" id="publisher-services">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Our Publishing Services</h2>
-            <p class="section-subtitle">
-                Comprehensive academic publishing solutions for the research community
-            </p>
+            <h2 class="section-title">Publisher Cards & Journal Listing</h2>
+            <p class="section-subtitle">Komposisi card meniru referensi dengan proporsi 3 kolom dan variasi tinggi card jurnal.</p>
         </div>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/IJMST.png" alt="Journal Publishing" class="service-img">
-                </div>
-                <h3 class="service-title">Journal Publishing</h3>
-                <p class="service-description">
-                    International peer-reviewed journals covering various fields of study with rigorous editorial standards.
-                </p>
-                <ul class="service-features">
-                    <li>Peer Review Process</li>
-                    <li>DOI Assignment</li>
-                    <li>Indexing Services</li>
-                    <li>Open Access Options</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/JAMED.png" alt="Conference Management" class="service-img">
-                </div>
-                <h3 class="service-title">Conference Management</h3>
-                <p class="service-description">
-                    Complete conference organization services including abstract management, proceedings publication, and event coordination.
-                </p>
-                <ul class="service-features">
-                    <li>Call for Papers</li>
-                    <li>Abstract Management</li>
-                    <li>Proceedings Publication</li>
-                    <li>Event Coordination</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/JPHN.png" alt="Book Publishing" class="service-img">
-                </div>
-                <h3 class="service-title">Book Publishing</h3>
-                <p class="service-description">
-                    Academic and professional book publishing services with comprehensive editorial and distribution support.
-                </p>
-                <ul class="service-features">
-                    <li>Editorial Services</li>
-                    <li>ISBN Assignment</li>
-                    <li>Design & Layout</li>
-                    <li>Global Distribution</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/JDLLI.png" alt="Editorial Services" class="service-img">
-                </div>
-                <h3 class="service-title">Editorial Services</h3>
-                <p class="service-description">
-                    Professional editorial support including proofreading, formatting, and manuscript preparation.
-                </p>
-                <ul class="service-features">
-                    <li>Copy Editing</li>
-                    <li>Proofreading</li>
-                    <li>Manuscript Formatting</li>
-                    <li>Translation Services</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/CIVIC.png" alt="Research Support" class="service-img">
-                </div>
-                <h3 class="service-title">Research Support</h3>
-                <p class="service-description">
-                    Comprehensive support services for researchers including methodology consultation and data analysis.
-                </p>
-                <ul class="service-features">
-                    <li>Research Design</li>
-                    <li>Statistical Analysis</li>
-                    <li>Research Ethics</li>
-                    <li>Grant Writing Support</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="assets/img/journal-covers/jurnal-pengabdian.png" alt="Academic Training" class="service-img">
-                </div>
-                <h3 class="service-title">Academic Training</h3>
-                <p class="service-description">
-                    Professional development workshops and training programs for researchers and academic professionals.
-                </p>
-                <ul class="service-features">
-                    <li>Academic Writing</li>
-                    <li>Publication Ethics</li>
-                    <li>Research Methodology</li>
-                    <li>Peer Review Training</li>
-                </ul>
-                <a href="#" class="service-link">Learn More →</a>
-            </div>
+
+        <div class="unit-grid-3">
+            <article class="unit-card" style="background:linear-gradient(135deg,#faf5ff 0%,#eff6ff 100%);border-color:#ddd6fe;min-height:311px;">
+                <h3>Scientific Journals</h3>
+                <p>Pengelolaan jurnal ilmiah terstandar untuk berbagai bidang penelitian.</p>
+            </article>
+            <article class="unit-card" style="background:linear-gradient(135deg,#eff6ff 0%,#ecfeff 100%);border-color:#bfdbfe;min-height:311px;">
+                <h3>Global Indexing</h3>
+                <p>Dukungan indexing internasional, metadata, dan peningkatan visibilitas artikel.</p>
+            </article>
+            <article class="unit-card" style="background:linear-gradient(135deg,#fdf2f8 0%,#faf5ff 100%);border-color:#fbcfe8;min-height:311px;">
+                <h3>International Collaboration</h3>
+                <p>Kolaborasi akademik lintas institusi dan penguatan jejaring penelitian global.</p>
+            </article>
         </div>
-        
-        <div class="services-cta">
-            <h3>Ready to Publish Your Research?</h3>
-            <p>Join thousands of researchers who trust us with their academic publications</p>
-            <a href="contact" class="btn btn-primary">Submit Your Manuscript</a>
+
+        <div class="package-grid">
+            <article class="package-card" style="min-height:591px;">
+                <h3>Basic Journal</h3>
+                <p class="package-price">Rp 5 Juta / jurnal</p>
+                <ul class="package-list">
+                    <li>Instalasi OJS</li>
+                    <li>Setup template jurnal</li>
+                    <li>Pelatihan editor</li>
+                    <li>Support teknis awal</li>
+                </ul>
+                <a href="contact" class="btn btn-secondary">Pilih Paket</a>
+            </article>
+
+            <article class="package-card highlight" style="min-height:620px;">
+                <span class="badge-popular">Most Popular</span>
+                <h3>Professional Journal</h3>
+                <p class="package-price">Rp 8 Juta / website</p>
+                <ul class="package-list">
+                    <li>Setup OJS lengkap</li>
+                    <li>Editorial workflow</li>
+                    <li>Layout & publishing support</li>
+                    <li>Optimasi indexing</li>
+                </ul>
+                <a href="contact" class="btn btn-primary">Pilih Paket</a>
+            </article>
+
+            <article class="package-card" style="min-height:591px;">
+                <h3>Premium Publisher</h3>
+                <p class="package-price">Custom / kontak kami</p>
+                <ul class="package-list">
+                    <li>Multi-journal management</li>
+                    <li>Automasi proses editorial</li>
+                    <li>Integrasi DOI & indexing</li>
+                    <li>Tim support dedicated</li>
+                </ul>
+                <a href="contact" class="btn btn-secondary">Diskusi Kebutuhan</a>
+            </article>
+        </div>
+
+        <div class="journal-grid">
+            <article class="journal-card tall">
+                <img src="assets/img/journal-covers/ijmst-cover.jpg" alt="IJMST" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Indonesian Journal of Modern Science and Technology</h3>
+                    <p>ISSN tersedia • Peer-reviewed • Open Access</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/JGDS.png" alt="JSGDS" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Journal of Social Growth and Development Studies</h3>
+                    <p>ISSN tersedia • Multidisiplin • Open Journal</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/CIVIC.png" alt="Civic Governance" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Civic Governance and Public Administration</h3>
+                    <p>Coming Soon • Editorial board in progress</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/JPHN.png" alt="Public Health" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Journal of Public Health and Nursing</h3>
+                    <p>Coming Soon • Fokus kesehatan dan keperawatan</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/JAMED.png" alt="Accounting" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Journal of Accounting, Management, and Economic Development</h3>
+                    <p>Review berkala • Manajemen & ekonomi terapan</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/jurnal-pengabdian.png" alt="Pengabdian" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Jurnal Pengabdian : Abhinaya</h3>
+                    <p>Coming Soon • Community service and impact studies</p>
+                </div>
+            </article>
+            <article class="journal-card">
+                <img src="assets/img/journal-covers/JDLLI.png" alt="JDLLI" class="journal-thumb">
+                <div class="journal-body">
+                    <h3>Journal of Digital Learning and Literacy Innovation</h3>
+                    <p>Coming Soon • Education technology and literacy innovation</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>
