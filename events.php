@@ -89,77 +89,24 @@ if ($events_result) {
             </p>
         </div>
         
-        <?php if (!empty($events)): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php if (!empty($events)): ?>
                 <?php foreach ($events as $event): ?>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105" data-aos="fade-up">
-                        <?php if (!empty($event['image'])): ?>
-                            <div class="aspect-video bg-gray-200 overflow-hidden">
-                                <img src="admin/uploads/events/<?php echo htmlspecialchars($event['image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($event['title']); ?>" 
-                                     class="w-full h-full object-cover">
-                            </div>
-                        <?php else: ?>
-                            <div class="aspect-video bg-gradient-to-br from-[#0e6d7c] to-[#14aecf] flex items-center justify-center">
-                                <svg class="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-sm font-medium text-[#0e6d7c] bg-[#0e6d7c]/10 px-3 py-1 rounded-full">
-                                    <?php echo htmlspecialchars($event['status'] ?? 'upcoming'); ?>
-                                </span>
-                                <?php if (!empty($event['event_date'])): ?>
-                                    <span class="text-sm text-gray-500">
-                                        <?php echo date('M d, Y', strtotime($event['event_date'])); ?>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <h3 class="text-xl font-semibold mb-2 text-gray-900"><?php echo htmlspecialchars($event['title']); ?></h3>
-                            
-                            <?php if (!empty($event['location'])): ?>
-                                <div class="flex items-center text-gray-600 mb-2">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <?php echo htmlspecialchars($event['location']); ?>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <p class="text-gray-600 mb-4">
-                                <?php echo htmlspecialchars(substr($event['description'] ?? '', 0, 120)) . '...'; ?>
-                            </p>
-                            
-                            <?php if (!empty($event['link'])): ?>
-                                <a href="<?php echo htmlspecialchars($event['link']); ?>" 
-                                   target="_blank" 
-                                   class="inline-flex items-center text-[#0e6d7c] hover:text-[#14aecf] font-medium transition-colors">
-                                    Learn More
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                    <?php include 'includes/event-card.php'; ?>
                 <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center py-12">
-                <div class="text-gray-400 mb-4">
-                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">No Events Yet</h3>
+                    <p class="text-gray-500">Our events will be featured here soon.</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">No Events Yet</h3>
-                <p class="text-gray-500">Our events will be featured here soon.</p>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
     </div>
 </section>
 
