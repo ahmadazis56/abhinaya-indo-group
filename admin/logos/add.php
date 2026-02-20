@@ -107,12 +107,14 @@ include '../includes/sidebar.php';
                         <div class="form-group">
                             <label for="category">Category *</label>
                             <select class="form-control" id="category" name="category" required>
-                                <option value="client">Client</option>
-                                <option value="publisher">Publisher</option>
-                                <option value="creative">Creative</option>
-                                <option value="techno">Technology Partner</option>
+                                <option value="client">Client (Will appear in Our Clients section)</option>
+                                <option value="publisher">Partner (Will appear in Our Partners section)</option>
+                                <option value="creative">Partner (Will appear in Our Partners section)</option>
+                                <option value="techno">Partner (Will appear in Our Partners section)</option>
                             </select>
+                            <small class="form-text text-muted">"Client" goes to Our Clients. All others go to Our Partners.</small>
                         </div>
+
                     </div>
 
                     <div class="col-md-4">

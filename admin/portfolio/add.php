@@ -107,9 +107,9 @@ include '../includes/sidebar.php';
                                 <input type="text" id="title" name="title" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
                             </div>
                             <div>
-                                <label for="category" class="block text-sm font-semibold text-slate-700 mb-2">Category</label>
-                                <select id="category" name="category" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
-                                    <option value="">Select category</option>
+                                <label for="category" class="block text-sm font-semibold text-slate-700 mb-2">Division *</label>
+                                <select id="category" name="category" required onchange="toggleFields(this.value)" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                    <option value="">Select division</option>
                                     <option value="creative">Creative</option>
                                     <option value="techno">Techno</option>
                                     <option value="publisher">Publisher</option>
@@ -122,7 +122,7 @@ include '../includes/sidebar.php';
                             <textarea id="description" name="description" rows="5" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600"></textarea>
                         </div>
 
-                        <div>
+                        <div id="linkField" class="hidden">
                             <label for="link" class="block text-sm font-semibold text-slate-700 mb-2">Project Link</label>
                             <input type="url" id="link" name="link" placeholder="https://example.com" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
                         </div>
@@ -132,6 +132,7 @@ include '../includes/sidebar.php';
                             <input type="text" id="tags" name="tags" placeholder="e.g., design, ui/ux" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
                         </div>
                     </div>
+
 
                     <div class="lg:col-span-4 space-y-5">
                         <div>
@@ -178,6 +179,16 @@ include '../includes/sidebar.php';
 </main>
 
 <script>
+function toggleFields(category) {
+    const linkField = document.getElementById('linkField');
+    if (category === 'techno' || category === 'publisher') {
+        linkField.classList.remove('hidden');
+    } else {
+        linkField.classList.add('hidden');
+        document.getElementById('link').value = '';
+    }
+}
+
 function previewPortfolioImage(event) {
     const file = event.target.files && event.target.files[0];
     const preview = document.getElementById('portfolioImagePreview');

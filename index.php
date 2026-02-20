@@ -3,9 +3,9 @@
 require_once 'config/database.php';
 
 // Ambil data logo berdasarkan kategori menggunakan fungsi yang sudah Anda buat di config
-$clients = getLogos('client'); // Mengambil khusus logo klien
-$events = getEvents(3); // Ambil 3 event terbaru
+$clients = getLogos('client'); 
 $partners = array_merge(getLogos('publisher'), getLogos('creative'), getLogos('techno'));
+$events = getEvents(3); 
 $total_projects = 470;
 $total_team = 47;
 $total_years = 13;
