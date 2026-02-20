@@ -131,12 +131,14 @@ include '../includes/sidebar.php';
                         <div class="form-group">
                             <label for="category">Category *</label>
                             <select class="form-control" id="category" name="category" required>
-                                <option value="client" <?php echo $logo['category'] == 'client' ? 'selected' : ''; ?>>Client</option>
-                                <option value="publisher" <?php echo $logo['category'] == 'publisher' ? 'selected' : ''; ?>>Publisher</option>
-                                <option value="creative" <?php echo $logo['category'] == 'creative' ? 'selected' : ''; ?>>Creative</option>
-                                <option value="techno" <?php echo $logo['category'] == 'techno' ? 'selected' : ''; ?>>Technology Partner</option>
+                                <option value="client" <?php echo $logo['category'] == 'client' ? 'selected' : ''; ?>>Client (Will appear in Our Clients section)</option>
+                                <option value="publisher" <?php echo $logo['category'] == 'publisher' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
+                                <option value="creative" <?php echo $logo['category'] == 'creative' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
+                                <option value="techno" <?php echo $logo['category'] == 'techno' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
                             </select>
+                            <small class="form-text text-muted">"Client" goes to Our Clients. All others go to Our Partners.</small>
                         </div>
+
                     </div>
 
                     <div class="col-md-4">

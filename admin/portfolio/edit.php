@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = strtolower(trim($_POST['category'] ?? ''));
     $tags = trim($_POST['tags']);
     $status = $_POST['status'] ?? 'active';
-    $sort_order = $_POST['sort_order'] ?? 0;
+    $sort_order = 0;
 
     // Handle image upload if new image is provided
     $image = $portfolio['image']; // Keep existing image by default
@@ -182,12 +182,6 @@ include '../includes/sidebar.php';
                                 <option value="active" <?php echo $portfolio['status'] == 'active' ? 'selected' : ''; ?>>Active</option>
                                 <option value="inactive" <?php echo $portfolio['status'] == 'inactive' ? 'selected' : ''; ?>>Inactive</option>
                             </select>
-                        </div>
-
-                        <div>
-                            <label for="sort_order" class="block text-sm font-semibold text-slate-700 mb-2">Sort Order</label>
-                            <input type="number" id="sort_order" name="sort_order" value="<?php echo htmlspecialchars($portfolio['sort_order']); ?>" min="0" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
-                            <div class="mt-2 text-xs text-slate-500">Lower numbers appear first</div>
                         </div>
                     </div>
                 </div>
