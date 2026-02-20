@@ -1,0 +1,1 @@
+<?php // Access denied - Directory access not allowed ?>
