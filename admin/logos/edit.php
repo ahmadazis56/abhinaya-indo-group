@@ -96,129 +96,118 @@ include '../includes/header.php';
 include '../includes/sidebar.php';
 ?>
 
-<div class="main-content">
-    <div class="page-header">
-        <h1>Edit Logo</h1>
-        <a href="index.php" class="btn btn-outline-secondary">
-            <i class="fas fa-arrow-left"></i> Back to Logos
-        </a>
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger">
-                    <?php 
-                    echo $_SESSION['error']; 
-                    unset($_SESSION['error']);
-                    ?>
+<main class="flex-1 lg:ml-72">
+    <div class="p-4 sm:p-6 lg:p-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="flex items-start justify-between gap-4 mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Edit Logo</h1>
+                    <p class="text-slate-600 mt-1">Update client or partner logo information</p>
                 </div>
+                <a href="index.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-rose-800 flex items-start gap-3">
+                    <i class="fas fa-exclamation-circle mt-0.5"></i>
+                    <div class="text-sm font-medium"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
+                </div>
+                <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
 
-            <form method="POST" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($logo['name']); ?>" required>
+            <form method="POST" enctype="multipart/form-data" class="bg-white border border-slate-200 rounded-2xl p-6 overflow-x-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-8 space-y-5">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Name *</label>
+                            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($logo['name']); ?>" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
                         </div>
 
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Brief description of the client or partner"><?php echo htmlspecialchars($logo['description']); ?></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="category">Category *</label>
-                            <select class="form-control" id="category" name="category" required>
+                        <div>
+                            <label for="category" class="block text-sm font-semibold text-slate-700 mb-2">Category *</label>
+                            <select id="category" name="category" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
                                 <option value="client" <?php echo $logo['category'] == 'client' ? 'selected' : ''; ?>>Client (Will appear in Our Clients section)</option>
                                 <option value="publisher" <?php echo $logo['category'] == 'publisher' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
                                 <option value="creative" <?php echo $logo['category'] == 'creative' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
                                 <option value="techno" <?php echo $logo['category'] == 'techno' ? 'selected' : ''; ?>>Partner (Will appear in Our Partners section)</option>
                             </select>
-                            <small class="form-text text-muted">"Client" goes to Our Clients. All others go to Our Partners.</small>
+                            <p class="mt-2 text-xs text-slate-500 italic">"Client" goes to Our Clients. All others go to Our Partners.</p>
                         </div>
 
+                        <div>
+                            <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">Description</label>
+                            <textarea id="description" name="description" rows="4" placeholder="Brief description of the client or partner" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600"><?php echo htmlspecialchars($logo['description']); ?></textarea>
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="image">Logo Image</label>
-                            <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
-                            <small class="form-text text-muted">Leave empty to keep current image. Allowed formats: JPG, PNG, GIF, WebP. Max size: 5MB</small>
-                            
-                            <?php if (!empty($logo['image'])): ?>
-                                <div class="mt-2">
-                                    <small class="text-muted">Current logo:</small><br>
-                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; border: 1px solid #dee2e6;">
-                                        <img src="../uploads/logos/<?php echo htmlspecialchars($logo['image']); ?>" 
-                                             alt="<?php echo htmlspecialchars($logo['name']); ?>" 
-                                             style="max-width: 100%; height: auto; max-height: 120px; object-fit: contain;">
-                                    </div>
+                    <div class="lg:col-span-4 space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Logo Image</label>
+                            <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center">
+                                <div id="logoPreview" class="w-full aspect-square rounded-xl bg-white border border-slate-200 flex items-center justify-center overflow-hidden mb-3">
+                                    <?php if (!empty($logo['image'])): ?>
+                                        <img src="../uploads/logos/<?php echo htmlspecialchars($logo['image']); ?>" alt="<?php echo htmlspecialchars($logo['name']); ?>" class="max-w-full max-h-full object-contain p-2">
+                                    <?php else: ?>
+                                        <div class="text-slate-400 text-sm px-4">Preview</div>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
+                                <input type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-slate-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-brand-600 file:text-white file:font-semibold hover:file:bg-brand-700" onchange="previewLogo(event)">
+                                <div class="mt-2 text-[10px] text-slate-500 uppercase tracking-wider font-bold">Leave empty to keep current image</div>
+                            </div>
                         </div>
 
-                        <div class="alert alert-info">
-                            <h6><i class="fas fa-info-circle"></i> Category Guide:</h6>
-                            <ul class="mb-0">
-                                <li><strong>Client:</strong> Companies you've worked for</li>
-                                <li><strong>Publisher:</strong> Publishing partners</li>
-                                <li><strong>Creative:</strong> Creative agencies</li>
-                                <li><strong>Technology:</strong> Tech partners</li>
+                        <div class="rounded-xl bg-cyan-50 border border-cyan-100 p-4">
+                            <h6 class="text-cyan-800 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <i class="fas fa-info-circle"></i> Best Results
+                            </h6>
+                            <ul class="text-xs text-cyan-700 space-y-1 font-medium">
+                                <li>• Use transparent PNG images</li>
+                                <li>• High-resolution original file</li>
+                                <li>• Center-aligned logos</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Update Logo
+                <div class="mt-6 pt-6 border-t border-slate-200 flex flex-col sm:flex-row gap-3 sm:justify-end">
+                    <a href="index.php" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50">
+                        Cancel
+                    </a>
+                    <button type="submit" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
+                        <i class="fas fa-save"></i>
+                        Save Changes
                     </button>
-                    <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </form>
         </div>
     </div>
-</div>
+</main>
+
+<script>
+function previewLogo(event) {
+    const file = event.target.files && event.target.files[0];
+    const preview = document.getElementById('logoPreview');
+    if (!preview) return;
+
+    if (!file) {
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        alert('Ukuran file terlalu besar! Max 5MB');
+        event.target.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview" class="max-w-full max-h-full object-contain p-2">';
+    };
+    reader.readAsDataURL(file);
+}
+</script>
 
 <?php include '../includes/footer.php'; ?>
-
-<style>
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-actions {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #dee2e6;
-}
-
-.form-actions .btn {
-    margin-right: 1rem;
-}
-
-.form-control-file {
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    padding: 0.375rem 0.75rem;
-}
-
-.form-text {
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-.mt-2 {
-    margin-top: 0.5rem;
-}
-
-.alert-info h6 {
-    margin-bottom: 0.5rem;
-}
-
-.alert-info ul {
-    font-size: 0.875rem;
-}
-</style>
