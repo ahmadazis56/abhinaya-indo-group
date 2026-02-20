@@ -33,6 +33,7 @@ $stmt->close();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     $role = trim($_POST['role']);
+    $division = trim($_POST['division']);
     $description = trim($_POST['description']);
     $email = trim($_POST['email']);
     $linkedin = trim($_POST['linkedin']);
@@ -80,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update database
-    $stmt = $conn->prepare("UPDATE team SET name = ?, role = ?, description = ?, image = ?, email = ?, linkedin = ?, status = ?, sort_order = ? WHERE id = ?");
-    $stmt->bind_param("sssssssii", $name, $role, $description, $image, $email, $linkedin, $status, $sort_order, $id);
+    $stmt = $conn->prepare("UPDATE team SET name = ?, role = ?, division = ?, description = ?, image = ?, email = ?, linkedin = ?, status = ?, sort_order = ? WHERE id = ?");
+    $stmt->bind_param("ssssssssii", $name, $role, $division, $description, $image, $email, $linkedin, $status, $sort_order, $id);
 
     if ($stmt->execute()) {
         $_SESSION['message'] = 'Team member updated successfully!';
@@ -130,6 +131,17 @@ include '../includes/sidebar.php';
                         <div class="form-group">
                             <label for="role">Role/Position *</label>
                             <input type="text" class="form-control" id="role" name="role" value="<?php echo htmlspecialchars($member['role']); ?>" required placeholder="e.g., CEO, Senior Developer, Designer">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="division">Division *</label>
+                            <select class="form-control" id="division" name="division" required>
+                                <option value="">Select Division</option>
+                                <option value="techno" <?php echo (isset($member['division']) && $member['division'] == 'techno') ? 'selected' : ''; ?>>Techno</option>
+                                <option value="creative" <?php echo (isset($member['division']) && $member['division'] == 'creative') ? 'selected' : ''; ?>>Creative</option>
+                                <option value="publisher" <?php echo (isset($member['division']) && $member['division'] == 'publisher') ? 'selected' : ''; ?>>Publisher</option>
+                                <option value="general" <?php echo (isset($member['division']) && $member['division'] == 'general') ? 'selected' : ''; ?>>General</option>
+                            </select>
                         </div>
 
                         <div class="form-group">

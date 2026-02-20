@@ -47,6 +47,7 @@ include '../includes/sidebar.php';
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Role</th>
+                            <th>Division</th>
                             <th>Contact</th>
                             <th>Status</th>
                             <th>Order</th>
@@ -70,6 +71,11 @@ include '../includes/sidebar.php';
                                     </td>
                                     <td>
                                         <span class="badge badge-info"><?php echo htmlspecialchars($member['role']); ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-<?php echo $member['division'] == 'techno' ? 'primary' : ($member['division'] == 'creative' ? 'success' : ($member['division'] == 'publisher' ? 'warning' : 'secondary')); ?>">
+                                            <?php echo ucfirst($member['division'] ?? 'General'); ?>
+                                        </span>
                                     </td>
                                     <td>
                                         <?php if (!empty($member['email'])): ?>
@@ -110,7 +116,7 @@ include '../includes/sidebar.php';
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="7" class="text-center">
+                                <td colspan="8" class="text-center">
                                     <i class="fas fa-users fa-3x text-muted mb-3"></i>
                                     <h5>No Team Members</h5>
                                     <p class="text-muted">Start by adding your first team member.</p>

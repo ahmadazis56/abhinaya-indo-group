@@ -10,6 +10,7 @@ require_once '../config/database.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     $role = trim($_POST['role']);
+    $division = trim($_POST['division']);
     $description = trim($_POST['description']);
     $email = trim($_POST['email']);
     $linkedin = trim($_POST['linkedin']);
@@ -56,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into database
-    $stmt = $conn->prepare("INSERT INTO team (name, role, description, image, email, linkedin, status, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssi", $name, $role, $description, $image, $email, $linkedin, $status, $sort_order);
+    $stmt = $conn->prepare("INSERT INTO team (name, role, division, description, image, email, linkedin, status, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssi", $name, $role, $division, $description, $image, $email, $linkedin, $status, $sort_order);
 
     if ($stmt->execute()) {
         $_SESSION['message'] = 'Team member added successfully!';
@@ -106,6 +107,17 @@ include '../includes/sidebar.php';
                         <div class="form-group">
                             <label for="role">Role/Position *</label>
                             <input type="text" class="form-control" id="role" name="role" required placeholder="e.g., CEO, Senior Developer, Designer">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="division">Division *</label>
+                            <select class="form-control" id="division" name="division" required>
+                                <option value="">Select Division</option>
+                                <option value="techno">Techno</option>
+                                <option value="creative">Creative</option>
+                                <option value="publisher">Publisher</option>
+                                <option value="general">General</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
