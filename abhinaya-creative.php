@@ -1,11 +1,11 @@
 <?php
 require_once 'config/database.php';
 
-// Get portfolio items for techno division
-$technoPortfolio = getPortfolioByCategory('techno');
+// Get portfolio items for creative division
+$creativePortfolio = getPortfolioByCategory('creative');
 
-// Get team members for techno division
-$technoTeam = getTeamByDivision('techno');
+// Get team members for creative division
+$creativeTeam = getTeamByDivision('creative');
 
 function getPortfolioByCategory($category) {
     global $conn;
@@ -40,8 +40,8 @@ function getTeamByDivision($division) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhinaya Techno - Digital Solutions That Build Your Future</title>
-    <meta name="description" content="Abhinaya Techno offers comprehensive digital solutions including web development, mobile apps, AI solutions, and IT consulting. Transform your business with cutting-edge technology.">
+    <title>Abhinaya Creative - Elevate your brand with our expert services</title>
+    <meta name="description" content="Abhinaya Creative offers comprehensive branding, digital marketing, and content creation services. Elevate your brand with our expert creative solutions.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -110,7 +110,7 @@ function getTeamByDivision($division) {
                             <div class="border-t border-gray-100">
                                 <a href="divisions.php" class="block px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-200 text-sm font-medium">
                                     <div class="flex items-center">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                         </svg>
                                         View All Divisions
@@ -232,32 +232,32 @@ function getTeamByDivision($division) {
         <source src="videos/video.mp4" type="video/mp4">
     </video>
     
-    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/60 to-slate-900/80 z-10"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-slate-900/50 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-pink-800/60 to-purple-900/80 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-transparent to-purple-900/50 z-10"></div>
     
     <div class="relative z-20 text-center px-6 max-w-6xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-        <div class="mb-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 rounded-full backdrop-blur-sm">
-            <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
-            <span class="text-cyan-300 text-sm font-medium">Digital Innovation</span>
+        <div class="mb-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 rounded-full backdrop-blur-sm">
+            <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+            <span class="text-purple-300 text-sm font-medium">Creative Excellence</span>
         </div>
         
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-            <span class="bg-gradient-to-r from-white via-cyan-100 to-blue-100 bg-clip-text text-transparent drop-shadow-2xl">
-                Abhinaya Techno
+            <span class="bg-gradient-to-r from-white via-purple-100 to-pink-100 bg-clip-text text-transparent drop-shadow-2xl">
+                Abhinaya Creative
             </span>
         </h1>
         
-        <p class="text-2xl md:text-3xl lg:text-4xl mb-6 font-light text-cyan-100 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-            Digital Solutions That Build Your Future
+        <p class="text-2xl md:text-3xl lg:text-4xl mb-6 font-light text-purple-100 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+            Elevate your brand with our expert services
         </p>
         
         <p class="text-lg md:text-xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed font-light" data-aos="fade-up" data-aos-delay="400">
-            Transform your business with cutting-edge technology solutions. From web development to AI integration, we build digital experiences that drive growth and innovation.
+            Transform your brand identity with our comprehensive creative solutions. From branding design to digital marketing, we create experiences that captivate and convert.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
-            <a href="#packages" class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                Explore Packages
+            <a href="#services" class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+                Explore Services
             </a>
             <a href="#portfolio" class="group relative inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105 border border-white/20">
                 View Portfolio
@@ -266,216 +266,276 @@ function getTeamByDivision($division) {
     </div>
 </section>
 
-<!-- Packages Section -->
-<section id="packages" class="py-20 md:py-32 bg-gradient-to-br from-white via-cyan-50/30 to-blue-50/20">
+<!-- Services Section -->
+<section id="services" class="py-20 md:py-32 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/20">
     <div class="w-full px-6 sm:px-8 lg:px-12">
         <div class="mx-auto max-w-6xl text-center mb-20" data-aos="fade-up">
-            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-full backdrop-blur-sm mb-6">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
-                <span class="text-cyan-700 text-sm font-medium">Pricing Plans</span>
+            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-full backdrop-blur-sm mb-6">
+                <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                <span class="text-purple-700 text-sm font-medium">Our Expertise</span>
             </div>
-            <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Digital Packages</h2>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Creative Services</h2>
             <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-                Choose the perfect package for your digital transformation journey
+                Comprehensive creative solutions to elevate your brand presence
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Basic Digital Package -->
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200 relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Branding & Identity -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-700 transition-colors">Branding & Identity</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">Complete brand identity design and visual communication solutions that make your brand memorable.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Logo Design</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Brand Guidelines</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Visual Identity</li>
+                </ul>
+            </div>
+
+            <!-- Digital Marketing -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-indigo-700 transition-colors">Digital Marketing</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">Strategic digital marketing campaigns to grow your online presence and engage your audience.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Social Media Management</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Content Marketing</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>SEO Optimization</li>
+                </ul>
+            </div>
+
+            <!-- Content Creation -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-pink-700 transition-colors">Content Creation</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">Engaging content creation that tells your story effectively and resonates with your audience.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Video Production</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Photography</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Copywriting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Media Packages Section -->
+<section id="packages" class="py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
+    <div class="w-full px-6 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-6xl text-center mb-20" data-aos="fade-up">
+            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-full backdrop-blur-sm mb-6">
+                <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                <span class="text-purple-700 text-sm font-medium">Social Media Packages</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Marketing Solutions</h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                Choose the perfect package for your social media marketing needs
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- BASIC PRESENCE Package -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200 relative" data-aos="fade-up" data-aos-delay="100">
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-800">Basic Digital</h3>
-                    <div class="text-4xl font-bold text-cyan-600 mb-2">3.5jt</div>
-                    <p class="text-gray-600">Perfect for small businesses</p>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">BASIC PRESENCE</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">1.8jt</div>
+                    <p class="text-gray-600">Essential social media setup</p>
                 </div>
                 <ul class="space-y-3 mb-8">
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Company Profile Website</span>
+                        <span class="text-gray-700">3 Social Media Platforms</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Basic SEO Setup</span>
+                        <span class="text-gray-700">12 Posts Monthly</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Mobile Responsive Design</span>
+                        <span class="text-gray-700">Basic Analytics Report</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">1 Year Hosting</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-700">Basic Analytics Setup</span>
+                        <span class="text-gray-700">Community Management</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300">
+                <button class="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-pink-700 transition-all duration-300">
                     Get Started
                 </button>
             </div>
 
-            <!-- Professional Digital Package -->
-            <div class="group bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border-2 border-cyan-300 relative" data-aos="fade-up" data-aos-delay="200">
+            <!-- GROWTH CONTENT Package -->
+            <div class="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border-2 border-purple-300 relative" data-aos="fade-up" data-aos-delay="200">
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-4 py-1 rounded-full text-sm font-medium">
                         Most Popular
                     </div>
                 </div>
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-800">Professional Digital</h3>
-                    <div class="text-4xl font-bold text-cyan-600 mb-2">5jt</div>
-                    <p class="text-gray-600">Ideal for growing businesses</p>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">GROWTH CONTENT</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">2.5jt</div>
+                    <p class="text-gray-600">Comprehensive content strategy</p>
                 </div>
                 <ul class="space-y-3 mb-8">
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Advanced Web Application</span>
+                        <span class="text-gray-700">5 Social Media Platforms</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">E-commerce Integration</span>
+                        <span class="text-gray-700">20 Posts Monthly</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Advanced SEO & Marketing</span>
+                        <span class="text-gray-700">Content Strategy</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">API Integration</span>
+                        <span class="text-gray-700">Monthly Analytics</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">2 Years Hosting & Support</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-700">Performance Optimization</span>
+                        <span class="text-gray-700">Influencer Collaboration</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300">
+                <button class="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-pink-700 transition-all duration-300">
                     Get Started
                 </button>
             </div>
 
-            <!-- Enterprise Solution Package -->
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200 relative" data-aos="fade-up" data-aos-delay="300">
+            <!-- BRANDING & CONVERSION Package -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200 relative" data-aos="fade-up" data-aos-delay="300">
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold mb-2 text-gray-800">Enterprise Solution</h3>
-                    <div class="text-4xl font-bold text-cyan-600 mb-2">Custom</div>
-                    <p class="text-gray-600">Tailored for large organizations</p>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">BRANDING & CONVERSION</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">3jt</div>
+                    <p class="text-gray-600">Premium brand experience</p>
                 </div>
                 <ul class="space-y-3 mb-8">
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Custom Enterprise Software</span>
+                        <span class="text-gray-700">All Social Media Platforms</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">AI & Machine Learning Integration</span>
+                        <span class="text-gray-700">30+ Posts Monthly</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Cloud Infrastructure Setup</span>
+                        <span class="text-gray-700">Video Content Production</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Advanced Security Solutions</span>
+                        <span class="text-gray-700">Conversion Optimization</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-700">Dedicated Support Team</span>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-700">Custom Training & Documentation</span>
+                        <span class="text-gray-700">Dedicated Account Manager</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-black transition-all duration-300">
-                    Contact Sales
+                <button class="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-pink-700 transition-all duration-300">
+                    Get Started
                 </button>
+            </div>
+        </div>
+
+        <!-- Additional Packages -->
+        <div class="mx-auto max-w-4xl" data-aos="fade-up">
+            <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Additional Packages</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200">
+                    <h4 class="text-lg font-bold mb-2 text-purple-700">Paid Ads</h4>
+                    <p class="text-gray-600 text-sm">Strategic paid advertising campaigns across platforms</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200">
+                    <h4 class="text-lg font-bold mb-2 text-purple-700">Script Video</h4>
+                    <p class="text-gray-600 text-sm">Professional video script writing and production</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200">
+                    <h4 class="text-lg font-bold mb-2 text-purple-700">Campaign Proposal</h4>
+                    <p class="text-gray-600 text-sm">Comprehensive marketing campaign strategy</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Portfolio Section -->
-<section id="portfolio" class="py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-cyan-50/30">
-    <div class="w-full px-6 sm:px-8 lg:px-12">
-        <div class="mx-auto max-w-6xl text-center mb-20" data-aos="fade-up">
-            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-full backdrop-blur-sm mb-6">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
-                <span class="text-cyan-700 text-sm font-medium">Our Work</span>
-            </div>
-            <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Techno Portfolio</h2>
-            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-                Explore our latest digital innovations and success stories
+<section id="portfolio" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Creative Portfolio</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Explore our latest creative projects and design masterpieces
             </p>
         </div>
-
-        <?php if (!empty($technoPortfolio)): ?>
+        
+        <?php if (!empty($portfolios)): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <?php foreach ($technoPortfolio as $index => $item): ?>
-                    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="<?php echo ($index % 6) * 100; ?>">
-                        <?php if ($item['image']): ?>
-                            <div class="h-48 overflow-hidden">
-                                <img src="uploads/portfolio/<?php echo htmlspecialchars($item['image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($item['title']); ?>" 
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
-                        <?php else: ?>
-                            <div class="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                </svg>
-                            </div>
-                        <?php endif; ?>
+                <?php foreach ($portfolios as $project): ?>
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105" data-aos="fade-up">
+                        <div class="aspect-video bg-gray-200 overflow-hidden">
+                            <img src="admin/uploads/portfolio/<?php echo htmlspecialchars($project['image']); ?>" 
+                                 alt="<?php echo htmlspecialchars($project['title']); ?>" 
+                                 class="w-full h-full object-cover">
+                        </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-cyan-700 transition-colors"><?php echo htmlspecialchars($item['title']); ?></h3>
-                            <p class="text-gray-600 leading-relaxed mb-4"><?php echo htmlspecialchars($item['description']); ?></p>
-                            <?php if ($item['technologies']): ?>
-                                <div class="flex flex-wrap gap-2">
-                                    <?php $technologies = explode(',', $item['technologies']); ?>
-                                    <?php foreach ($technologies as $tech): ?>
-                                        <span class="px-3 py-1 bg-cyan-100 text-cyan-700 text-xs font-medium rounded-full">
-                                            <?php echo htmlspecialchars(trim($tech)); ?>
-                                        </span>
-                                    <?php endforeach; ?>
-                                </div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+                                    <?php echo htmlspecialchars($project['category']); ?>
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-900"><?php echo htmlspecialchars($project['title']); ?></h3>
+                            <p class="text-gray-600 mb-4"><?php echo htmlspecialchars(substr($project['description'], 0, 100)) . '...'; ?></p>
+                            <?php if (!empty($project['link'])): ?>
+                                <a href="<?php echo htmlspecialchars($project['link']); ?>" 
+                                   target="_blank" 
+                                   class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -483,99 +543,126 @@ function getTeamByDivision($division) {
             </div>
         <?php else: ?>
             <div class="text-center py-12">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mb-4">
-                    <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-gray-400 mb-4">
+                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">No Portfolio Items Yet</h3>
-                <p class="text-gray-500">Our techno portfolio items will be displayed here soon.</p>
+                <h3 class="text-xl font-semibold text-gray-600 mb-2">No Creative Portfolio Yet</h3>
+                <p class="text-gray-500">Our creative portfolio will be featured here soon.</p>
             </div>
         <?php endif; ?>
     </div>
 </section>
 
 <!-- Team Section -->
-<section class="py-20 md:py-32 bg-gradient-to-br from-cyan-600 to-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative z-10 w-full px-6 sm:px-8 lg:px-12">
-        <div class="mx-auto max-w-6xl text-center mb-20" data-aos="fade-up">
-            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6">
-                <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-                <span class="text-white text-sm font-medium">Techno Team</span>
-            </div>
-            <h2 class="text-4xl md:text-6xl font-bold mb-6 text-white">Meet Our Experts</h2>
-            <p class="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Talented professionals driving digital innovation
+<section id="team" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Creative Team</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Meet the creative minds behind our innovative designs
             </p>
         </div>
-
-        <?php if (!empty($technoTeam)): ?>
+        
+        <?php if (!empty($teams)): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <?php foreach ($technoTeam as $index => $member): ?>
-                    <div class="text-center group" data-aos="fade-up" data-aos-delay="<?php echo ($index % 4) * 100; ?>">
-                        <div class="relative mb-6 mx-auto w-32 h-32">
-                            <?php if ($member['image']): ?>
-                                <img src="uploads/team/<?php echo htmlspecialchars($member['image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($member['name']); ?>" 
-                                     class="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition-all duration-300">
-                            <?php else: ?>
-                                <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-2xl font-bold">
-                                        <?php echo substr(htmlspecialchars($member['name']), 0, 2); ?>
-                                    </span>
-                                </div>
-                            <?php endif; ?>
+                <?php foreach ($teams as $member): ?>
+                    <div class="text-center group" data-aos="fade-up">
+                        <div class="relative mb-4 mx-auto w-32 h-32 rounded-full overflow-hidden bg-gray-200">
+                            <img src="admin/uploads/team/<?php echo htmlspecialchars($member['image']); ?>" 
+                                 alt="<?php echo htmlspecialchars($member['name']); ?>" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2"><?php echo htmlspecialchars($member['name']); ?></h3>
-                        <p class="text-cyan-100 mb-3"><?php echo htmlspecialchars($member['position']); ?></p>
-                        <?php if ($member['bio']): ?>
-                            <p class="text-white/70 text-sm leading-relaxed"><?php echo htmlspecialchars($member['bio']); ?></p>
-                        <?php endif; ?>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1"><?php echo htmlspecialchars($member['name']); ?></h3>
+                        <p class="text-gray-600"><?php echo htmlspecialchars($member['role']); ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
             <div class="text-center py-12">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full mb-4">
-                    <svg class="w-10 h-10 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-gray-400 mb-4">
+                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-white mb-2">Team Coming Soon</h3>
-                <p class="text-white/70">Our techno team members will be featured here.</p>
+                <h3 class="text-xl font-semibold text-gray-600 mb-2">Creative Team Coming Soon</h3>
+                <p class="text-gray-500">Our creative team information will be available soon.</p>
             </div>
         <?php endif; ?>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-r from-cyan-600 to-blue-700">
-    <div class="w-full px-6 sm:px-8 lg:px-12">
-        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Digital Presence?</h2>
-            <p class="text-xl text-white/80 mb-8 leading-relaxed">Let's discuss how our techno solutions can accelerate your business growth</p>
+<section class="py-20 bg-gradient-to-br from-purple-600 to-pink-600">
+    <div class="container mx-auto px-6 text-center">
+        <div class="max-w-3xl mx-auto" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Ready to Create Something Amazing?</h2>
+            <p class="text-xl text-white/90 mb-8">
+                Let's bring your creative vision to life with our innovative solutions
+            </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:info@abhinaya.com" class="inline-flex items-center px-8 py-4 bg-white text-cyan-700 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                    Contact Us
+                <a href="admin/index.php" class="px-8 py-4 bg-white text-purple-600 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    Get Started
                 </a>
-                <a href="tel:+6281234567890" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105 border border-white/20">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                    Call Now
+                <a href="index.php" class="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    Back to Home
                 </a>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="bg-gradient-to-r from-[#0e6d7c] to-[#14aecf] border-t border-[#0e6d7c]">
-    <div class="bg-[#0a4f5a]">
-        <div class="w-full px-6 sm:px-8 lg:px-12 py-6">
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10">
+                        <img src="images/logo.png" alt="Abhinaya Logo" class="object-contain w-full h-full">
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold">ABHINAYA</div>
+                        <div class="text-xs text-gray-400">INDO GROUP</div>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    Transforming visions into reality through creative innovation.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="index.php" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                    <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                    <li><a href="#team" class="hover:text-white transition-colors">Team</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Services</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li>Brand Design</li>
+                    <li>Digital Marketing</li>
+                    <li>Content Creation</li>
+                    <li>Visual Identity</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li>creative@abhinaya.co.id</li>
+                    <li>+62 812-3456-7890</li>
+                    <li>Jakarta, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-white/60 text-sm mb-4 md:mb-0">
                     &copy; <?php echo date('Y'); ?> ABHINAYA INDO GROUP. All rights reserved.
