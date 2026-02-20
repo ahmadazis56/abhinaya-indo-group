@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
     $link = trim($_POST['link']);
-    $category = trim($_POST['category']);
+    $category = strtolower(trim($_POST['category'] ?? ''));
     $tags = trim($_POST['tags']);
     $status = $_POST['status'] ?? 'active';
     $sort_order = $_POST['sort_order'] ?? 0;
@@ -108,7 +108,12 @@ include '../includes/sidebar.php';
                             </div>
                             <div>
                                 <label for="category" class="block text-sm font-semibold text-slate-700 mb-2">Category</label>
-                                <input type="text" id="category" name="category" placeholder="e.g., Web Design" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                <select id="category" name="category" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                    <option value="">Select category</option>
+                                    <option value="creative">Creative</option>
+                                    <option value="techno">Techno</option>
+                                    <option value="publisher">Publisher</option>
+                                </select>
                             </div>
                         </div>
 

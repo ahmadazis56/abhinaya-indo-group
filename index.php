@@ -5,11 +5,10 @@ require_once 'config/database.php';
 // Ambil data logo berdasarkan kategori menggunakan fungsi yang sudah Anda buat di config
 $clients = getLogos('client'); // Mengambil khusus logo klien
 
-// Mengambil logo untuk partner (gabungan dari publisher, creative, techno)
-$publishers = getLogos('publisher');
-$creatives = getLogos('creative');
-$technos = getLogos('techno');
-$partners = array_merge($publishers, $creatives, $technos);
+
+// Ambil data portfolio terbaru untuk homepage (limit 6)
+$featuredPortfolio = getPortfolio(6);
+
 
 // Data statis untuk Hero (karena fitur Hero belum ada di tabel admin, kita set statis sementara)
 $heroSlides[] = [
@@ -397,6 +396,43 @@ $heroSlides[] = [
     </div>
 </section>
 
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-24 md:py-32 bg-white relative overflow-hidden">
+    <div class="w-full px-6 sm:px-8 lg:px-12">
+        <div class="mx-auto max-w-6xl text-center mb-20" data-aos="fade-up">
+            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-full backdrop-blur-sm mb-6">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+                <span class="text-cyan-700 text-sm font-medium">Our Portfolio</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Featured Projects</h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                Explore our latest projects and success stories across all divisions
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php if (!empty($featuredPortfolio)): ?>
+                <?php foreach ($featuredPortfolio as $project): ?>
+                    <?php include 'includes/portfolio-card.php'; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">Belum ada portfolio yang diupload.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="mt-16 text-center" data-aos="fade-up">
+            <a href="portfolio.php" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-all duration-300 transform hover:scale-105">
+                View All Projects
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- News Section -->
 <section class="py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-cyan-50/30">
     <div class="w-full px-6 sm:px-8 lg:px-12">
@@ -472,19 +508,10 @@ $heroSlides[] = [
             </p>
         </div>
 
-        <div class="w-full">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <?php if (!empty($clients)): ?>
-                    <?php foreach ($clients as $index => $client): ?>
-                    <div class="group relative flex items-center justify-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-gray-100 hover:border-cyan-200 cursor-pointer" data-aos="fade-up" data-aos-delay="<?php echo ($index % 6) * 50; ?>">
-                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10 w-full h-full flex items-center justify-center">
-                            <img src="uploads/logos/<?php echo htmlspecialchars($client['image']); ?>" 
-                                 alt="<?php echo htmlspecialchars($client['name']); ?>" 
-                                 title="<?php echo htmlspecialchars($client['name']); ?>"
-                                 class="object-contain max-h-16 w-auto transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-110">
-                        </div>
-                    </div>
+                    <?php foreach ($clients as $index => $logo): ?>
+                        <?php include 'includes/logo-card.php'; ?>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="col-span-full text-center py-8 text-gray-500">
@@ -492,7 +519,6 @@ $heroSlides[] = [
                     </div>
                 <?php endif; ?>
             </div>
-        </div>
     </div>
 </section>
 
@@ -520,21 +546,9 @@ $heroSlides[] = [
                 <div class="flex animate-scroll-left py-12">
                     
                     <?php for($i=0; $i<2; $i++): ?>
-                        <?php foreach ($partners as $partner): ?>
+                        <?php foreach ($partners as $logo): ?>
                         <div class="flex items-center justify-center px-12 flex-shrink-0">
-                            <div class="flex items-center justify-center w-48 h-24 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-50 group border border-gray-100">
-                                <div class="relative w-full h-full flex items-center justify-center p-4">
-                                    <img src="uploads/logos/<?php echo htmlspecialchars($partner['image']); ?>" 
-                                         alt="<?php echo htmlspecialchars($partner['name']); ?>" 
-                                         class="object-contain transition-all duration-500 group-hover:scale-105 max-w-full max-h-full opacity-80 group-hover:opacity-100">
-                                    
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <p class="text-white text-xs font-medium text-center truncate">
-                                            <?php echo htmlspecialchars($partner['name']); ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php include 'includes/logo-card.php'; ?>
                         </div>
                         <?php endforeach; ?>
                     <?php endfor; ?>

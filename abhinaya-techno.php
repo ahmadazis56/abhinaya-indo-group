@@ -449,36 +449,8 @@ function getTeamByDivision($division) {
 
         <?php if (!empty($technoPortfolio)): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <?php foreach ($technoPortfolio as $index => $item): ?>
-                    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="<?php echo ($index % 6) * 100; ?>">
-                        <?php if ($item['image']): ?>
-                            <div class="h-48 overflow-hidden">
-                                <img src="uploads/portfolio/<?php echo htmlspecialchars($item['image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($item['title']); ?>" 
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
-                        <?php else: ?>
-                            <div class="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                </svg>
-                            </div>
-                        <?php endif; ?>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-cyan-700 transition-colors"><?php echo htmlspecialchars($item['title']); ?></h3>
-                            <p class="text-gray-600 leading-relaxed mb-4"><?php echo htmlspecialchars($item['description']); ?></p>
-                            <?php if ($item['technologies']): ?>
-                                <div class="flex flex-wrap gap-2">
-                                    <?php $technologies = explode(',', $item['technologies']); ?>
-                                    <?php foreach ($technologies as $tech): ?>
-                                        <span class="px-3 py-1 bg-cyan-100 text-cyan-700 text-xs font-medium rounded-full">
-                                            <?php echo htmlspecialchars(trim($tech)); ?>
-                                        </span>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                <?php foreach ($technoPortfolio as $project): ?>
+                    <?php include 'includes/portfolio-card.php'; ?>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
@@ -506,33 +478,14 @@ function getTeamByDivision($division) {
             </div>
             <h2 class="text-4xl md:text-6xl font-bold mb-6 text-white">Meet Our Experts</h2>
             <p class="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Talented professionals driving digital innovation
+                Meet the brilliant minds behind our innovative technology solutions
             </p>
         </div>
 
         <?php if (!empty($technoTeam)): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <?php foreach ($technoTeam as $index => $member): ?>
-                    <div class="text-center group" data-aos="fade-up" data-aos-delay="<?php echo ($index % 4) * 100; ?>">
-                        <div class="relative mb-6 mx-auto w-32 h-32">
-                            <?php if ($member['image']): ?>
-                                <img src="uploads/team/<?php echo htmlspecialchars($member['image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($member['name']); ?>" 
-                                     class="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition-all duration-300">
-                            <?php else: ?>
-                                <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-2xl font-bold">
-                                        <?php echo substr(htmlspecialchars($member['name']), 0, 2); ?>
-                                    </span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2"><?php echo htmlspecialchars($member['name']); ?></h3>
-                        <p class="text-cyan-100 mb-3"><?php echo htmlspecialchars($member['position']); ?></p>
-                        <?php if ($member['bio']): ?>
-                            <p class="text-white/70 text-sm leading-relaxed"><?php echo htmlspecialchars($member['bio']); ?></p>
-                        <?php endif; ?>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <?php foreach ($technoTeam as $member): ?>
+                    <?php include 'includes/team-card.php'; ?>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>

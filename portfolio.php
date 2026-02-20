@@ -108,67 +108,25 @@ $category_names = [
             </p>
         </div>
         
-        <?php if (!empty($portfolios)): ?>
-            <?php foreach ($portfolios as $category => $projects): ?>
-                <div class="mb-20" data-aos="fade-up">
-                    <div class="text-center mb-12">
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-                            <?php echo htmlspecialchars($category_names[$category] ?? ucfirst($category)); ?>
-                        </h3>
-                        <div class="w-20 h-1 mx-auto bg-gradient-to-r <?php echo $category_colors[$category] ?? $category_colors['general']; ?> rounded-full"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php if (!empty($portfolios)): ?>
+                <?php foreach ($portfolios as $category_slug => $projects): ?>
+                    <?php foreach ($projects as $project): ?>
+                        <?php include 'includes/portfolio-card.php'; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <?php foreach ($projects as $index => $project): ?>
-                            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105" data-aos="fade-up" data-aos-delay="<?php echo $index * 100; ?>">
-                                <div class="aspect-video bg-gray-200 overflow-hidden">
-                                    <?php if (!empty($project['image'])): ?>
-                                        <img src="admin/uploads/portfolio/<?php echo htmlspecialchars($project['image']); ?>" 
-                                             alt="<?php echo htmlspecialchars($project['title']); ?>" 
-                                             class="w-full h-full object-cover">
-                                    <?php else: ?>
-                                        <div class="w-full h-full bg-gradient-to-br <?php echo $category_colors[$category] ?? $category_colors['general']; ?> flex items-center justify-center">
-                                            <svg class="w-16 h-16 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                                            </svg>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <span class="text-sm font-medium bg-gradient-to-r <?php echo $category_colors[$category] ?? $category_colors['general']; ?> text-white px-3 py-1 rounded-full">
-                                            <?php echo htmlspecialchars($project['category']); ?>
-                                        </span>
-                                    </div>
-                                    <h4 class="text-xl font-semibold mb-2 text-gray-900"><?php echo htmlspecialchars($project['title']); ?></h4>
-                                    <p class="text-gray-600 mb-4"><?php echo htmlspecialchars(substr($project['description'], 0, 120)) . '...'; ?></p>
-                                    <?php if (!empty($project['link'])): ?>
-                                        <a href="<?php echo htmlspecialchars($project['link']); ?>" 
-                                           target="_blank" 
-                                           class="inline-flex items-center text-[#0e6d7c] hover:text-[#14aecf] font-medium transition-colors">
-                                            View Project
-                                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">No Portfolio Items Yet</h3>
+                    <p class="text-gray-500">Our portfolio projects will be featured here soon.</p>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="text-center py-12">
-                <div class="text-gray-400 mb-4">
-                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">No Portfolio Items Yet</h3>
-                <p class="text-gray-500">Our portfolio projects will be featured here soon.</p>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
 </section>
 

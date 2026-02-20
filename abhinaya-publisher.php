@@ -285,48 +285,24 @@ function getTeamByDivision($division) {
             </p>
         </div>
         
-        <?php if (!empty($portfolios)): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <?php foreach ($portfolios as $project): ?>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105" data-aos="fade-up">
-                        <div class="aspect-video bg-gray-200 overflow-hidden">
-                            <img src="admin/uploads/portfolio/<?php echo htmlspecialchars($project['image']); ?>" 
-                                 alt="<?php echo htmlspecialchars($project['title']); ?>" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-medium text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">
-                                    <?php echo htmlspecialchars($project['category']); ?>
-                                </span>
-                            </div>
-                            <h3 class="text-xl font-semibold mb-2 text-gray-900"><?php echo htmlspecialchars($project['title']); ?></h3>
-                            <p class="text-gray-600 mb-4"><?php echo htmlspecialchars(substr($project['description'], 0, 100)) . '...'; ?></p>
-                            <?php if (!empty($project['link'])): ?>
-                                <a href="<?php echo htmlspecialchars($project['link']); ?>" 
-                                   target="_blank" 
-                                   class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
-                                    View Publication
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php if (!empty($publisherPortfolio)): ?>
+                <?php foreach ($publisherPortfolio as $project): ?>
+                    <?php include 'includes/portfolio-card.php'; ?>
                 <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center py-12">
-                <div class="text-gray-400 mb-4">
-                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">No Publications Yet</h3>
+                    <p class="text-gray-500">Our academic publications will be featured here soon.</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">No Publications Yet</h3>
-                <p class="text-gray-500">Our academic publications will be featured here soon.</p>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
     </div>
 </section>
 
@@ -340,31 +316,18 @@ function getTeamByDivision($division) {
             </p>
         </div>
         
-        <?php if (!empty($teams)): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <?php foreach ($teams as $member): ?>
-                    <div class="text-center group" data-aos="fade-up">
-                        <div class="relative mb-4 mx-auto w-32 h-32 rounded-full overflow-hidden bg-gray-200">
-                            <img src="admin/uploads/team/<?php echo htmlspecialchars($member['image']); ?>" 
-                                 alt="<?php echo htmlspecialchars($member['name']); ?>" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-1"><?php echo htmlspecialchars($member['name']); ?></h3>
-                        <p class="text-gray-600"><?php echo htmlspecialchars($member['role']); ?></p>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <?php if (!empty($publisherTeam)): ?>
+                <?php foreach ($publisherTeam as $member): ?>
+                    <?php include 'includes/team-card.php'; ?>
                 <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center py-12">
-                <div class="text-gray-400 mb-4">
-                    <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                    </svg>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">Our publishing team will be featured here soon.</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-600 mb-2">Publishing Team Coming Soon</h3>
-                <p class="text-gray-500">Our publishing team information will be available soon.</p>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
     </div>
 </section>
 
