@@ -37,6 +37,7 @@ if (!$conn->query($createTable)) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sortOrder = isset($_POST['sort_order']) ? (int)$_POST['sort_order'] : 0;
     // Handle image upload
     $imageFileName = '';
     $fileSize = 0;
@@ -101,8 +102,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = 'Gallery_' . time(); // Generate default title
     $description = ''; // Empty description
     $category = 'other'; // Default category
-    $stmt = $conn->prepare("INSERT INTO gallery (title, description, image, category, file_size) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssi", $title, $description, $imageFileName, $category, $fileSize);
+
+    $hasSortOrder = $conn->query("SHOW COLUMNS FROM gallery LIKE 'sort_order'");
+    if ($hasSortOrder && $hasSortOrder->num_rows > 0) {
+        $stmt = $conn->prepare("INSERT INTO gallery (title, description, image, category, sort_order, file_size) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssii", $title, $description, $imageFileName, $category, $sortOrder, $fileSize);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO gallery (title, description, image, category, file_size) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssi", $title, $description, $imageFileName, $category, $fileSize);
+    }
     
     if ($stmt->execute()) {
         $_SESSION['success_message'] = 'Foto gallery berhasil ditambahkan!';

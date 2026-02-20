@@ -3,7 +3,7 @@
 require_once 'config/database.php';
 
 // Ambil data team dari database dan kelompokkan berdasarkan divisi
-$team_query = "SELECT * FROM team ORDER BY division, name ASC";
+$team_query = "SELECT * FROM team ORDER BY COALESCE(division, 'general'), name ASC";
 $team_result = $conn->query($team_query);
 $teams_by_division = [];
 if ($team_result) {

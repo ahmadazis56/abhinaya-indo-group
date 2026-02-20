@@ -22,6 +22,11 @@ include '../includes/messages.php';
         <form action="save_gallery.php" method="POST" enctype="multipart/form-data" class="gallery-form">
             <div class="form-section">
                 <h3>Upload Foto Gallery</h3>
+
+                <div class="form-group">
+                    <label for="sort_order">Urutan (Sort Order)</label>
+                    <input type="number" id="sort_order" name="sort_order" value="0">
+                </div>
                 
                 <div class="form-group">
                     <div class="file-upload">

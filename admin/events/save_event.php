@@ -41,13 +41,13 @@ if (!$conn->query($createTable)) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
-    $date = $_POST['date'] ?? '';
+    $eventDate = $_POST['event_date'] ?? '';
     $time = $_POST['time'] ?? null;
     $location = $_POST['location'] ?? '';
     $status = $_POST['status'] ?? 'upcoming';
     
     // Validate required fields
-    if (empty($title) || empty($description) || empty($date) || empty($location) || empty($status)) {
+    if (empty($title) || empty($description) || empty($eventDate) || empty($location) || empty($status)) {
         $_SESSION['error_message'] = 'Semua field wajib diisi!';
         header('Location: add.php');
         exit();
@@ -94,8 +94,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // Insert into database
-    $stmt = $conn->prepare("INSERT INTO events (title, description, image, date, time, location, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $title, $description, $imageFileName, $date, $time, $location, $status);
+    $hasEventDate = $conn->query("SHOW COLUMNS FROM events LIKE 'event_date'");
+    $hasLegacyDate = $conn->query("SHOW COLUMNS FROM events LIKE 'date'");
+
+    if ($hasEventDate && $hasEventDate->num_rows > 0) {
+        if ($hasLegacyDate && $hasLegacyDate->num_rows > 0) {
+            $stmt = $conn->prepare("INSERT INTO events (title, description, image, event_date, date, time, location, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $title, $description, $imageFileName, $eventDate, $eventDate, $time, $location, $status);
+        } else {
+            $stmt = $conn->prepare("INSERT INTO events (title, description, image, event_date, time, location, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $title, $description, $imageFileName, $eventDate, $time, $location, $status);
+        }
+    } else {
+        $stmt = $conn->prepare("INSERT INTO events (title, description, image, date, time, location, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $title, $description, $imageFileName, $eventDate, $time, $location, $status);
+    }
     
     if ($stmt->execute()) {
         $_SESSION['success_message'] = 'Event berhasil ditambahkan!';

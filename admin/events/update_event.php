@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $eventId = $_POST['id'] ?? 0;
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
-    $date = $_POST['date'] ?? '';
+    $eventDate = $_POST['event_date'] ?? '';
     $time = $_POST['time'] ?? null;
     $location = $_POST['location'] ?? '';
     $status = $_POST['status'] ?? 'upcoming';
     $removeImage = $_POST['remove_image'] ?? 0;
     
     // Validate required fields
-    if (empty($title) || empty($description) || empty($date) || empty($location) || empty($status)) {
+    if (empty($title) || empty($description) || empty($eventDate) || empty($location) || empty($status)) {
         $_SESSION['error_message'] = 'Semua field wajib diisi!';
         header('Location: edit.php?id=' . $eventId);
         exit();
@@ -104,8 +104,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // Update database
-    $stmt = $conn->prepare("UPDATE events SET title = ?, description = ?, image = ?, date = ?, time = ?, location = ?, status = ? WHERE id = ?");
-    $stmt->bind_param("sssssssi", $title, $description, $imageFileName, $date, $time, $location, $status, $eventId);
+    $hasEventDate = $conn->query("SHOW COLUMNS FROM events LIKE 'event_date'");
+    $hasLegacyDate = $conn->query("SHOW COLUMNS FROM events LIKE 'date'");
+
+    if ($hasEventDate && $hasEventDate->num_rows > 0) {
+        if ($hasLegacyDate && $hasLegacyDate->num_rows > 0) {
+            $stmt = $conn->prepare("UPDATE events SET title = ?, description = ?, image = ?, event_date = ?, date = ?, time = ?, location = ?, status = ? WHERE id = ?");
+            $stmt->bind_param("ssssssssi", $title, $description, $imageFileName, $eventDate, $eventDate, $time, $location, $status, $eventId);
+        } else {
+            $stmt = $conn->prepare("UPDATE events SET title = ?, description = ?, image = ?, event_date = ?, time = ?, location = ?, status = ? WHERE id = ?");
+            $stmt->bind_param("sssssssi", $title, $description, $imageFileName, $eventDate, $time, $location, $status, $eventId);
+        }
+    } else {
+        $stmt = $conn->prepare("UPDATE events SET title = ?, description = ?, image = ?, date = ?, time = ?, location = ?, status = ? WHERE id = ?");
+        $stmt->bind_param("sssssssi", $title, $description, $imageFileName, $eventDate, $time, $location, $status, $eventId);
+    }
     
     if ($stmt->execute()) {
         $_SESSION['success_message'] = 'Event berhasil diupdate!';

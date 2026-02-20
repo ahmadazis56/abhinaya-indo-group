@@ -36,7 +36,7 @@ include '../includes/messages.php';
                 <div class="form-row">
                     <div class="form-group">
                         <label for="date">Tanggal Event *</label>
-                        <input type="date" id="date" name="date" required>
+                        <input type="date" id="event_date" name="event_date" required>
                     </div>
 
                     <div class="form-group">
@@ -263,7 +263,7 @@ function previewImage(event) {
 document.querySelector('.event-form').addEventListener('submit', function(e) {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
-    const date = document.getElementById('date').value;
+    const date = document.getElementById('event_date').value;
     const location = document.getElementById('location').value.trim();
     const image = document.getElementById('image').files[0];
     

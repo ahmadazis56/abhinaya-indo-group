@@ -35,6 +35,13 @@ if ($result->num_rows === 0) {
 $event = $result->fetch_assoc();
 $stmt->close();
 
+$eventDateValue = '';
+if (isset($event['event_date']) && !empty($event['event_date'])) {
+    $eventDateValue = $event['event_date'];
+} elseif (isset($event['date']) && !empty($event['date'])) {
+    $eventDateValue = $event['date'];
+}
+
 include '../includes/header.php';
 include '../includes/sidebar.php';
 include '../includes/messages.php';
@@ -68,7 +75,7 @@ include '../includes/messages.php';
                 <div class="form-row">
                     <div class="form-group">
                         <label for="date">Tanggal Event *</label>
-                        <input type="date" id="date" name="date" required value="<?php echo $event['date']; ?>">
+                        <input type="date" id="event_date" name="event_date" required value="<?php echo htmlspecialchars($eventDateValue); ?>">
                     </div>
 
                     <div class="form-group">
@@ -322,7 +329,7 @@ function removeCurrentImage() {
 document.querySelector('.event-form').addEventListener('submit', function(e) {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
-    const date = document.getElementById('date').value;
+    const date = document.getElementById('event_date').value;
     const location = document.getElementById('location').value.trim();
     
     if (!title || !description || !date || !location) {

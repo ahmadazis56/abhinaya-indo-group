@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['error'] = 'Team member not found.';

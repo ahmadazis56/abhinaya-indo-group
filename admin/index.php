@@ -24,58 +24,79 @@ if ($conn->connect_error) {
 }
 ?>
 
-<div class="main-content">
-    <div class="dashboard-header">
-        <h1>Dashboard Admin</h1>
-        <p>Kelola Events dan Gallery</p>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon">📅</div>
-            <div class="stat-info">
-                <h3><?php echo countEvents(); ?></h3>
-                <p>Total Events</p>
+<main class="flex-1 lg:ml-72">
+    <div class="p-4 sm:p-6 lg:p-8">
+        <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Admin Dashboard</h1>
+                <p class="text-slate-600 mt-1">Kelola Events, Gallery, Team, Portfolio, dan Logos</p>
             </div>
         </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon">🖼️</div>
-            <div class="stat-info">
-                <h3><?php echo countGallery(); ?></h3>
-                <p>Total Gallery</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white border border-slate-200 rounded-2xl p-5">
+                <div class="flex items-center gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900"><?php echo countEvents(); ?></div>
+                        <div class="text-sm text-slate-600">Total Events</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-5">
+                <div class="flex items-center gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900"><?php echo countGallery(); ?></div>
+                        <div class="text-sm text-slate-600">Total Gallery</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+                <div>
+                    <h2 class="text-lg font-semibold text-slate-900">Quick Actions</h2>
+                    <p class="text-sm text-slate-600 mt-1">Shortcut untuk menambah data</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="events/add.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
+                        <i class="fas fa-plus"></i>
+                        <span>Tambah Event</span>
+                    </a>
+                    <a href="gallery/add.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">
+                        <i class="fas fa-plus"></i>
+                        <span>Tambah Gallery</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold text-slate-900">Activity Terbaru</h2>
+            </div>
+            <div class="space-y-3">
+                <?php
+                $recent = getRecentActivity();
+                foreach ($recent as $activity) {
+                    echo '<div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">';
+                    echo '<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-600 text-white">' . htmlspecialchars($activity['type']) . '</span>';
+                    echo '<span class="flex-1 text-sm font-medium text-slate-800">' . htmlspecialchars($activity['description']) . '</span>';
+                    echo '<span class="text-xs text-slate-500">' . htmlspecialchars($activity['time']) . '</span>';
+                    echo '</div>';
+                }
+                ?>
             </div>
         </div>
     </div>
-
-    <div class="quick-actions">
-        <h2>Quick Actions</h2>
-        <div class="action-buttons">
-            <a href="events/add.php" class="btn btn-primary">
-                <span>➕</span> Tambah Event
-            </a>
-            <a href="gallery/add.php" class="btn btn-tertiary">
-                <span>➕</span> Tambah Gallery
-            </a>
-        </div>
-    </div>
-
-    <div class="recent-activity">
-        <h2>Activity Terbaru</h2>
-        <div class="activity-list">
-            <?php
-            $recent = getRecentActivity();
-            foreach ($recent as $activity) {
-                echo '<div class="activity-item">';
-                echo '<span class="activity-type">' . $activity['type'] . '</span>';
-                echo '<span class="activity-desc">' . $activity['description'] . '</span>';
-                echo '<span class="activity-time">' . $activity['time'] . '</span>';
-                echo '</div>';
-            }
-            ?>
-        </div>
-    </div>
-</div>
+</main>
 
 <?php include 'includes/footer.php'; ?>
 

@@ -25,7 +25,13 @@ if ($conn->connect_error) {
 
 // Get gallery photos
 $gallery = [];
-$result = $conn->query("SELECT * FROM gallery ORDER BY created_at DESC");
+$hasSortOrder = $conn->query("SHOW COLUMNS FROM gallery LIKE 'sort_order'");
+$orderBy = "created_at DESC";
+if ($hasSortOrder && $hasSortOrder->num_rows > 0) {
+    $orderBy = "sort_order ASC, created_at DESC";
+}
+
+$result = $conn->query("SELECT * FROM gallery ORDER BY {$orderBy}");
 if ($result) {
     $gallery = $result->fetch_all(MYSQLI_ASSOC);
 }
@@ -37,7 +43,8 @@ $totalSize = array_sum(array_column($gallery, 'file_size'));
 $conn->close();
 ?>
 
-<div class="main-content">
+<main class="flex-1 lg:ml-72">
+<div class="p-4 sm:p-6 lg:p-8">
     <div class="page-header">
         <h1>📸 Gallery Foto</h1>
         <a href="add.php" class="btn btn-primary">
@@ -119,6 +126,11 @@ $conn->close();
                                     <?php echo ucfirst($photo['category']); ?>
                                 </span>
                             </p>
+                            <form method="POST" action="update_sort_order.php" class="sort-order-form">
+                                <input type="hidden" name="id" value="<?php echo (int)$photo['id']; ?>">
+                                <input type="number" name="sort_order" value="<?php echo (int)($photo['sort_order'] ?? 0); ?>" class="sort-order-input">
+                                <button type="submit" class="btn btn-sm btn-info">Save</button>
+                            </form>
                             <p class="gallery-date"><?php echo date('d M Y', strtotime($photo['created_at'])); ?></p>
                         </div>
                     </div>
@@ -135,7 +147,9 @@ $conn->close();
             </div>
         <?php endif; ?>
     </div>
+
 </div>
+</main>
 
 <!-- Photo Modal -->
 <div id="photoModal" class="modal">

@@ -14,7 +14,8 @@ include '../includes/sidebar.php';
 include '../includes/messages.php';
 ?>
 
-<div class="main-content">
+<main class="flex-1 lg:ml-72">
+<div class="p-4 sm:p-6 lg:p-8">
     <div class="page-header">
         <h1>📅 Events Management</h1>
         <a href="add.php" class="btn btn-primary">
@@ -105,7 +106,9 @@ include '../includes/messages.php';
             ?>
         </div>
     </div>
+
 </div>
+</main>
 
 <style>
     .page-header {

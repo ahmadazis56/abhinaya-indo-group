@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);

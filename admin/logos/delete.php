@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['error'] = 'Logo not found.';
@@ -13,7 +13,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
     exit;
 }
 
-$id = $_GET['id'];
+$id = $_GET['id'] ?? 0;
 
 // Get logo to delete image file
 $stmt = $conn->prepare("SELECT * FROM logos WHERE id = ?");
