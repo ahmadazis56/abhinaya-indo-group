@@ -283,51 +283,74 @@ function getTeamByDivision($division) {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <!-- Branding & Identity -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-700 transition-colors">Branding & Identity</h3>
-                <p class="text-gray-600 leading-relaxed mb-6">Complete brand identity design and visual communication solutions that make your brand memorable.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Logo Design</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Brand Guidelines</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>Visual Identity</li>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-700 transition-colors">Branding Design</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">Complete branding solutions from logo design to brand identity that make your brand memorable.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Logo Design</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Brand Guidelines</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Marketing Materials</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Visual Identity</li>
                 </ul>
+                <a href="abhinaya-creative.php" class="inline-flex items-center text-purple-600 font-bold text-sm hover:text-purple-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
+
 
             <!-- Digital Marketing -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-indigo-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-indigo-700 transition-colors">Digital Marketing</h3>
-                <p class="text-gray-600 leading-relaxed mb-6">Strategic digital marketing campaigns to grow your online presence and engage your audience.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Social Media Management</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Content Marketing</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>SEO Optimization</li>
+                <p class="text-gray-600 leading-relaxed mb-6">Comprehensive digital marketing strategies to grow your online presence and engage your audience.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Social Media Marketing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Content Marketing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>SEO/SEM</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Email Campaigns</li>
                 </ul>
+                <a href="abhinaya-creative.php" class="inline-flex items-center text-indigo-600 font-bold text-sm hover:text-indigo-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
             <!-- Content Creation -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-pink-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-pink-700 transition-colors">Content Creation</h3>
                 <p class="text-gray-600 leading-relaxed mb-6">Engaging content creation that tells your story effectively and resonates with your audience.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Video Production</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Photography</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-2"></span>Copywriting</li>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-3 shadow-sm shadow-pink-200"></span>Video Production</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-3 shadow-sm shadow-pink-200"></span>Photography</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-3 shadow-sm shadow-pink-200"></span>Copywriting</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-3 shadow-sm shadow-pink-200"></span>Visual Storytelling</li>
                 </ul>
+                <a href="abhinaya-creative.php" class="inline-flex items-center text-pink-600 font-bold text-sm hover:text-pink-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
+
         </div>
     </div>
 </section>

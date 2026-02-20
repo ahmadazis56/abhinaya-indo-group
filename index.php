@@ -6,6 +6,10 @@ require_once 'config/database.php';
 $clients = getLogos('client'); // Mengambil khusus logo klien
 $events = getEvents(3); // Ambil 3 event terbaru
 $partners = array_merge(getLogos('publisher'), getLogos('creative'), getLogos('techno'));
+$total_projects = 470;
+$total_team = 47;
+$total_years = 13;
+$satisfaction_rate = 98;
 
 
 // Ambil data portfolio terbaru untuk homepage (limit 6)
@@ -265,99 +269,143 @@ $heroSlides[] = [
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Web Development -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-cyan-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-cyan-700 transition-colors">Web Development</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">Custom web applications built with modern technologies and secure code practices.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-cyan-400 rounded-full mr-2"></span>Secure Code</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-cyan-400 rounded-full mr-2"></span>Responsive Design</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-cyan-400 rounded-full mr-2"></span>Performance Optimization</li>
+                <p class="text-gray-600 mb-6 leading-relaxed">Custom web applications built with modern technologies and best practices.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3 shadow-sm shadow-cyan-200"></span>Responsive Design</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3 shadow-sm shadow-cyan-200"></span>Fast Performance</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3 shadow-sm shadow-cyan-200"></span>SEO Optimized</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3 shadow-sm shadow-cyan-200"></span>Secure Code</li>
                 </ul>
+                <a href="abhinaya-techno.php" class="inline-flex items-center text-cyan-600 font-bold text-sm hover:text-cyan-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
             <!-- Mobile Apps -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-700 transition-colors">Mobile Apps</h3>
                 <p class="text-gray-600 mb-6 leading-relaxed">Native and cross-platform mobile applications for iOS and Android.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>iOS & Android</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>User-Friendly UI</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>App Store Optimization</li>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>iOS Development</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Android Apps</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>Cross-Platform</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 shadow-sm shadow-purple-200"></span>App Store Optimization</li>
                 </ul>
+                <a href="abhinaya-techno.php" class="inline-flex items-center text-purple-600 font-bold text-sm hover:text-purple-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
             <!-- AI Solutions -->
             <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-green-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-green-700 transition-colors">AI Solutions</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">Cutting-edge artificial intelligence and machine learning solutions.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>Machine Learning</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>Natural Language Processing</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>Predictive Analytics</li>
+                <p class="text-gray-600 mb-6 leading-relaxed">Artificial intelligence and machine learning solutions for your business.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-3 shadow-sm shadow-green-200"></span>Machine Learning</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-3 shadow-sm shadow-green-200"></span>Natural Language Processing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-3 shadow-sm shadow-green-200"></span>Computer Vision</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-3 shadow-sm shadow-green-200"></span>Predictive Analytics</li>
                 </ul>
+                <a href="abhinaya-techno.php" class="inline-flex items-center text-green-600 font-bold text-sm hover:text-green-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
+
             <!-- Branding Design -->
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-orange-200" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-orange-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-orange-700 transition-colors">Branding Design</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">Complete brand identity design and visual communication solutions.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>Logo Design</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>Brand Guidelines</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>Visual Identity</li>
+                <p class="text-gray-600 mb-6 leading-relaxed">Complete branding solutions from logo design to brand identity.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 shadow-sm shadow-orange-200"></span>Logo Design</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 shadow-sm shadow-orange-200"></span>Brand Guidelines</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 shadow-sm shadow-orange-200"></span>Marketing Materials</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 shadow-sm shadow-orange-200"></span>Visual Identity</li>
                 </ul>
+                <a href="abhinaya-creative.php" class="inline-flex items-center text-orange-600 font-bold text-sm hover:text-orange-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
             <!-- Digital Marketing -->
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="500">
-                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-indigo-200" data-aos="fade-up" data-aos-delay="500">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-indigo-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-indigo-700 transition-colors">Digital Marketing</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">Strategic digital marketing campaigns to grow your online presence.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Social Media Management</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>Content Marketing</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>SEO Optimization</li>
+                <p class="text-gray-600 mb-6 leading-relaxed">Comprehensive digital marketing strategies to grow your online presence.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Social Media Marketing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Content Marketing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>SEO/SEM</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 shadow-sm shadow-indigo-200"></span>Email Campaigns</li>
                 </ul>
+                <a href="abhinaya-creative.php" class="inline-flex items-center text-indigo-600 font-bold text-sm hover:text-indigo-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
 
             <!-- Scientific Publishing -->
-            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-cyan-200" data-aos="fade-up" data-aos-delay="600">
-                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 border border-gray-100 hover:border-teal-200" data-aos="fade-up" data-aos-delay="600">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-teal-200">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 group-hover:text-teal-700 transition-colors">Scientific Publishing</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">Professional scientific journal publishing and academic support services.</p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-center"><span class="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>Journal Management</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>Peer Review Process</li>
-                    <li class="flex items-center"><span class="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>Indexing Services</li>
+                <p class="text-gray-600 mb-6 leading-relaxed">Professional scientific publishing and academic research services.</p>
+                <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal-400 rounded-full mr-3 shadow-sm shadow-teal-200"></span>Journal Publishing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal-400 rounded-full mr-3 shadow-sm shadow-teal-200"></span>Research Papers</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal-400 rounded-full mr-3 shadow-sm shadow-teal-200"></span>Academic Editing</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal-400 rounded-full mr-3 shadow-sm shadow-teal-200"></span>Conference Support</li>
                 </ul>
+                <a href="abhinaya-publisher.php" class="inline-flex items-center text-teal-600 font-bold text-sm hover:text-teal-700 transition-colors group/btn">
+                    Learn more
+                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
+
         </div>
     </div>
 </section>
@@ -379,22 +427,23 @@ $heroSlides[] = [
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="470">0</div>
-                <div class="text-white/80 font-medium">Projects Completed</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="<?php echo $total_projects; ?>">0</div>
+                <div class="text-white/80 font-medium text-sm md:text-base uppercase tracking-wider">Projects Completed</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="47">0</div>
-                <div class="text-white/80 font-medium">Expert Team</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="<?php echo $total_team; ?>">0</div>
+                <div class="text-white/80 font-medium text-sm md:text-base uppercase tracking-wider">Expert Team</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="13">0</div>
-                <div class="text-white/80 font-medium">Years Excellence</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="<?php echo $total_years; ?>">0</div>
+                <div class="text-white/80 font-medium text-sm md:text-base uppercase tracking-wider">Years Excellence</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="98">0</div>
-                <div class="text-white/80 font-medium">Client Satisfaction</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="<?php echo $satisfaction_rate; ?>">0</div>
+                <div class="text-white/80 font-medium text-sm md:text-base uppercase tracking-wider">Client Satisfaction</div>
             </div>
         </div>
+
 
     </div>
 </section>
@@ -590,10 +639,11 @@ $heroSlides[] = [
                 <h4 class="text-white font-bold mb-6">Resources</h4>
                 <ul class="space-y-4 text-sm text-slate-400">
                     <li><a href="portfolio.php" class="hover:text-cyan-500 transition-colors">Portfolio</a></li>
-                    <li><a href="events.php" class="hover:text-cyan-500 transition-colors">Latest News</a></li>
+                    <li><a href="blog.php" class="hover:text-cyan-500 transition-colors">Blog</a></li>
                     <li><a href="gallery.php" class="hover:text-cyan-500 transition-colors">Gallery</a></li>
                 </ul>
             </div>
+
         </div>
 
         <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
