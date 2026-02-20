@@ -5,6 +5,7 @@ require_once 'config/database.php';
 // Ambil data logo berdasarkan kategori menggunakan fungsi yang sudah Anda buat di config
 $clients = getLogos('client'); // Mengambil khusus logo klien
 $events = getEvents(3); // Ambil 3 event terbaru
+$partners = array_merge(getLogos('publisher'), getLogos('creative'), getLogos('techno'));
 
 
 // Ambil data portfolio terbaru untuk homepage (limit 6)
@@ -378,22 +379,23 @@ $heroSlides[] = [
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="0">0+</div>
-                <div class="text-white/80 font-medium">Projects</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="470">0</div>
+                <div class="text-white/80 font-medium">Projects Completed</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="0">0+</div>
-                <div class="text-white/80 font-medium">Team</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="47">0</div>
+                <div class="text-white/80 font-medium">Expert Team</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="0">0+</div>
-                <div class="text-white/80 font-medium">Years</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="13">0</div>
+                <div class="text-white/80 font-medium">Years Excellence</div>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="0">0%</div>
-                <div class="text-white/80 font-medium">Satisfaction</div>
+                <div class="text-5xl md:text-6xl font-bold text-white mb-4 counter" data-target="98">0</div>
+                <div class="text-white/80 font-medium">Client Satisfaction</div>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -534,17 +536,79 @@ $heroSlides[] = [
     </div>
 </section>
 
-<footer class="bg-gradient-to-r from-[#0e6d7c] to-[#14aecf] border-t border-[#0e6d7c]">
-    <div class="bg-[#0a4f5a]">
-        <div class="w-full px-6 sm:px-8 lg:px-12 py-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-white/60 text-sm mb-4 md:mb-0">
-                    &copy; <?php echo date('Y'); ?> ABHINAYA INDO GROUP. All rights reserved.
+<footer class="bg-slate-900 text-white border-t border-slate-800">
+    <div class="w-full px-6 sm:px-8 lg:px-12 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <!-- Company Info -->
+            <div class="space-y-6">
+                <a href="index.php" class="flex items-center space-x-3">
+                    <img src="images/logo.png" alt="Abhinaya Logo" class="w-12 h-12 object-contain">
+                    <div>
+                        <div class="text-lg font-bold tracking-tight">ABHINAYA</div>
+                        <div class="text-xs text-slate-400 font-medium">INDO GROUP</div>
+                    </div>
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Transforming Ideas into Digital Excellence. Leading provider of innovative IT solutions, creative branding, and scientific publishing services across Indonesia and globally.
+                </p>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition-colors duration-300">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition-colors duration-300">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-600 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
                 </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold mb-6">About</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="about.php" class="hover:text-cyan-500 transition-colors">Company Profile</a></li>
+                    <li><a href="team.php" class="hover:text-cyan-500 transition-colors">Our Team</a></li>
+                    <li><a href="contact.php" class="hover:text-cyan-500 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h4 class="text-white font-bold mb-6">Services</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="abhinaya-techno.php" class="hover:text-cyan-500 transition-colors">Web Development</a></li>
+                    <li><a href="abhinaya-techno.php" class="hover:text-cyan-500 transition-colors">Mobile Apps</a></li>
+                    <li><a href="abhinaya-creative.php" class="hover:text-cyan-500 transition-colors">Branding</a></li>
+                    <li><a href="abhinaya-publisher.php" class="hover:text-cyan-500 transition-colors">Publishing</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="text-white font-bold mb-6">Resources</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="portfolio.php" class="hover:text-cyan-500 transition-colors">Portfolio</a></li>
+                    <li><a href="events.php" class="hover:text-cyan-500 transition-colors">Latest News</a></li>
+                    <li><a href="gallery.php" class="hover:text-cyan-500 transition-colors">Gallery</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p class="text-slate-500 text-sm">
+                &copy; 2026 ABHINAYA INDO GROUP. All rights reserved.
+            </p>
+            <div class="flex items-center space-x-6 text-sm text-slate-500">
+                <a href="privacy.php" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.php" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="privacy.php" class="hover:text-white transition-colors">Cookie Policy</a>
             </div>
         </div>
     </div>
 </footer>
+
 
 <script src="assets/js/script.js"></script>
 
