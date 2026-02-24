@@ -14,318 +14,113 @@ include '../includes/sidebar.php';
 include '../includes/messages.php';
 ?>
 
-<main class="flex-1 lg:ml-72">
-<div class="p-4 sm:p-6 lg:p-8">
-    <div class="page-header">
-        <h1>📅 Events Management</h1>
-        <a href="add.php" class="btn btn-primary">
-            <span>➕</span> Tambah Event Baru
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+<div class="p-6 sm:p-8 max-w-7xl mx-auto">
+    
+    <!-- Page Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Events Management</h1>
+            <p class="text-slate-500 mt-1 text-sm">Kelola daftar acara, seminar, dan kegiatan perusahaan.</p>
+        </div>
+        <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+            <i class="fas fa-plus"></i> Tambah Event
         </a>
     </div>
 
-    <div class="events-container">
-        <div class="filter-section">
-            <div class="filter-group">
-                <label>Status:</label>
-                <select id="statusFilter" onchange="filterEvents()">
-                    <option value="">Semua</option>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mb-8">
+        <!-- Filter & Search Bar -->
+        <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center bg-white">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <label class="text-sm font-medium text-slate-500">Status:</label>
+                <select id="statusFilter" onchange="filterEvents()" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block p-2.5 outline-none transition-colors">
+                    <option value="">Semua Status</option>
                     <option value="upcoming">Upcoming</option>
                     <option value="ongoing">Ongoing</option>
                     <option value="past">Past</option>
                 </select>
             </div>
             
-            <div class="search-group">
-                <input type="text" id="searchEvents" placeholder="Cari events..." onkeyup="searchEvents()">
+            <div class="relative w-full sm:w-72">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <i class="fas fa-search text-slate-400"></i>
+                </div>
+                <input type="text" id="searchEvents" onkeyup="searchEvents()" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full pl-10 p-2.5 outline-none transition-colors" placeholder="Cari judul event...">
             </div>
         </div>
 
-        <div class="events-grid" id="eventsList">
-            <?php
-            // Database connection
-            $host = 'localhost';
-            $username = 'root';
-            $password = '';
-            $database = 'abhinaya_admin';
-            
-            $conn = new mysqli($host, $username, $password, $database);
-            
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            
-            // Fetch events from database
-            $sql = "SELECT * FROM events ORDER BY date DESC";
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo '<div class="event-card" data-title="' . htmlspecialchars($row['title']) . '" data-status="' . htmlspecialchars($row['status']) . '">';
-                    echo '<div class="event-image">';
-                    if (!empty($row['image'])) {
-                        echo '<img src="../uploads/events/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['title']) . '">';
-                    } else {
-                        echo '<img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=Event" alt="' . htmlspecialchars($row['title']) . '">';
+        <!-- Event Grid -->
+        <div class="p-6 bg-slate-50/50">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="eventsList">
+                <?php
+                // Database connection
+                $host = 'localhost';
+                $username = 'root';
+                $password = '';
+                $database = 'abhinaya_admin';
+                
+                $conn = new mysqli($host, $username, $password, $database);
+                
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                $sql = "SELECT * FROM events ORDER BY date DESC";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        
+                        $statusClass = 'bg-slate-100 text-slate-600';
+                        if($row['status'] == 'upcoming') $statusClass = 'bg-brand-50 text-brand-700 border-brand-200';
+                        if($row['status'] == 'ongoing') $statusClass = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+                        if($row['status'] == 'past') $statusClass = 'bg-slate-100 text-slate-600 border-slate-200';
+
+                        echo '<div class="event-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-brand-200 transition-all duration-300 group flex flex-col" data-title="' . strtolower(htmlspecialchars($row['title'])) . '" data-status="' . htmlspecialchars($row['status']) . '">';
+                        
+                        echo '  <div class="aspect-[16/9] relative overflow-hidden bg-slate-100">';
+                        if (!empty($row['image'])) {
+                            echo '      <img src="../uploads/events/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['title']) . '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">';
+                        } else {
+                            echo '      <div class="w-full h-full flex items-center justify-center text-slate-300"><i class="fas fa-image text-4xl"></i></div>';
+                        }
+                        echo '      <div class="absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full border bg-opacity-90 backdrop-blur-sm ' . $statusClass . '">' . htmlspecialchars(ucfirst($row['status'])) . '</div>';
+                        echo '  </div>';
+                        
+                        echo '  <div class="p-5 flex-1 flex flex-col">';
+                        echo '      <h3 class="text-lg font-bold text-slate-900 mb-2 line-clamp-1 group-hover:text-brand-600 transition-colors">' . htmlspecialchars($row['title']) . '</h3>';
+                        echo '      <p class="text-slate-500 text-sm mb-4 line-clamp-2 flex-1">' . htmlspecialchars($row['description']) . '</p>';
+                        
+                        echo '      <div class="flex flex-col gap-2 mb-5">';
+                        echo '          <div class="flex items-center text-sm text-slate-600 gap-2"><i class="fas fa-calendar-day w-4 text-slate-400"></i>' . date('d M Y', strtotime($row['date'])) . '</div>';
+                        echo '          <div class="flex items-center text-sm text-slate-600 gap-2"><i class="fas fa-map-marker-alt w-4 text-slate-400"></i><span class="truncate">' . htmlspecialchars($row['location']) . '</span></div>';
+                        echo '      </div>';
+                        
+                        echo '      <div class="flex items-center gap-2 pt-4 border-t border-slate-100 mt-auto">';
+                        echo '          <a href="edit.php?id=' . $row['id'] . '" class="flex-1 inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-brand-600 transition-colors">Edit</a>';
+                        echo '          <button onclick="deleteEvent(' . $row['id'] . ')" class="flex-1 inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-semibold text-rose-600 bg-white border border-rose-200 rounded-lg hover:bg-rose-50 transition-colors">Hapus</button>';
+                        echo '      </div>';
+                        echo '  </div>';
+                        echo '</div>';
                     }
-                    echo '<span class="event-status status-' . htmlspecialchars($row['status']) . '">' . htmlspecialchars(ucfirst($row['status'])) . '</span>';
-                    echo '</div>';
-                    echo '<div class="event-content">';
-                    echo '<h3>' . htmlspecialchars($row['title']) . '</h3>';
-                    echo '<p class="event-desc">' . htmlspecialchars($row['description']) . '</p>';
-                    echo '<div class="event-meta">';
-                    echo '<div class="meta-item">';
-                    echo '<i>📅</i>';
-                    echo '<span>' . date('d M Y', strtotime($row['date'])) . '</span>';
-                    echo '</div>';
-                    echo '<div class="meta-item">';
-                    echo '<i>📍</i>';
-                    echo '<span>' . htmlspecialchars($row['location']) . '</span>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<div class="event-actions">';
-                    echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-secondary">Edit</a>';
-                    echo '<button onclick="deleteEvent(' . $row['id'] . ')" class="btn btn-sm btn-danger">Hapus</button>';
-                    echo '</div>';
-                    echo '</div>';
+                } else {
+                    echo '<div class="col-span-full py-16 text-center bg-white rounded-2xl border border-slate-200 border-dashed">';
+                    echo '  <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-50 flex items-center justify-center text-slate-400"><i class="fas fa-calendar-times text-2xl"></i></div>';
+                    echo '  <h3 class="text-lg font-bold text-slate-900 mb-2">Belum Ada Events</h3>';
+                    echo '  <p class="text-slate-500 mb-6 max-w-sm mx-auto">Anda belum menambahkan event apapun. Mulai dengan menambahkan event pertama Anda.</p>';
+                    echo '  <a href="add.php" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm">';
+                    echo '      <i class="fas fa-plus"></i> Tambah Event Pertama';
+                    echo '  </a>';
                     echo '</div>';
                 }
-            } else {
-                echo '<div class="empty-state">';
-                echo '<div class="empty-icon">📅</div>';
-                echo '<h3>Belum Ada Events</h3>';
-                echo '<p>Anda belum menambahkan event apapun. Mulai dengan menambahkan event pertama Anda!</p>';
-                echo '<div class="empty-actions">';
-                echo '<a href="add.php" class="btn btn-primary">';
-                echo '<span>➕</span> Tambah Event Pertama';
-                echo '</a>';
-                echo '</div>';
-                echo '</div>';
-            }
-            
-            $conn->close();
-            ?>
+                
+                $conn->close();
+                ?>
+            </div>
         </div>
     </div>
-
 </div>
 </main>
-
-<style>
-    .page-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .page-header h1 {
-        color: #1e293b;
-        font-size: 1.8rem;
-    }
-
-    .filter-section {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin-bottom: 2rem;
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .filter-group, .search-group {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .filter-group label {
-        font-weight: 500;
-        color: #64748b;
-    }
-
-    .filter-group select, .search-group input {
-        padding: 0.5rem 1rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        font-size: 0.9rem;
-    }
-
-    .search-group input {
-        width: 250px;
-    }
-
-    .events-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .event-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .event-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .event-image {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-    }
-
-    .event-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .event-status {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: white;
-    }
-
-    .status-upcoming { background: #3b82f6; }
-    .status-ongoing { background: #10b981; }
-    .status-past { background: #64748b; }
-
-    .event-content {
-        padding: 1.5rem;
-    }
-
-    .event-content h3 {
-        color: #1e293b;
-        margin-bottom: 0.5rem;
-        font-size: 1.2rem;
-    }
-
-    .event-desc {
-        color: #64748b;
-        margin-bottom: 1rem;
-        line-height: 1.5;
-    }
-
-    .event-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        margin-bottom: 1rem;
-    }
-
-    .event-date, .event-location {
-        font-size: 0.9rem;
-        color: #64748b;
-    }
-
-    .event-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn-sm {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    .btn-danger {
-        background: #ef4444;
-        color: white;
-    }
-
-    .btn-danger:hover {
-        background: #dc2626;
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 5rem 2rem;
-        color: #64748b;
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-radius: 20px;
-        border: 2px dashed #cbd5e0;
-        margin: 2rem 0;
-    }
-
-    .empty-icon {
-        font-size: 5rem;
-        color: #cbd5e0;
-        margin-bottom: 2rem;
-        opacity: 0.7;
-    }
-
-    .empty-state h3 {
-        color: #1e293b;
-        margin-bottom: 1rem;
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-    }
-
-    .empty-state p {
-        color: #64748b;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 2rem;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .empty-actions {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .empty-actions .btn {
-        padding: 1rem 2rem;
-        font-size: 1rem;
-        border-radius: 12px;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .empty-actions .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
-    }
-
-    @media (max-width: 768px) {
-        .events-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .filter-section {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        
-        .search-group input {
-            width: 100%;
-        }
-    }
-</style>
 
 <script>
 function filterEvents() {

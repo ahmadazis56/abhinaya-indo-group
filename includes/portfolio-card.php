@@ -14,14 +14,22 @@ $cat_names = [
 ];
 
 $cat_colors = [
-    'techno' => 'bg-blue-100 text-blue-700 border-blue-200',
-    'creative' => 'bg-purple-100 text-purple-700 border-purple-200',
-    'publisher' => 'bg-emerald-100 text-emerald-700 border-emerald-200',
-    'general' => 'bg-slate-100 text-slate-700 border-slate-200'
+    'techno' => 'bg-blue-50 text-blue-700 ring-1 ring-blue-200/50',
+    'creative' => 'bg-purple-50 text-purple-700 ring-1 ring-purple-200/50',
+    'publisher' => 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/50',
+    'general' => 'bg-slate-50 text-slate-700 ring-1 ring-slate-200/50'
+];
+
+$button_texts = [
+    'techno' => 'Visit Website',
+    'creative' => 'View Project Case Study',
+    'publisher' => 'View Journal',
+    'general' => 'View Project'
 ];
 
 $cat_name = $cat_names[$cat_slug] ?? ucfirst($cat_slug);
 $cat_class = $cat_colors[$cat_slug] ?? $cat_colors['general'];
+$button_text = $button_texts[$cat_slug] ?? $button_texts['general'];
 
 // Image path handling
 $image_url = 'admin/uploads/portfolio/' . htmlspecialchars($project['image']);
@@ -30,32 +38,27 @@ if (empty($project['image'])) {
 }
 ?>
 
-<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col h-full" data-aos="fade-up">
-    <!-- Image Container -->
-    <div class="relative aspect-[16/10] overflow-hidden">
+<div class="group bg-white rounded-[2rem] overflow-hidden shadow-hostinger border border-gray-100 flex flex-col h-full hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300" data-aos="fade-up">
+    <!-- Image Container (Dynamic Ratio without clipping) -->
+    <div class="relative flex justify-center items-center overflow-hidden bg-slate-100 border-b border-gray-100">
         <img src="<?php echo $image_url; ?>" 
              alt="<?php echo htmlspecialchars($project['title']); ?>" 
-             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+             class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105">
+        
+        <!-- Category Badge Floating -->
+        <span class="absolute top-6 left-6 inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest backdrop-blur-md bg-white/90 shadow-sm text-slate-800">
+            <?php echo $cat_name; ?>
+        </span>
     </div>
 
     <!-- Content -->
-    <div class="p-6 flex flex-col flex-1">
-        <div class="flex items-center justify-between mb-4">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border <?php echo $cat_class; ?>">
-                <?php echo $cat_name; ?>
-            </span>
-            <div class="flex items-center text-emerald-500 text-[10px] font-bold uppercase tracking-wider">
-                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span>
-                Live
-            </div>
-        </div>
-
-        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors duration-300">
+    <div class="p-8 md:p-10 flex flex-col flex-1">
+        
+        <h3 class="text-2xl font-heading font-black text-slate-900 mb-3 group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
             <?php echo htmlspecialchars($project['title']); ?>
         </h3>
 
-        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
+        <p class="text-slate-500 font-medium leading-relaxed mb-8 flex-1 line-clamp-3">
             <?php echo htmlspecialchars($project['description']); ?>
         </p>
 
@@ -63,11 +66,8 @@ if (empty($project['image'])) {
             <div class="mt-auto">
                 <a href="<?php echo htmlspecialchars($project['link']); ?>" 
                    target="_blank" 
-                   class="inline-flex items-center text-cyan-600 font-semibold text-sm hover:text-cyan-700 transition-colors group/link">
-                    Visit Website
-                    <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
+                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+                    <?php echo $button_text; ?>
                 </a>
             </div>
         <?php endif; ?>

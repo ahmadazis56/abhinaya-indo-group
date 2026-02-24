@@ -1,9 +1,8 @@
-// Initialize AOS
-AOS.init({ 
-    once: true, 
-    duration: 600, 
-    easing: 'ease-out-sine', 
-    offset: 100 
+AOS.init({
+    once: true,
+    duration: 800,
+    easing: 'ease-out-cubic',
+    offset: 50
 });
 
 // Counter animation for achievements
@@ -15,7 +14,7 @@ const animateCounters = () => {
         const target = +counter.getAttribute('data-target');
         const count = +counter.innerText.replace(/[^0-9]/g, '');
         const increment = target / speed;
-        
+
         if (count < target) {
             counter.innerText = Math.ceil(count + increment) + counter.innerText.replace(/[0-9]/g, '');
             setTimeout(() => animateCounters(), 10);
@@ -46,10 +45,10 @@ counters.forEach(counter => {
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) { 
-        navbar.classList.add('navbar-scrolled'); 
-    } else { 
-        navbar.classList.remove('navbar-scrolled'); 
+    if (window.scrollY > 20) {
+        navbar.classList.add('navbar-scrolled');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
     }
 });
 
@@ -79,11 +78,11 @@ accordionBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const content = btn.nextElementSibling;
         const icon = btn.querySelector('svg');
-        
+
         // Toggle current accordion
         content.classList.toggle('hidden');
         icon.classList.toggle('rotate-180');
-        
+
         // Close other accordions
         accordionBtns.forEach(otherBtn => {
             if (otherBtn !== btn) {
@@ -102,4 +101,34 @@ document.addEventListener('click', (e) => {
         mobileMenu.classList.add('hidden');
         document.body.style.overflow = 'auto';
     }
+});
+
+// Force video autoplay (safeguard for browsers that block it)
+document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll('video[autoplay]');
+    videos.forEach(video => {
+        // Ensure the video is muted, which is required for autoplay
+        video.muted = true;
+
+        let playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Autoplay prevented or interrupted:", error);
+
+                // Add a one-time event listener for the first user interaction
+                // to trigger play if initial autoplay was blocked
+                const playOnInteraction = () => {
+                    video.play();
+                    document.removeEventListener("touchstart", playOnInteraction);
+                    document.removeEventListener("click", playOnInteraction);
+                    document.removeEventListener("scroll", playOnInteraction);
+                };
+
+                document.addEventListener("touchstart", playOnInteraction, { once: true });
+                document.addEventListener("click", playOnInteraction, { once: true });
+                document.addEventListener("scroll", playOnInteraction, { once: true });
+            });
+        }
+    });
 });

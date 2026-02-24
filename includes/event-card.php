@@ -16,41 +16,41 @@ if (empty($event_image)) {
 }
 ?>
 
-<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col h-full" data-aos="fade-up">
-    <div class="relative aspect-[16/9] overflow-hidden">
+<div class="group bg-white rounded-[2rem] overflow-hidden shadow-hostinger border border-gray-100 flex flex-col h-full hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300" data-aos="fade-up">
+    <!-- Image Container (Hostinger Style 4:3 Ratio) -->
+    <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
         <img src="<?php echo $image_url; ?>" 
              alt="<?php echo $event_title; ?>" 
-             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-        <div class="absolute top-4 left-4">
-            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-lg text-slate-900 text-xs font-bold shadow-sm">
-                <?php echo $event_date; ?>
-            </span>
-        </div>
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        
+        <!-- Date Badge Floating -->
+        <span class="absolute top-6 left-6 inline-flex items-center px-4 py-1.5 rounded-full text-[13px] font-bold tracking-wide backdrop-blur-md bg-white/90 shadow-sm text-slate-800">
+            <?php echo $event_date; ?>
+        </span>
     </div>
 
-    <div class="p-6 flex flex-col flex-1">
-        <div class="flex items-center text-cyan-600 text-xs font-bold uppercase tracking-wider mb-3">
-            <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Content -->
+    <div class="p-8 md:p-10 flex flex-col flex-1">
+        
+        <div class="flex items-center text-primary-600 text-[12px] font-bold uppercase tracking-widest mb-4">
+            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
             </svg>
             <?php echo $event_location; ?>
         </div>
 
-        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors duration-300">
+        <h3 class="text-2xl font-heading font-black text-slate-900 mb-3 group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
             <?php echo $event_title; ?>
         </h3>
 
-        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
+        <p class="text-slate-500 font-medium leading-relaxed mb-8 flex-1 line-clamp-3">
             <?php echo $event_description; ?>
         </p>
 
-        <div class="mt-auto pt-6 border-t border-slate-50">
-            <a href="events.php" class="inline-flex items-center text-slate-900 font-bold text-sm hover:text-cyan-600 transition-colors group/link">
-                Learn More
-                <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
+        <div class="mt-auto">
+            <a href="events.php" class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+                Event Details
             </a>
         </div>
     </div>

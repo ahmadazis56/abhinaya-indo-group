@@ -12,59 +12,68 @@ include '../includes/header.php';
 include '../includes/sidebar.php';
 ?>
 
-<main class="flex-1 lg:ml-72">
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="flex items-start justify-between gap-4 mb-6">
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+    <div class="p-6 sm:p-8 max-w-7xl mx-auto">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-                <h1 class="text-2xl font-bold text-slate-900">Logos</h1>
-                <p class="text-slate-600 mt-1">Kelola client & partner logos</p>
+                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Logos</h1>
+                <p class="text-slate-500 mt-1 text-sm">Kelola daftar logo Client dan Partner Anda.</p>
             </div>
-            <a href="add.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
-                <i class="fas fa-plus"></i>
-                <span>Add New</span>
+            <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+                <i class="fas fa-plus"></i> Tambah Logo
             </a>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mb-8">
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
-                    <thead class="bg-slate-50 text-slate-600">
+                    <thead class="bg-slate-50/80 text-slate-600">
                         <tr>
-                            <th class="text-left font-semibold px-5 py-3">Logo</th>
-                            <th class="text-left font-semibold px-5 py-3">Name</th>
-                            <th class="text-left font-semibold px-5 py-3">Category</th>
-                            <th class="text-left font-semibold px-5 py-3">Created</th>
-                            <th class="text-right font-semibold px-5 py-3">Actions</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Logo</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Nama Instansi</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Kategori</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Tgl Dibuat</th>
+                            <th class="text-right font-bold px-6 py-4 whitespace-nowrap">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200">
+                    <tbody class="divide-y divide-slate-100">
                         <?php if (!empty($logos)): ?>
                             <?php foreach ($logos as $logo): ?>
-                                <tr class="hover:bg-slate-50/60">
-                                    <td class="px-5 py-4">
-                                        <div class="w-24 h-12 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
+                                <tr class="hover:bg-slate-50/60 transition-colors group">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="w-24 h-14 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-brand-200 transition-colors">
                                             <img src="../uploads/logos/<?php echo htmlspecialchars($logo['image']); ?>" alt="<?php echo htmlspecialchars($logo['name']); ?>" class="max-w-full max-h-full object-contain">
                                         </div>
                                     </td>
-                                    <td class="px-5 py-4">
-                                        <div class="font-semibold text-slate-900"><?php echo htmlspecialchars($logo['name']); ?></div>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-900"><?php echo htmlspecialchars($logo['name']); ?></div>
                                         <?php if (!empty($logo['description'])): ?>
-                                            <div class="text-slate-500 text-xs mt-1"><?php echo substr(htmlspecialchars($logo['description']), 0, 80); ?>...</div>
+                                            <div class="text-slate-500 text-xs mt-1 leading-relaxed max-w-sm shrink-0"><?php echo substr(htmlspecialchars($logo['description']), 0, 80); ?>...</div>
                                         <?php endif; ?>
                                     </td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                                            <?php echo ucfirst(htmlspecialchars($logo['category'] ?? 'client')); ?>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <?php
+                                        $catType = htmlspecialchars($logo['category'] ?? 'client');
+                                        $catColor = 'bg-slate-50 text-slate-600 border-slate-200';
+                                        
+                                        if($catType == 'client') $catColor = 'bg-blue-50 text-blue-700 border-blue-200';
+                                        else $catColor = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+                                        ?>
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold tracking-wide uppercase border <?php echo $catColor; ?>">
+                                            <?php echo ucfirst($catType); ?>
                                         </span>
                                     </td>
-                                    <td class="px-5 py-4 text-slate-700"><?php echo !empty($logo['created_at']) ? date('M d, Y', strtotime($logo['created_at'])) : '-'; ?></td>
-                                    <td class="px-5 py-4">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500 text-xs font-medium">
+                                        <?php echo !empty($logo['created_at']) ? date('M d, Y', strtotime($logo['created_at'])) : '-'; ?>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center justify-end gap-2">
-                                            <a href="edit.php?id=<?php echo $logo['id']; ?>" class="w-9 h-9 inline-flex items-center justify-center rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100" title="Edit">
-                                                <i class="fas fa-pen"></i>
+                                            <a href="edit.php?id=<?php echo $logo['id']; ?>" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-brand-600 hover:border-brand-200 transition-all shadow-sm" title="Edit">
+                                                <i class="fas fa-edit text-xs"></i>
                                             </a>
-                                            <a href="delete.php?id=<?php echo $logo['id']; ?>" class="w-9 h-9 inline-flex items-center justify-center rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100" title="Delete" onclick="return confirm('Are you sure you want to delete this logo?')">
-                                                <i class="fas fa-trash"></i>
+                                            <a href="delete.php?id=<?php echo $logo['id']; ?>" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition-all shadow-sm" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus logo ini?')">
+                                                <i class="fas fa-trash text-xs"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -72,10 +81,15 @@ include '../includes/sidebar.php';
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="5" class="px-5 py-10 text-center text-slate-600">
-                                    <div class="text-slate-400 mb-2"><i class="fas fa-image text-3xl"></i></div>
-                                    <div class="font-semibold">No Logos Added</div>
-                                    <div class="text-sm text-slate-500 mt-1">Start by adding your first logo.</div>
+                                <td colspan="5" class="px-6 py-16 text-center">
+                                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100">
+                                        <i class="fas fa-handshake text-2xl text-slate-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-slate-900 mb-1">Belum Ada Logo</h3>
+                                    <p class="text-slate-500 mb-4 text-sm">Tambahkan logo Client atau Partner pertama Anda.</p>
+                                    <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-brand-700 bg-brand-50 border border-brand-200 rounded-xl hover:bg-brand-100 transition-colors">
+                                        <i class="fas fa-plus"></i> Tambah Logo Pertama
+                                    </a>
                                 </td>
                             </tr>
                         <?php endif; ?>
@@ -86,21 +100,4 @@ include '../includes/sidebar.php';
     </div>
 </main>
 
-<?php 
-include '../includes/footer.php';
-
-function getBadgeColor($category) {
-    switch($category) {
-        case 'publisher':
-            return 'info';
-        case 'creative':
-            return 'warning';
-        case 'techno':
-            return 'success';
-        case 'client':
-            return 'primary';
-        default:
-            return 'secondary';
-    }
-}
-?>
+<?php include '../includes/footer.php'; ?>

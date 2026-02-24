@@ -10,225 +10,101 @@ include '../includes/sidebar.php';
 include '../includes/messages.php';
 ?>
 
-<div class="main-content">
-    <div class="page-header">
-        <h1>➕ Tambah Event Baru</h1>
-        <a href="index.php" class="btn btn-secondary">
-            <span>←</span> Kembali
-        </a>
-    </div>
-
-    <div class="form-container">
-        <form action="save_event.php" method="POST" enctype="multipart/form-data" class="event-form">
-            <div class="form-section">
-                <h3>Informasi Event</h3>
-                
-                <div class="form-group">
-                    <label for="title">Judul Event *</label>
-                    <input type="text" id="title" name="title" required placeholder="Masukkan judul event">
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Deskripsi Event *</label>
-                    <textarea id="description" name="description" rows="4" required placeholder="Deskripsi lengkap tentang event"></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="date">Tanggal Event *</label>
-                        <input type="date" id="event_date" name="event_date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="time">Waktu Event</label>
-                        <input type="time" id="time" name="time" placeholder="09:00">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Lokasi Event *</label>
-                    <input type="text" id="location" name="location" required placeholder="Contoh: Jakarta, Mataram, Online">
-                </div>
-
-                <div class="form-group">
-                    <label for="status">Status Event *</label>
-                    <select id="status" name="status" required>
-                        <option value="">Pilih Status</option>
-                        <option value="upcoming">Upcoming</option>
-                        <option value="ongoing">Ongoing</option>
-                        <option value="past">Past</option>
-                    </select>
-                </div>
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+    <div class="p-6 sm:p-8 max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Tambah Event Baru</h1>
+                <p class="text-slate-500 mt-1 text-sm">Tambahkan detail kegiatan atau acara baru.</p>
             </div>
+            <a href="index.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+        </div>
 
-            <div class="form-section">
-                <h3>Media Event</h3>
-                
-                <div class="form-group">
-                    <label for="image">Gambar Event *</label>
-                    <div class="file-upload">
-                        <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)">
-                        <div class="file-upload-label">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Klik untuk upload gambar</p>
-                            <small>Format: JPG, PNG, GIF (Max: 5MB)</small>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <form action="save_event.php" method="POST" enctype="multipart/form-data" class="event-form divide-y divide-slate-100">
+                <!-- Data Event Section -->
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-info-circle text-brand-500"></i> Informasi Event
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label for="title" class="block text-sm font-semibold text-slate-700 mb-2">Judul Event *</label>
+                            <input type="text" id="title" name="title" required placeholder="Masukkan judul event" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                         </div>
-                        <div id="imagePreview" class="image-preview"></div>
+
+                        <div>
+                            <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Event *</label>
+                            <textarea id="description" name="description" rows="5" required placeholder="Deskripsi lengkap tentang event" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400 resize-y"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="event_date" class="block text-sm font-semibold text-slate-700 mb-2">Tanggal Event *</label>
+                                <input type="date" id="event_date" name="event_date" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-sm font-semibold text-slate-700 mb-2">Waktu Event</label>
+                                <input type="time" id="time" name="time" placeholder="09:00" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="location" class="block text-sm font-semibold text-slate-700 mb-2">Lokasi Event *</label>
+                            <input type="text" id="location" name="location" required placeholder="Contoh: Jakarta, Mataram, Online" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
+                        </div>
+
+                        <div>
+                            <label for="status" class="block text-sm font-semibold text-slate-700 mb-2">Status Event *</label>
+                            <select id="status" name="status" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                                <option value="">Pilih Status</option>
+                                <option value="upcoming">Upcoming</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="past">Past</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <span>💾</span> Simpan Event
-                </button>
-                <a href="index.php" class="btn btn-secondary">
-                    <span>❌</span> Batal
-                </a>
-            </div>
-        </form>
+                <!-- Media Section -->
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-image text-brand-500"></i> Media Event
+                    </h3>
+                    
+                    <div>
+                        <label for="image" class="block text-sm font-semibold text-slate-700 mb-2">Gambar Event *</label>
+                        <div class="relative group cursor-pointer border-2 border-dashed border-slate-300 rounded-2xl hover:border-brand-500 hover:bg-brand-50 transition-all duration-300 w-full text-center">
+                            <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                            
+                            <div class="px-6 py-12 flex flex-col items-center justify-center pointer-events-none">
+                                <div class="w-16 h-16 mb-4 rounded-full bg-slate-100 group-hover:bg-white text-slate-400 group-hover:text-brand-500 flex items-center justify-center transition-colors shadow-sm">
+                                    <i class="fas fa-cloud-upload-alt text-2xl"></i>
+                                </div>
+                                <p class="text-slate-700 font-semibold mb-1">Klik atau seret gambar ke sini</p>
+                                <p class="text-sm text-slate-500">Format: JPG, PNG, GIF (Maks. 5MB)</p>
+                            </div>
+                        </div>
+                        <div id="imagePreview" class="hidden mt-6 flex justify-center w-full"></div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="p-6 sm:p-8 bg-slate-50 flex flex-col-reverse sm:flex-row justify-end gap-3">
+                    <a href="index.php" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
+                        Batal
+                    </a>
+                    <button type="submit" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+                        <i class="fas fa-save"></i> Simpan Event
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<style>
-    .form-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        max-width: 800px;
-    }
-
-    .form-section {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #e2e8f0;
-    }
-
-    .form-section:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    .form-section h3 {
-        color: #1e293b;
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: #374151;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-        outline: none;
-        border-color: #14aecf;
-        box-shadow: 0 0 0 3px rgba(20, 174, 207, 0.1);
-    }
-
-    .form-group textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
-
-    .file-upload {
-        position: relative;
-        border: 2px dashed #d1d5db;
-        border-radius: 8px;
-        padding: 2rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .file-upload:hover {
-        border-color: #14aecf;
-        background: #f8fafc;
-    }
-
-    .file-upload input[type="file"] {
-        position: absolute;
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-    }
-
-    .file-upload-label i {
-        font-size: 3rem;
-        color: #14aecf;
-        margin-bottom: 1rem;
-    }
-
-    .file-upload-label p {
-        color: #374151;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-    }
-
-    .file-upload-label small {
-        color: #6b7280;
-    }
-
-    .image-preview {
-        margin-top: 1rem;
-        display: none;
-    }
-
-    .image-preview img {
-        max-width: 100%;
-        max-height: 300px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: flex-end;
-        padding-top: 1rem;
-    }
-
-    @media (max-width: 768px) {
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-        
-        .form-actions {
-            flex-direction: column;
-        }
-        
-        .form-container {
-            padding: 1.5rem;
-        }
-    }
-</style>
+</main>
 
 <script>
 function previewImage(event) {

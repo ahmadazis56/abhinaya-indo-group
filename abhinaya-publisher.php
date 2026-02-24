@@ -3,8 +3,8 @@ require_once 'config/database.php';
 
 // Get portfolio items for publisher division
 $publisherPortfolio = getPortfolioByCategory('publisher');
+$publisherTeam = getTeamByDivision('publisher');
 
-// Definisikan data layanan (packages)
 $packages = [
     [
         'title' => 'Journal Management',
@@ -28,417 +28,308 @@ $packages = [
     ]
 ];
 
-// Get team members for publisher division
-$publisherTeam = getTeamByDivision('publisher');
-
 function getPortfolioByCategory($category) {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM portfolio WHERE category = ? AND status = 'active' ORDER BY sort_order ASC, created_at DESC");
-    $stmt->bind_param("s", $category);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $portfolio = [];
-    while ($row = $result->fetch_assoc()) {
-        $portfolio[] = $row;
+    if($stmt) {
+        $stmt->bind_param("s", $category);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $portfolio = [];
+        while ($row = $result->fetch_assoc()) {
+            $portfolio[] = $row;
+        }
+        $stmt->close();
+        return $portfolio;
     }
-    $stmt->close();
-    return $portfolio;
+    return [];
 }
 
 function getTeamByDivision($division) {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM team WHERE division = ? AND status = 'active' ORDER BY sort_order ASC, created_at ASC");
-    $stmt->bind_param("s", $division);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $team = [];
-    while ($row = $result->fetch_assoc()) {
-        $team[] = $row;
+    if($stmt) {
+        $stmt->bind_param("s", $division);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $team = [];
+        while ($row = $result->fetch_assoc()) {
+            $team[] = $row;
+        }
+        $stmt->close();
+        return $team;
     }
-    $stmt->close();
-    return $team;
+    return [];
 }
+
+$pageTitle = "Abhinaya Publisher - Scientific Distribution";
+$pageDesc = "Professional academic publishing, journal management, and editorial services.";
+include 'includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhinaya Publisher - Academic & Scientific Publishing</title>
-    <meta name="description" content="Abhinaya Publisher offers professional academic publishing, journal management, and editorial services. Partner with us for quality scientific publications.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="bg-gray-50">
 
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[#0e6d7c]/90 to-[#14aecf]/90 backdrop-blur-2xl border-b border-[#0e6d7c]/30 transition-all duration-500">
-    <div class="w-full px-4 lg:px-6">
-        <div class="flex items-center justify-between h-16">
-            <a href="index.php" class="flex items-center space-x-2 group">
-                <div class="relative w-12 h-12 transition-all duration-300 group-hover:scale-110">
-                    <img src="images/logo.png" alt="Abhinaya Logo" class="object-contain w-full h-full">
-                </div>
-                <div class="hidden sm:block">
-                    <div class="text-sm font-bold text-white">ABHINAYA</div>
-                    <div class="text-xs text-white/80">INDO GROUP</div>
-                </div>
+<!-- Hero Section - Hostinger Dark Style -->
+<section class="relative w-full py-24 md:py-32 bg-slate-900 overflow-hidden text-center">
+    <div class="absolute inset-0 z-0 opacity-20">
+        <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-emerald-900/50 to-transparent"></div>
+        <div class="absolute top-0 left-0 -ml-32 -mt-32 w-96 h-96 rounded-full bg-emerald-600 blur-3xl mix-blend-screen opacity-30"></div>
+    </div>
+    
+    <div class="relative z-10 w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-duration="1000">
+        <div class="inline-flex items-center px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 backdrop-blur-md mb-8">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+            <span class="text-sm font-bold text-slate-300 uppercase tracking-widest">Scientific Distribution</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-black mb-6 leading-[1.1] tracking-tight text-white">
+            Academic Publishing <br/>
+            <span class="text-emerald-400">Elevated.</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            We deliver rigorous peer-review orchestration, exquisite editorial oversight, and extensive worldwide database indexing support.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="#services" class="inline-flex items-center justify-center px-8 py-3.5 text-[15px] font-bold tracking-wide text-white transition-all bg-emerald-600 rounded-2xl hover:bg-emerald-700 shadow-hostinger hover:shadow-hostinger-hover hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-emerald-200">
+                Our Process
             </a>
-
-            <div class="hidden lg:flex items-center justify-center flex-1 space-x-6">
-                <a href="index.php" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg">Home</a>
-                <a href="#services" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg">Services</a>
-                
-                <!-- Divisions Dropdown -->
-                <div class="relative group">
-                    <button class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg flex items-center">
-                        Divisions
-                        <svg class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="absolute top-full left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-                            <a href="abhinaya-techno.php" class="block px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 text-sm font-medium">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                    </svg>
-                                    Abhinaya Techno
-                                </div>
-                            </a>
-                            <a href="abhinaya-creative.php" class="block px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-700 transition-all duration-200 text-sm font-medium">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                                    </svg>
-                                    Abhinaya Creative
-                                </div>
-                            </a>
-                            <a href="abhinaya-publisher.php" class="block px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 hover:text-emerald-700 transition-all duration-200 text-sm font-medium">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                    </svg>
-                                    Abhinaya Publisher
-                                </div>
-                            </a>
-                            <div class="border-t border-gray-100">
-                                <a href="divisions.php" class="block px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-200 text-sm font-medium">
-                                    <div class="flex items-center">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                                        </svg>
-                                        View All Divisions
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="events.php" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg">Events</a>
-                <a href="gallery.php" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg">Gallery</a>
-                <a href="team.php" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg">Team</a>
-                <a href="admin/index.php" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 rounded-lg border border-white/20">Login Admin</a>
-            </div>
-
-            <button id="mobileMenuBtn" class="lg:hidden text-white p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-3.5 text-[15px] font-bold tracking-wide text-slate-900 transition-all bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 hover:border-gray-300">
+                View Journals
+            </a>
         </div>
     </div>
-</nav>
+</section>
 
-<!-- Mobile Menu -->
-<div id="mobileMenu" class="fixed inset-0 bg-black/95 z-40 lg:hidden hidden">
-    <div class="flex flex-col h-full p-6">
-        <div class="flex justify-between items-center mb-8">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10">
-                    <img src="images/logo.png" alt="Abhinaya Logo" class="object-contain w-full h-full">
-                </div>
-                <div>
-                    <div class="text-sm font-bold text-white">ABHINAYA</div>
-                    <div class="text-xs text-white/80">INDO GROUP</div>
-                </div>
-            </div>
-            <button id="closeMobileMenu" class="text-white p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+<!-- Services Grid -->
+<section id="services" class="py-24 bg-gray-50 border-b border-gray-100">
+    <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-[#0f172a] mb-4">Publishing Packages</h2>
+            <p class="text-lg text-slate-500 font-medium">Flexible publishing plans tailored to your journal needs</p>
         </div>
         
-        <nav class="flex-1 overflow-y-auto">
-            <div class="space-y-2">
-                <a href="index.php" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300">
-                    Home
-                </a>
-                <a href="#services" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300">
-                    Services
-                </a>
-                
-                <!-- Mobile Divisions Accordion -->
-                <div class="mobile-accordion">
-                    <button class="mobile-accordion-btn w-full px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 flex items-center justify-between">
-                        <span>Divisions</span>
-                        <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="mobile-accordion-content hidden pl-4 space-y-2 mt-2">
-                        <a href="abhinaya-techno.php" class="block px-4 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 text-sm">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                </svg>
-                                Abhinaya Techno
-                            </div>
-                        </a>
-                        <a href="abhinaya-creative.php" class="block px-4 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 text-sm">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                                </svg>
-                                Abhinaya Creative
-                            </div>
-                        </a>
-                        <a href="abhinaya-publisher.php" class="block px-4 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 text-sm">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                </svg>
-                                Abhinaya Publisher
-                            </div>
-                        </a>
-                        <a href="divisions.php" class="block px-4 py-2 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 text-sm border-t border-white/10 mt-2 pt-3">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                                </svg>
-                                View All Divisions
-                            </div>
-                        </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-4">
+            <!-- Basic Journal -->
+            <div class="bg-white rounded-2xl p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] flex flex-col h-full transform transition-transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                <div class="mb-8 block">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Basic Journal</h3>
+                    <div class="flex items-baseline text-slate-900">
+                        <span class="text-[2.75rem] leading-none font-bold">Rp 5 Juta</span>
+                        <span class="text-sm text-slate-500 font-medium ml-1">/per journal</span>
                     </div>
                 </div>
-                
-                <a href="events.php" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300">
-                    Events
-                </a>
-                <a href="gallery.php" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300">
-                    Gallery
-                </a>
-                <a href="team.php" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300">
-                    Team
-                </a>
-                <a href="admin/index.php" class="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 border border-white/20">
-                    Login Admin
-                </a>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Instalasi OJS</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Setup website journal</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Template jurnal</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Struktur editorial</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Konfigurasi workflow submission</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Pembinaan ISSN</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Training editor</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">3 bulan support</span>
+                    </li>
+                </ul>
+                <button class="w-full py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
+                    GET STARTED
+                </button>
             </div>
-        </nav>
-    </div>
-</div>
 
-<!-- Hero Section -->
-<section class="relative pt-24 pb-16 bg-gradient-to-br from-emerald-600 to-teal-600 overflow-hidden">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative container mx-auto px-6 text-center text-white">
-        <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Abhinaya Publisher
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-                Excellence in Academic & Scientific Publishing
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#portfolio" class="px-8 py-4 bg-white text-emerald-600 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                    View Publications
-                </a>
-                <a href="#team" class="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-emerald-600 transition-all duration-300">
-                    Meet Our Team
-                </a>
+            <!-- Professional Journal -->
+            <div class="bg-white rounded-[1.5rem] p-10 shadow-[0_20px_50px_-12px_rgba(99,102,241,0.15)] flex flex-col h-full transform md:-translate-y-4 border-2 border-[#6366f1] relative" data-aos="fade-up" data-aos-delay="200">
+                <div class="absolute top-0 right-6 transform -translate-y-1/2">
+                    <span class="bg-[#5a4add] text-white text-[11px] font-bold px-3 py-1 rounded-sm shadow-sm">Most Popular</span>
+                </div>
+                <div class="mb-8 block">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Professional Journal</h3>
+                    <div class="flex items-baseline text-slate-900">
+                        <span class="text-[2.75rem] leading-none font-bold">Rp 8 Juta</span>
+                        <span class="text-sm text-slate-500 font-medium ml-1">/per website</span>
+                    </div>
+                </div>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">OJS full setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">3+ Journal installation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Fullset Management journal</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Advanced peer-review workflow</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">DOI registration</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Crossref integration</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Indexing preparation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Plagiarism checking system</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Layout & template journal profesional</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">12 bulan support</span>
+                    </li>
+                </ul>
+                <button class="w-full py-3.5 bg-[#5a4add] text-white text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-[#4f3fd6] shadow-md transition-all mt-auto">
+                    GET STARTED
+                </button>
+            </div>
+
+            <!-- Premium Publisher -->
+            <div class="bg-white rounded-2xl p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] flex flex-col h-full transform transition-transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="mb-8 block">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Premium Publisher</h3>
+                    <div class="flex items-baseline text-slate-900">
+                        <span class="text-[2.75rem] leading-none font-bold">Custom</span>
+                        <span class="text-sm text-slate-500 font-medium ml-1">/contact for pricing</span>
+                    </div>
+                </div>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Multi-journal management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Journal platform terintegrasi</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Portal publisher</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Strategi indexing nasional & internasional</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Scopus preparation system</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">International partnership support</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Editorial management system</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Analytics & reporting</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span class="text-[15px] text-slate-600 font-medium">Dedicated publishing team</span>
+                    </li>
+                </ul>
+                <button class="w-full py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
+                    GET STARTED
+                </button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<section id="services" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Publishing Services</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Comprehensive publishing solutions for academic and scientific excellence
-            </p>
+<!-- Publications -->
+<section id="portfolio" class="py-24 bg-white border-b border-gray-100">
+    <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6">Scientific Records</h2>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <?php foreach ($packages as $index => $package): ?>
-                <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-teal-50 transition-all duration-300 hover:shadow-lg" data-aos="fade-up" data-aos-delay="<?php echo $index * 100; ?>">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?php echo $package['icon']; ?>"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900"><?php echo htmlspecialchars($package['title']); ?></h3>
-                    <p class="text-gray-600"><?php echo htmlspecialchars($package['description']); ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
 
-<!-- Portfolio Section -->
-<section id="portfolio" class="py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Our Publications</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover our academic journals and scientific publications
-            </p>
-        </div>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php if (!empty($publisherPortfolio)): ?>
                 <?php foreach ($publisherPortfolio as $project): ?>
                     <?php include 'includes/portfolio-card.php'; ?>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="col-span-full text-center py-12">
-                    <div class="text-gray-400 mb-4">
-                        <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+                <div class="col-span-full text-center py-20 px-4 bg-gray-50 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div class="text-slate-300 mb-6 flex justify-center">
+                        <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-600 mb-2">No Publications Yet</h3>
-                    <p class="text-gray-500">Our academic publications will be featured here soon.</p>
+                    <h3 class="text-xl font-heading font-black text-slate-900 mb-2">Publishing List Update</h3>
+                    <p class="text-slate-500 font-medium">Our publications list is being updated.</p>
                 </div>
             <?php endif; ?>
         </div>
-
     </div>
 </section>
 
 <!-- Team Section -->
-<section id="team" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
+<section class="py-24 bg-gray-50 border-b border-gray-100">
+    <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Publishing Team</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Meet the experts behind our academic publishing excellence
-            </p>
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6">Editorial Board</h2>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             <?php if (!empty($publisherTeam)): ?>
                 <?php foreach ($publisherTeam as $member): ?>
                     <?php include 'includes/team-card.php'; ?>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="col-span-full text-center py-12">
-                    <p class="text-gray-500">Our publishing team will be featured here soon.</p>
+                <div class="col-span-full text-center py-20 px-4 bg-white rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div class="text-slate-300 mb-6 flex justify-center">
+                        <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-heading font-black text-slate-900 mb-2">Board Update In Progress</h3>
+                    <p class="text-slate-500 font-medium">Editorial board members will be highlighted here soon.</p>
                 </div>
             <?php endif; ?>
         </div>
-
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-20 bg-gradient-to-br from-emerald-600 to-teal-600">
-    <div class="container mx-auto px-6 text-center">
-        <div class="max-w-3xl mx-auto" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Ready to Publish Your Research?</h2>
-            <p class="text-xl text-white/90 mb-8">
-                Partner with us for professional academic publishing services
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="admin/index.php" class="px-8 py-4 bg-white text-emerald-600 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                    Get Started
-                </a>
-                <a href="index.php" class="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-emerald-600 transition-all duration-300">
-                    Back to Home
-                </a>
-            </div>
-        </div>
+<!-- CTA -->
+<section class="py-24 bg-white text-center border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+        <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6">Drive the conversation.</h2>
+        <p class="text-lg md:text-xl text-slate-500 mb-10 font-medium">Join thousands of researchers disseminating quality peer-reviewed articles.</p>
+        <a href="contact.php" class="inline-flex items-center justify-center px-10 py-4 text-[16px] font-bold tracking-wide text-white transition-all bg-emerald-600 rounded-2xl hover:bg-emerald-700 shadow-hostinger hover:shadow-hostinger-hover hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-emerald-200">
+            Submit an Inquiry
+        </a>
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white">
-    <div class="container mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <div class="w-10 h-10">
-                        <img src="images/logo.png" alt="Abhinaya Logo" class="object-contain w-full h-full">
-                    </div>
-                    <div>
-                        <div class="text-sm font-bold">ABHINAYA</div>
-                        <div class="text-xs text-gray-400">INDO GROUP</div>
-                    </div>
-                </div>
-                <p class="text-gray-400 text-sm">
-                    Excellence in academic and scientific publishing.
-                </p>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="index.php" class="hover:text-white transition-colors">Home</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
-                    <li><a href="#portfolio" class="hover:text-white transition-colors">Publications</a></li>
-                    <li><a href="#team" class="hover:text-white transition-colors">Team</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Services</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li>Academic Publishing</li>
-                    <li>Journal Management</li>
-                    <li>Editorial Services</li>
-                    <li>Distribution</li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold mb-4">Contact</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li>publisher@abhinaya.co.id</li>
-                    <li>+62 812-3456-7890</li>
-                    <li>Jakarta, Indonesia</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-white/60 text-sm mb-4 md:mb-0">
-                    &copy; <?php echo date('Y'); ?> ABHINAYA INDO GROUP. All rights reserved.
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script src="assets/js/script.js"></script>
-
-</body>
-</html>
-<?php 
-// Tutup koneksi
-if(isset($conn)) { $conn->close(); } 
-?>
+<?php include 'includes/footer.php'; ?>

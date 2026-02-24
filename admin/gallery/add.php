@@ -10,223 +10,78 @@ include '../includes/sidebar.php';
 include '../includes/messages.php';
 ?>
 
-<div class="main-content">
-    <div class="page-header">
-        <h1>➕ Tambah Foto Gallery</h1>
-        <a href="index.php" class="btn btn-secondary">
-            <span>←</span> Kembali
-        </a>
-    </div>
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+    <div class="p-6 sm:p-8 max-w-3xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Tambah Foto Gallery</h1>
+                <p class="text-slate-500 mt-1 text-sm">Upload foto baru ke gallery website.</p>
+            </div>
+            <a href="index.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+        </div>
 
-    <div class="form-container">
-        <form action="save_gallery.php" method="POST" enctype="multipart/form-data" class="gallery-form">
-            <div class="form-section">
-                <h3>Upload Foto Gallery</h3>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <form action="save_gallery.php" method="POST" enctype="multipart/form-data" class="gallery-form divide-y divide-slate-100">
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-cloud-upload-alt text-brand-500"></i> Upload Foto Gallery
+                    </h3>
 
-                <div class="form-group">
-                    <label for="sort_order">Urutan (Sort Order)</label>
-                    <input type="number" id="sort_order" name="sort_order" value="0">
-                </div>
-                
-                <div class="form-group">
-                    <div class="file-upload">
-                        <input type="file" id="image" name="image" accept="image/*" required onchange="previewGalleryImage(event)">
-                        <div class="file-upload-label">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h4>Klik untuk Upload Foto</h4>
-                            <p>Format: JPG, PNG, GIF, WebP (Max: 5MB)</p>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="sort_order" class="block text-sm font-semibold text-slate-700 mb-2">Urutan (Sort Order)</label>
+                            <input type="number" id="sort_order" name="sort_order" value="0" class="w-full sm:w-1/3 rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                            <p class="mt-1.5 text-xs text-slate-500">Semakin kecil angkanya, semakin awal foto ditampilkan.</p>
                         </div>
-                        <div id="imagePreview" class="image-preview"></div>
+                        
+                        <div>
+                            <label for="image" class="block text-sm font-semibold text-slate-700 mb-2">Pilih Foto *</label>
+                            
+                            <div class="relative group cursor-pointer border-2 border-dashed border-slate-300 rounded-2xl hover:border-brand-500 hover:bg-brand-50 transition-all duration-300 w-full text-center overflow-hidden">
+                                <input type="file" id="image" name="image" accept="image/*" required onchange="previewGalleryImage(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                
+                                <div class="px-6 py-12 flex flex-col items-center justify-center pointer-events-none">
+                                    <div class="w-16 h-16 mb-4 rounded-full bg-slate-100 group-hover:bg-white text-slate-400 group-hover:text-brand-500 flex items-center justify-center transition-colors shadow-sm">
+                                        <i class="fas fa-cloud-upload-alt text-2xl"></i>
+                                    </div>
+                                    <h4 class="text-slate-800 font-bold mb-1 text-lg">Klik atau seret foto ke sini</h4>
+                                    <p class="text-slate-500 mb-4 text-sm">Preview foto akan muncul setelah dipilih</p>
+                                    
+                                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 w-full max-w-sm text-left mx-auto">
+                                        <div class="text-[11px] font-semibold text-blue-800 mb-1 uppercase tracking-wider">Persyaratan Foto:</div>
+                                        <ul class="text-xs text-blue-700 list-disc list-inside space-y-0.5">
+                                            <li>Format: JPG, PNG, GIF, WebP</li>
+                                            <li>Ukuran maksimal: 5MB</li>
+                                            <li>Resolusi minimal: 800x600px</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="imagePreview" class="hidden mt-6">
+                                <p class="text-sm font-semibold text-slate-700 mb-2 text-center">Preview:</p>
+                                <div class="flex justify-center">
+                                    <img src="" alt="Preview" class="max-w-full sm:max-w-md max-h-[300px] object-contain rounded-xl shadow-sm border border-slate-200 bg-slate-50 p-2">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <span>⬆️</span> Upload
-                </button>
-                <a href="index.php" class="btn btn-secondary">
-                    Batal
-                </a>
-            </div>
-        </form>
+                <div class="p-6 sm:p-8 bg-slate-50 flex flex-col-reverse sm:flex-row justify-end gap-3">
+                    <a href="index.php" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
+                        Batal
+                    </a>
+                    <button type="submit" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+                        <i class="fas fa-upload"></i> Upload Foto
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<style>
-    .form-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        max-width: 800px;
-    }
-
-    .form-section {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #e2e8f0;
-    }
-
-    .form-section:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    .form-section h3 {
-        color: #1e293b;
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: #374151;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-        outline: none;
-        border-color: #14aecf;
-        box-shadow: 0 0 0 3px rgba(20, 174, 207, 0.1);
-    }
-
-    .form-group textarea {
-        resize: vertical;
-        min-height: 80px;
-    }
-
-    .file-upload {
-        position: relative;
-        border: 2px dashed #d1d5db;
-        border-radius: 12px;
-        padding: 2rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background: #f8fafc;
-    }
-
-    .file-upload:hover {
-        border-color: #14aecf;
-        background: #f0f9ff;
-    }
-
-    .file-upload input[type="file"] {
-        position: absolute;
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-    }
-
-    .file-upload-label i {
-        font-size: 3rem;
-        color: #14aecf;
-        margin-bottom: 1rem;
-    }
-
-    .file-upload-label h4 {
-        color: #374151;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .file-upload-label p {
-        color: #6b7280;
-        margin-bottom: 0.5rem;
-    }
-
-    .file-upload-label small {
-        color: #9ca3af;
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-
-    .image-preview {
-        display: none;
-        margin-top: 2rem;
-        text-align: center;
-    }
-
-    .image-preview img {
-        max-width: 100%;
-        max-height: 300px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border: 1px solid #e5e7eb;
-        background: white;
-        padding: 1rem;
-    }
-
-    .photo-requirements {
-        background: #f0f9ff;
-        border: 1px solid #bae6fd;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-top: 1rem;
-    }
-
-    .photo-requirements h4 {
-        color: #0369a1;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-    }
-
-    .photo-requirements ul {
-        margin: 0;
-        padding-left: 1.5rem;
-    }
-
-    .photo-requirements li {
-        color: #0c4a6e;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: flex-end;
-        padding-top: 2rem;
-        border-top: 1px solid #e2e8f0;
-    }
-
-    @media (max-width: 768px) {
-        .form-container {
-            padding: 1.5rem;
-        }
-        
-        .form-actions {
-            flex-direction: column;
-        }
-        
-        .image-preview img {
-            max-width: 100%;
-            max-height: 200px;
-        }
-    }
-</style>
+</main>
 
 <script>
 function previewGalleryImage(event) {

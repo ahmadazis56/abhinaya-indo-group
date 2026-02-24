@@ -12,83 +12,91 @@ include '../includes/header.php';
 include '../includes/sidebar.php';
 ?>
 
-<main class="flex-1 lg:ml-72">
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="flex items-start justify-between gap-4 mb-6">
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+    <div class="p-6 sm:p-8 max-w-7xl mx-auto">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-                <h1 class="text-2xl font-bold text-slate-900">Team Members</h1>
-                <p class="text-slate-600 mt-1">Kelola data anggota team</p>
+                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Team Members</h1>
+                <p class="text-slate-500 mt-1 text-sm">Kelola daftar anggota tim Abhinaya.</p>
             </div>
-            <a href="add.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
-                <i class="fas fa-plus"></i>
-                <span>Add New</span>
+            <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+                <i class="fas fa-plus"></i> Tambah Anggota
             </a>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mb-8">
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
-                    <thead class="bg-slate-50 text-slate-600">
+                    <thead class="bg-slate-50/80 text-slate-600">
                         <tr>
-                            <th class="text-left font-semibold px-5 py-3">Photo</th>
-                            <th class="text-left font-semibold px-5 py-3">Name</th>
-                            <th class="text-left font-semibold px-5 py-3">Role</th>
-                            <th class="text-left font-semibold px-5 py-3">Division</th>
-                            <th class="text-left font-semibold px-5 py-3">Contact</th>
-                            <th class="text-left font-semibold px-5 py-3">Status</th>
-                            <th class="text-left font-semibold px-5 py-3">Order</th>
-                            <th class="text-right font-semibold px-5 py-3">Actions</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Profil</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Peran / Divisi</th>
+                            <th class="text-left font-bold px-6 py-4 whitespace-nowrap">Kontak</th>
+                            <th class="text-center font-bold px-6 py-4 whitespace-nowrap">Status</th>
+                            <th class="text-center font-bold px-6 py-4 whitespace-nowrap">Urutan</th>
+                            <th class="text-right font-bold px-6 py-4 whitespace-nowrap">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200">
+                    <tbody class="divide-y divide-slate-100">
                         <?php if (!empty($teamMembers)): ?>
                             <?php foreach ($teamMembers as $member): ?>
-                                <tr class="hover:bg-slate-50/60">
-                                    <td class="px-5 py-4">
-                                        <img src="../uploads/team/<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>" class="w-10 h-10 rounded-full object-cover border border-slate-200">
+                                <tr class="hover:bg-slate-50/60 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 overflow-hidden shrink-0 group-hover:border-brand-200 transition-colors">
+                                                <img src="../uploads/team/<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-slate-900"><?php echo htmlspecialchars($member['name']); ?></div>
+                                                <?php if (!empty($member['description'])): ?>
+                                                    <div class="text-slate-500 text-xs mt-0.5 line-clamp-1 max-w-[200px]" title="<?php echo htmlspecialchars($member['description']); ?>">
+                                                        <?php echo htmlspecialchars($member['description']); ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="px-5 py-4">
-                                        <div class="font-semibold text-slate-900"><?php echo htmlspecialchars($member['name']); ?></div>
-                                        <?php if (!empty($member['description'])): ?>
-                                            <div class="text-slate-500 text-xs mt-1"><?php echo substr(htmlspecialchars($member['description']), 0, 80); ?>...</div>
-                                        <?php endif; ?>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="font-medium text-slate-900"><?php echo htmlspecialchars($member['role']); ?></div>
+                                        <div class="mt-1">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[10px] font-bold tracking-wide uppercase border bg-slate-50 text-slate-600 border-slate-200">
+                                                <?php echo htmlspecialchars($member['division'] ?? 'general'); ?>
+                                            </span>
+                                        </div>
                                     </td>
-                                    <td class="px-5 py-4 text-slate-700"><?php echo htmlspecialchars($member['role']); ?></td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                                            <?php echo ucfirst($member['division'] ?? 'general'); ?>
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <div class="flex items-center gap-2 text-slate-600">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
                                             <?php if (!empty($member['email'])): ?>
-                                                <a href="mailto:<?php echo htmlspecialchars($member['email']); ?>" class="w-9 h-9 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" title="Email">
-                                                    <i class="fas fa-envelope"></i>
+                                                <a href="mailto:<?php echo htmlspecialchars($member['email']); ?>" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition-all shadow-sm" title="<?php echo htmlspecialchars($member['email']); ?>">
+                                                    <i class="fas fa-envelope text-xs"></i>
                                                 </a>
                                             <?php endif; ?>
                                             <?php if (!empty($member['linkedin'])): ?>
-                                                <a href="<?php echo htmlspecialchars($member['linkedin']); ?>" target="_blank" class="w-9 h-9 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" title="LinkedIn">
-                                                    <i class="fab fa-linkedin"></i>
+                                                <a href="<?php echo htmlspecialchars($member['linkedin']); ?>" target="_blank" rel="noopener noreferrer" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-slate-50 border border-slate-200 text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:border-[#0A66C2]/30 transition-all shadow-sm" title="LinkedIn Profile">
+                                                    <i class="fab fa-linkedin-in text-xs"></i>
                                                 </a>
                                             <?php endif; ?>
                                             <?php if (empty($member['email']) && empty($member['linkedin'])): ?>
-                                                <span class="text-slate-400">-</span>
+                                                <span class="text-slate-400 text-xs italic">Tidak ada</span>
                                             <?php endif; ?>
                                         </div>
                                     </td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold <?php echo ($member['status'] ?? '') === 'active' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-700'; ?>">
+                                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold <?php echo ($member['status'] ?? '') === 'active' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'; ?>">
                                             <?php echo ucfirst($member['status'] ?? 'active'); ?>
                                         </span>
                                     </td>
-                                    <td class="px-5 py-4 text-slate-700"><?php echo (int)($member['sort_order'] ?? 0); ?></td>
-                                    <td class="px-5 py-4">
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-slate-600 font-medium">
+                                        <?php echo (int)($member['sort_order'] ?? 0); ?>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center justify-end gap-2">
-                                            <a href="edit.php?id=<?php echo $member['id']; ?>" class="w-9 h-9 inline-flex items-center justify-center rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100" title="Edit">
-                                                <i class="fas fa-pen"></i>
+                                            <a href="edit.php?id=<?php echo $member['id']; ?>" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-brand-600 hover:border-brand-200 transition-all shadow-sm" title="Edit">
+                                                <i class="fas fa-edit text-xs"></i>
                                             </a>
-                                            <a href="delete.php?id=<?php echo $member['id']; ?>" class="w-9 h-9 inline-flex items-center justify-center rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100" title="Delete" onclick="return confirm('Are you sure you want to delete this team member?')">
-                                                <i class="fas fa-trash"></i>
+                                            <a href="delete.php?id=<?php echo $member['id']; ?>" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition-all shadow-sm" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota tim ini?')">
+                                                <i class="fas fa-trash text-xs"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -96,10 +104,15 @@ include '../includes/sidebar.php';
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="8" class="px-5 py-10 text-center text-slate-600">
-                                    <div class="text-slate-400 mb-2"><i class="fas fa-users text-3xl"></i></div>
-                                    <div class="font-semibold">No Team Members</div>
-                                    <div class="text-sm text-slate-500 mt-1">Start by adding your first team member.</div>
+                                <td colspan="6" class="px-6 py-16 text-center">
+                                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100">
+                                        <i class="fas fa-users text-2xl text-slate-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-slate-900 mb-1">Belum Ada Anggota Tim</h3>
+                                    <p class="text-slate-500 mb-4 text-sm">Tambahkan anggota tim pertama Anda.</p>
+                                    <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-brand-700 bg-brand-50 border border-brand-200 rounded-xl hover:bg-brand-100 transition-colors">
+                                        <i class="fas fa-plus"></i> Tambah Anggota Pertama
+                                    </a>
                                 </td>
                             </tr>
                         <?php endif; ?>

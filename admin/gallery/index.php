@@ -43,394 +43,196 @@ $totalSize = array_sum(array_column($gallery, 'file_size'));
 $conn->close();
 ?>
 
-<main class="flex-1 lg:ml-72">
-<div class="p-4 sm:p-6 lg:p-8">
-    <div class="page-header">
-        <h1>📸 Gallery Foto</h1>
-        <a href="add.php" class="btn btn-primary">
-            <span>➕</span> Tambah Foto
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+<div class="p-6 sm:p-8 max-w-7xl mx-auto">
+    
+    <!-- Page Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Gallery Foto</h1>
+            <p class="text-slate-500 mt-1 text-sm">Kelola foto dokumentasi event, portofolio, dan lainnya.</p>
+        </div>
+        <a href="add.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+            <i class="fas fa-plus"></i> Tambah Foto
         </a>
     </div>
 
     <!-- Statistics Cards -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon">📸</div>
-            <div class="stat-info">
-                <h3><?php echo $totalPhotos; ?></h3>
-                <p>Total Foto</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <!-- Total Photos -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+                <div>
+                    <div class="text-slate-500 text-sm font-medium mb-1">Total Foto</div>
+                    <div class="text-3xl font-bold text-slate-900"><?php echo $totalPhotos; ?></div>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Size -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+                <div>
+                    <div class="text-slate-500 text-sm font-medium mb-1">Total Ukuran</div>
+                    <div class="text-3xl font-bold text-slate-900"><?php echo number_format($totalSize / 1024 / 1024, 2); ?> <span class="text-xl font-semibold text-slate-400">MB</span></div>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+                    <i class="fas fa-hard-drive"></i>
+                </div>
             </div>
         </div>
         
-        <div class="stat-card">
-            <div class="stat-icon">💾</div>
-            <div class="stat-info">
-                <h3><?php echo number_format($totalSize / 1024 / 1024, 2); ?> MB</h3>
-                <p>Total Ukuran</p>
-            </div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon">📁</div>
-            <div class="stat-info">
-                <h3><?php echo count(array_unique(array_column($gallery, 'category'))); ?></h3>
-                <p>Kategori</p>
+        <!-- Categories -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+                <div>
+                    <div class="text-slate-500 text-sm font-medium mb-1">Kategori</div>
+                    <div class="text-3xl font-bold text-slate-900"><?php echo count(array_unique(array_column($gallery, 'category'))); ?></div>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl">
+                    <i class="fas fa-folder-open"></i>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Filter Section -->
-    <div class="filter-section">
-        <div class="filter-left">
-            <select id="categoryFilter" onchange="filterGallery()">
-                <option value="">Semua Kategori</option>
-                <option value="events">Events</option>
-                <option value="projects">Projects</option>
-                <option value="team">Team</option>
-                <option value="office">Office</option>
-                <option value="clients">Clients</option>
-                <option value="other">Other</option>
-            </select>
+    <!-- Main Content Box -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mb-8">
+        <!-- Filter & Search Bar -->
+        <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center bg-white">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <label class="text-sm font-medium text-slate-500">Kategori:</label>
+                <select id="categoryFilter" onchange="filterGallery()" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block p-2.5 outline-none transition-colors">
+                    <option value="">Semua Kategori</option>
+                    <option value="events">Events</option>
+                    <option value="projects">Projects</option>
+                    <option value="team">Team</option>
+                    <option value="office">Office</option>
+                    <option value="clients">Clients</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="relative w-full sm:w-72">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <i class="fas fa-search text-slate-400"></i>
+                </div>
+                <input type="text" id="searchInput" onkeyup="filterGallery()" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full pl-10 p-2.5 outline-none transition-colors" placeholder="Cari judul foto...">
+            </div>
         </div>
-        <div class="filter-right">
-            <input type="text" id="searchInput" placeholder="Cari judul foto..." onkeyup="filterGallery()">
-        </div>
-    </div>
 
-    <!-- Gallery Grid -->
-    <div class="gallery-container">
-        <?php if (!empty($gallery)): ?>
-            <div class="gallery-grid" id="galleryGrid">
-                <?php foreach ($gallery as $photo): ?>
-                    <div class="gallery-item" data-category="<?php echo $photo['category']; ?>" data-title="<?php echo strtolower($photo['title']); ?>">
-                        <div class="gallery-image">
-                            <img src="../uploads/gallery/<?php echo htmlspecialchars($photo['image']); ?>" alt="<?php echo htmlspecialchars($photo['title']); ?>">
-                            <div class="gallery-overlay">
-                                <div class="overlay-actions">
-                                    <button class="btn btn-sm btn-info" onclick="viewPhoto('<?php echo $photo['image']; ?>', '<?php echo htmlspecialchars($photo['title']); ?>', '<?php echo htmlspecialchars($photo['description']); ?>')">
+        <!-- Gallery Grid -->
+        <div class="p-6 bg-slate-50/50">
+            <?php if (!empty($gallery)): ?>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="galleryGrid">
+                    <?php foreach ($gallery as $photo): ?>
+                        <div class="gallery-item bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-brand-200 transition-all duration-300 group flex flex-col" data-category="<?php echo $photo['category']; ?>" data-title="<?php echo strtolower($photo['title']); ?>">
+                            
+                            <div class="aspect-square sm:aspect-[4/3] relative overflow-hidden bg-slate-100">
+                                <img src="../uploads/gallery/<?php echo htmlspecialchars($photo['image']); ?>" alt="<?php echo htmlspecialchars($photo['title']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                
+                                <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[2px]">
+                                    <button class="w-10 h-10 rounded-full bg-white/20 text-white hover:bg-brand-500 hover:scale-110 flex items-center justify-center transition-all" onclick="viewPhoto('<?php echo $photo['image']; ?>', '<?php echo htmlspecialchars(addslashes($photo['title'])); ?>', '<?php echo htmlspecialchars(addslashes($photo['description'])); ?>')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <a href="edit.php?id=<?php echo $photo['id']; ?>" class="btn btn-sm btn-warning">
+                                    <a href="edit.php?id=<?php echo $photo['id']; ?>" class="w-10 h-10 rounded-full bg-white/20 text-white hover:bg-amber-500 hover:scale-110 flex items-center justify-center transition-all">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-sm btn-danger" onclick="deletePhoto(<?php echo $photo['id']; ?>)">
+                                    <button class="w-10 h-10 rounded-full bg-white/20 text-white hover:bg-rose-500 hover:scale-110 flex items-center justify-center transition-all" onclick="deletePhoto(<?php echo $photo['id']; ?>)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
+                                
+                                <?php
+                                $catColor = 'bg-slate-500';
+                                if($photo['category'] == 'events') $catColor = 'bg-brand-500';
+                                if($photo['category'] == 'projects') $catColor = 'bg-emerald-500';
+                                if($photo['category'] == 'team') $catColor = 'bg-amber-500';
+                                if($photo['category'] == 'office') $catColor = 'bg-violet-500';
+                                if($photo['category'] == 'clients') $catColor = 'bg-rose-500';
+                                ?>
+                                <div class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-bold text-white rounded-md shadow-sm <?php echo $catColor; ?>">
+                                    <?php echo ucfirst($photo['category']); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="p-4 flex-1 flex flex-col">
+                                <h4 class="text-sm font-bold text-slate-900 mb-1 line-clamp-1 group-hover:text-brand-600 transition-colors" title="<?php echo htmlspecialchars($photo['title']); ?>"><?php echo htmlspecialchars($photo['title']); ?></h4>
+                                <p class="text-xs text-slate-400 mb-4"><?php echo date('d M Y', strtotime($photo['created_at'])); ?></p>
+                                
+                                <form method="POST" action="update_sort_order.php" class="mt-auto flex gap-2">
+                                    <input type="hidden" name="id" value="<?php echo (int)$photo['id']; ?>">
+                                    <div class="relative flex-1">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none text-slate-400 border-r border-slate-200 pr-2">
+                                            <i class="fas fa-sort text-[10px]"></i>
+                                        </div>
+                                        <input type="number" name="sort_order" value="<?php echo (int)($photo['sort_order'] ?? 0); ?>" class="bg-slate-50 border border-slate-200 text-slate-900 text-xs rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full pl-8 p-1.5 outline-none transition-colors" placeholder="Order">
+                                    </div>
+                                    <button type="submit" class="inline-flex justify-center items-center px-2.5 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-brand-600 transition-colors">
+                                        Save
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        <div class="gallery-info">
-                            <h4><?php echo htmlspecialchars($photo['title']); ?></h4>
-                            <p class="gallery-category">
-                                <span class="category-tag category-<?php echo $photo['category']; ?>">
-                                    <?php echo ucfirst($photo['category']); ?>
-                                </span>
-                            </p>
-                            <form method="POST" action="update_sort_order.php" class="sort-order-form">
-                                <input type="hidden" name="id" value="<?php echo (int)$photo['id']; ?>">
-                                <input type="number" name="sort_order" value="<?php echo (int)($photo['sort_order'] ?? 0); ?>" class="sort-order-input">
-                                <button type="submit" class="btn btn-sm btn-info">Save</button>
-                            </form>
-                            <p class="gallery-date"><?php echo date('d M Y', strtotime($photo['created_at'])); ?></p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="empty-state">
-                <i class="fas fa-images"></i>
-                <h3>Belum Ada Foto</h3>
-                <p>Mulai dengan menambahkan foto ke gallery</p>
-                <a href="add.php" class="btn btn-primary">
-                    <span>➕</span> Tambah Foto Pertama
-                </a>
-            </div>
-        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="col-span-full py-16 text-center bg-white rounded-2xl border border-slate-200 border-dashed">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-50 flex items-center justify-center text-slate-400"><i class="fas fa-images text-2xl"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Belum Ada Foto</h3>
+                    <p class="text-slate-500 mb-6 max-w-sm mx-auto">Anda belum menambahkan foto apapun ke gallery.</p>
+                    <a href="add.php" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm">
+                        <i class="fas fa-plus"></i> Tambah Foto Pertama
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
-
 </div>
 </main>
 
 <!-- Photo Modal -->
-<div id="photoModal" class="modal">
-    <div class="modal-content modal-large">
-        <span class="close" onclick="closePhotoModal()">&times;</span>
-        <div class="modal-gallery">
-            <img id="modalImage" src="" alt="Gallery Photo">
-            <div class="modal-gallery-info">
-                <h3 id="modalTitle"></h3>
-                <p id="modalDescription"></p>
-                <div class="modal-meta">
-                    <span id="modalDate"></span>
-                    <span id="modalCategory"></span>
+<div id="photoModal" class="fixed inset-0 z-[100] hidden">
+    <div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity" onclick="closePhotoModal()"></div>
+    
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-100 scale-100">
+                <button type="button" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg p-2 transition-colors z-10" onclick="closePhotoModal()">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                
+                <div class="flex flex-col md:flex-row">
+                    <!-- Image -->
+                    <div class="md:w-2/3 bg-slate-100 flex items-center justify-center min-h-[300px] md:min-h-[500px]">
+                        <img id="modalImage" src="" alt="Gallery Photo" class="max-w-full max-h-[500px] object-contain">
+                    </div>
+                    
+                    <!-- Info -->
+                    <div class="md:w-1/3 p-6 sm:p-8 bg-white flex flex-col">
+                        <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mb-4 pr-6"></h3>
+                        <p id="modalDescription" class="text-slate-600 text-sm mb-6 flex-1 leading-relaxed"></p>
+                        
+                        <div class="mt-auto pt-6 border-t border-slate-100 space-y-3">
+                            <div class="flex items-center gap-3 text-sm">
+                                <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500 font-medium">Kategori</div>
+                                    <div id="modalCategory" class="font-semibold text-slate-900 capitalize"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .stat-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .stat-icon {
-        font-size: 2rem;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #14aecf, #0f8c9f);
-        border-radius: 12px;
-        color: white;
-    }
-
-    .stat-info h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 0.25rem;
-    }
-
-    .stat-info p {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
-    .filter-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        gap: 1rem;
-    }
-
-    .filter-left select,
-    .filter-right input {
-        padding: 0.8rem 1rem;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        min-width: 200px;
-    }
-
-    .filter-right input {
-        min-width: 300px;
-    }
-
-    .gallery-container {
-        background: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .gallery-item {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-        border: 1px solid #e2e8f0;
-    }
-
-    .gallery-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-
-    .gallery-image {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-    }
-
-    .gallery-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-image img {
-        transform: scale(1.05);
-    }
-
-    .gallery-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-        opacity: 1;
-    }
-
-    .overlay-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn-sm {
-        padding: 0.5rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        color: white;
-        font-size: 0.8rem;
-    }
-
-    .btn-info { background: #3b82f6; }
-    .btn-warning { background: #f59e0b; }
-    .btn-danger { background: #ef4444; }
-
-    .btn-sm:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .gallery-info {
-        padding: 1rem;
-    }
-
-    .gallery-info h4 {
-        color: #1e293b;
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .category-tag {
-        padding: 0.2rem 0.6rem;
-        border-radius: 12px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: white;
-    }
-
-    .category-events { background: #3b82f6; }
-    .category-projects { background: #10b981; }
-    .category-team { background: #f59e0b; }
-    .category-office { background: #8b5cf6; }
-    .category-clients { background: #ef4444; }
-    .category-other { background: #6b7280; }
-
-    .gallery-date {
-        color: #64748b;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 4rem 2rem;
-        color: #64748b;
-    }
-
-    .empty-state i {
-        font-size: 4rem;
-        color: #e2e8f0;
-        margin-bottom: 1.5rem;
-    }
-
-    .empty-state h3 {
-        color: #1e293b;
-        margin-bottom: 1rem;
-    }
-
-    .modal-large {
-        max-width: 900px;
-    }
-
-    .modal-gallery {
-        display: flex;
-        gap: 2rem;
-    }
-
-    .modal-gallery img {
-        flex: 1;
-        max-height: 500px;
-        object-fit: contain;
-        border-radius: 8px;
-    }
-
-    .modal-gallery-info {
-        flex: 0 0 300px;
-    }
-
-    .modal-meta {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e5e7eb;
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .modal-meta span {
-        padding: 0.3rem 0.8rem;
-        background: #f8fafc;
-        border-radius: 15px;
-        font-size: 0.85rem;
-        color: #64748b;
-    }
-
-    @media (max-width: 768px) {
-        .filter-section {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        
-        .filter-right input {
-            min-width: auto;
-        }
-        
-        .gallery-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .modal-gallery {
-            flex-direction: column;
-        }
-        
-        .modal-gallery-info {
-            flex: 1;
-        }
-    }
-</style>
 
 <script>
 function filterGallery() {

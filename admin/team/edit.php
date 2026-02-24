@@ -101,116 +101,143 @@ include '../includes/header.php';
 include '../includes/sidebar.php';
 ?>
 
-<main class="flex-1 lg:ml-72">
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="flex items-start justify-between gap-4 mb-6">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-900">Edit Team Member</h1>
-                    <p class="text-slate-600 mt-1">Update team member profile information</p>
-                </div>
-                <a href="index.php" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Back</span>
-                </a>
+<main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
+    <div class="p-6 sm:p-8 max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Anggota Tim</h1>
+                <p class="text-slate-500 mt-1 text-sm">Update profil anggota tim Abhinaya.</p>
             </div>
+            <a href="index.php" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+        </div>
 
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-rose-800 flex items-start gap-3">
-                    <i class="fas fa-exclamation-circle mt-0.5"></i>
-                    <div class="text-sm font-medium"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-rose-800 flex items-start gap-3">
+                <i class="fas fa-exclamation-circle mt-0.5"></i>
+                <div class="text-sm font-medium"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
 
-            <form method="POST" enctype="multipart/form-data" class="bg-white border border-slate-200 rounded-2xl p-6 overflow-x-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-8 space-y-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <form method="POST" enctype="multipart/form-data" class="divide-y divide-slate-100">
+                <input type="hidden" name="id" value="<?php echo $member['id']; ?>">
+                
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-user-circle text-brand-500"></i> Informasi Personal
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Full Name *</label>
-                                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($member['name']); ?>" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap *</label>
+                                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($member['name']); ?>" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                             </div>
                             <div>
-                                <label for="role" class="block text-sm font-semibold text-slate-700 mb-2">Role/Position *</label>
-                                <input type="text" id="role" name="role" value="<?php echo htmlspecialchars($member['role']); ?>" required placeholder="e.g., CEO, Developer" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                <label for="role" class="block text-sm font-semibold text-slate-700 mb-2">Peran / Jabatan *</label>
+                                <input type="text" id="role" name="role" value="<?php echo htmlspecialchars($member['role']); ?>" required placeholder="e.g., CEO, Developer, Designer" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="division" class="block text-sm font-semibold text-slate-700 mb-2">Division *</label>
-                                <select id="division" name="division" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
-                                    <option value="">Select Division</option>
+                                <label for="division" class="block text-sm font-semibold text-slate-700 mb-2">Divisi *</label>
+                                <select id="division" name="division" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                                    <option value="">Pilih Divisi</option>
                                     <option value="techno" <?php echo ($member['division'] == 'techno') ? 'selected' : ''; ?>>Techno</option>
                                     <option value="creative" <?php echo ($member['division'] == 'creative') ? 'selected' : ''; ?>>Creative</option>
                                     <option value="publisher" <?php echo ($member['division'] == 'publisher') ? 'selected' : ''; ?>>Publisher</option>
-                                    <option value="general" <?php echo ($member['division'] == 'general') ? 'selected' : ''; ?>>General</option>
+                                    <option value="general" <?php echo ($member['division'] == 'general') ? 'selected' : ''; ?>>General (Management/Admin)</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="status" class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
-                                <select id="status" name="status" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
-                                    <option value="active" <?php echo ($member['status'] == 'active') ? 'selected' : ''; ?>>Active</option>
-                                    <option value="inactive" <?php echo ($member['status'] == 'inactive') ? 'selected' : ''; ?>>Inactive</option>
+                                <label for="status" class="block text-sm font-semibold text-slate-700 mb-2">Status Anggota</label>
+                                <select id="status" name="status" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                                    <option value="active" <?php echo ($member['status'] == 'active') ? 'selected' : ''; ?>>Active (Ditampilkan)</option>
+                                    <option value="inactive" <?php echo ($member['status'] == 'inactive') ? 'selected' : ''; ?>>Inactive (Disembunyikan)</option>
                                 </select>
                             </div>
                         </div>
 
                         <div>
-                            <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">Biography</label>
-                            <textarea id="description" name="description" rows="4" placeholder="Brief biography" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600"><?php echo htmlspecialchars($member['description']); ?></textarea>
+                            <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">Biografi Singkat</label>
+                            <textarea id="description" name="description" rows="4" placeholder="Keterangan singkat mengenai peran atau pengalaman" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400 resize-y"><?php echo htmlspecialchars($member['description']); ?></textarea>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-                                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($member['email']); ?>" placeholder="name@example.com" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email Publik</label>
+                                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($member['email']); ?>" placeholder="name@abhinaya.com" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                             </div>
                             <div>
                                 <label for="linkedin" class="block text-sm font-semibold text-slate-700 mb-2">LinkedIn Profile</label>
-                                <input type="url" id="linkedin" name="linkedin" value="<?php echo htmlspecialchars($member['linkedin']); ?>" placeholder="https://linkedin.com/..." class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600">
+                                <input type="url" id="linkedin" name="linkedin" value="<?php echo htmlspecialchars($member['linkedin']); ?>" placeholder="https://linkedin.com/in/..." class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-4 space-y-5">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Photo</label>
-                            <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center">
-                                <div id="teamPhotoPreview" class="w-full aspect-square rounded-xl bg-white border border-slate-200 flex items-center justify-center overflow-hidden mb-3">
-                                    <?php if (!empty($member['image'])): ?>
-                                        <img src="../uploads/team/<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>" class="w-full h-full object-cover">
-                                    <?php else: ?>
-                                        <div class="text-slate-400 text-sm px-4">Preview</div>
-                                    <?php endif; ?>
-                                </div>
-                                <input type="file" id="image" name="image" accept="image/*" class="block w-full text-sm text-slate-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-brand-600 file:text-white file:font-semibold hover:file:bg-brand-700" onchange="previewTeamPhoto(event)">
-                                <div class="mt-2 text-[10px] text-slate-500 uppercase tracking-wider font-bold">Leave empty to keep current photo</div>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl bg-brand-50 border border-brand-100 p-4">
-                            <h6 class="text-brand-800 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <i class="fas fa-info-circle"></i> Requirements
-                            </h6>
-                            <ul class="text-xs text-brand-700 space-y-1 font-medium">
-                                <li>• Professional headshot</li>
-                                <li>• Square 1:1 ratio works best</li>
-                                <li>• Min 300x300 pixels</li>
-                                <li>• Clear background</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-6 border-t border-slate-200 flex flex-col sm:flex-row gap-3 sm:justify-end">
-                    <a href="index.php" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50">
-                        Cancel
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-camera text-brand-500"></i> Foto Profil
+                    </h3>
+
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-1 space-y-6">
+                            <?php if (!empty($member['image'])): ?>
+                            <div class="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm shrink-0">
+                                    <img src="../uploads/team/<?php echo htmlspecialchars($member['image']); ?>" alt="Current Photo" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-900">Foto Saat Ini</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5"><?php echo htmlspecialchars($member['image']); ?></p>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <div>
+                                <label for="image" class="block text-sm font-semibold text-slate-700 mb-2">Ganti File Foto</label>
+                                
+                                <div class="relative group cursor-pointer border-2 border-dashed border-slate-300 rounded-2xl hover:border-brand-500 hover:bg-brand-50 transition-all duration-300 w-full text-center overflow-hidden">
+                                    <input type="file" id="image" name="image" accept="image/*" onchange="previewTeamPhoto(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                    
+                                    <div class="px-6 py-8 flex flex-col items-center justify-center pointer-events-none">
+                                        <div class="w-12 h-12 mb-3 rounded-full bg-slate-100 group-hover:bg-white text-slate-400 group-hover:text-brand-500 flex items-center justify-center transition-colors shadow-sm">
+                                            <i class="fas fa-cloud-upload-alt text-lg"></i>
+                                        </div>
+                                        <h4 class="text-slate-800 font-bold mb-1 text-sm">Klik atau seret foto baru ke sini</h4>
+                                        <p class="text-slate-500 mb-3 text-xs">Biarkan kosong jika tidak ingin mengubah foto.</p>
+                                        
+                                        <div class="flex flex-wrap justify-center gap-2 mt-2 font-medium text-[10px] text-slate-500 uppercase tracking-widest">
+                                            <span class="px-2 py-1 bg-slate-100 rounded-md">JPG, PNG</span>
+                                            <span class="px-2 py-1 bg-slate-100 rounded-md">Max 5MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="teamPreviewContainer" class="w-full md:w-64 shrink-0 flex flex-col items-center hidden">
+                            <label class="block text-sm font-semibold text-slate-700 mb-3 w-full text-left md:text-center">Preview Foto Baru</label>
+                            <div class="relative w-40 h-40 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden ring-1 ring-brand-200">
+                                <div id="teamPhotoPreview" class="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                                    <i class="fas fa-user text-4xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 bg-slate-50 flex flex-col-reverse sm:flex-row justify-end gap-3">
+                    <a href="index.php" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
+                        Batal
                     </a>
-                    <button type="submit" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">
-                        <i class="fas fa-save"></i>
-                        Save Changes
+                    <button type="submit" class="inline-flex justify-center items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors shadow-sm shadow-brand-600/20">
+                        <i class="fas fa-save"></i> Save Changes
                     </button>
                 </div>
             </form>
@@ -221,21 +248,25 @@ include '../includes/sidebar.php';
 <script>
 function previewTeamPhoto(event) {
     const file = event.target.files && event.target.files[0];
+    const previewContainer = document.getElementById('teamPreviewContainer');
     const preview = document.getElementById('teamPhotoPreview');
     if (!preview) return;
 
     if (!file) {
+        previewContainer.classList.add('hidden');
         return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
         alert('Ukuran file terlalu besar! Max 5MB');
         event.target.value = '';
+        previewContainer.classList.add('hidden');
         return;
     }
 
     const reader = new FileReader();
     reader.onload = function(e) {
+        previewContainer.classList.remove('hidden');
         preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview" class="w-full h-full object-cover">';
     };
     reader.readAsDataURL(file);
