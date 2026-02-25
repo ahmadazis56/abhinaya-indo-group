@@ -49,7 +49,7 @@ if (empty($event_image)) {
         </p>
 
         <div class="mt-auto">
-            <a href="events.php" class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+            <a href="event-detail.php?id=<?php echo $event['id']; ?>" class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
                 Event Details
             </a>
         </div>

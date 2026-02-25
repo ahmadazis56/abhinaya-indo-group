@@ -75,6 +75,11 @@ $isTeam = ($current_dir == 'team');
             <i class="fas fa-users w-5 text-center <?php echo $isTeam ? 'text-brand-600' : 'text-slate-400 group-hover:text-slate-600'; ?> transition-colors"></i>
             <span>Tim / Leadership</span>
         </a>
+
+        <a href="<?php echo $admin_path; ?>profile.php" class="<?php echo ($current_dir == 'admin' && basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'bg-brand-50 text-brand-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'; ?> group flex items-center gap-3 px-3 py-3 rounded-xl font-medium transition-all duration-200">
+            <i class="fas fa-user-shield w-5 text-center <?php echo ($current_dir == 'admin' && basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'text-brand-600' : 'text-slate-400 group-hover:text-slate-600'; ?> transition-colors"></i>
+            <span>Pengaturan Profil</span>
+        </a>
     </div>
 
     <!-- Sidebar Footer -->

@@ -106,7 +106,7 @@ include 'includes/header.php';
           <li class="flex items-start"><svg class="w-5 h-5 text-primary-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>SEO dasar</span></li>
           <li class="flex items-start"><svg class="w-5 h-5 text-primary-500 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>1 bulan support teknis</span></li>
         </ul>
-        <button class="w-full py-4 bg-white text-slate-900 font-bold border-2 border-slate-200 rounded-2xl hover:border-primary-500 hover:text-primary-600 transition-colors">Get Started</button>
+        <a href="https://wa.me/6285646603602?text=Halo%20Abhinaya,%20saya%20tertarik%20dengan%20paket%20Basic%20Digital." target="_blank" class="w-full block text-center py-4 bg-white text-slate-900 font-bold border-2 border-slate-200 rounded-2xl hover:border-primary-500 hover:text-primary-600 transition-colors">Get Started</a>
       </div>
       <!-- Professional Digital -->
       <div class="bg-primary-50 rounded-[2rem] p-10 border-2 border-primary-500 shadow-hostinger hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300 relative flex flex-col md:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
@@ -130,7 +130,7 @@ include 'includes/header.php';
           <li class="flex items-start"><svg class="w-5 h-5 text-primary-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>Training admin</span></li>
           <li class="flex items-start"><svg class="w-5 h-5 text-primary-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>6 bulan support teknis</span></li>
         </ul>
-        <button class="w-full py-4 bg-primary-500 text-white font-bold rounded-2xl hover:bg-primary-600 shadow-md hover:shadow-lg transition-all">Get Started</button>
+        <a href="https://wa.me/6285646603602?text=Halo%20Abhinaya,%20saya%20tertarik%20dengan%20paket%20Professional%20Digital." target="_blank" class="w-full block text-center py-4 bg-primary-500 text-white font-bold rounded-2xl hover:bg-primary-600 shadow-md hover:shadow-lg transition-all">Get Started</a>
       </div>
       <!-- Enterprise Solution -->
       <div class="bg-white rounded-[2rem] p-10 border border-gray-100 shadow-hostinger hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300 relative flex flex-col" data-aos="fade-up" data-aos-delay="300">
@@ -154,7 +154,7 @@ include 'includes/header.php';
           <li class="flex items-start"><svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>Maintenance kontrak tahunan</span></li>
           <li class="flex items-start"><svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg><span>Dedicated developer team</span></li>
         </ul>
-        <button class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-colors">Contact Sales</button>
+        <a href="https://wa.me/6285646603602?text=Halo%20Abhinaya,%20saya%20tertarik%20dengan%20paket%20Enterprise%20Solution." target="_blank" class="w-full block text-center py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-colors">Contact Sales</a>
       </div>
     </div>
   </div>

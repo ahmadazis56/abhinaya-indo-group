@@ -211,8 +211,8 @@ $pageDesc = $pageDesc ?? "Abhinaya Indo Group offers intuitive IT solutions, cre
                 }
                 
                 if(ctaBtn) {
-                    ctaBtn.classList.remove('text-white', 'border-white', 'hover:bg-white', 'focus:ring-white');
-                    ctaBtn.classList.add('text-slate-900', 'border-slate-900', 'hover:bg-slate-900', 'focus:ring-slate-900');
+                    ctaBtn.classList.remove('text-white', 'border-white', 'hover:bg-white', 'hover:text-slate-900', 'focus:ring-white');
+                    ctaBtn.classList.add('text-slate-900', 'border-slate-900', 'hover:bg-slate-900', 'hover:text-white', 'focus:ring-slate-900');
                 }
                 
                 if(mobileBtn) {
@@ -237,8 +237,8 @@ $pageDesc = $pageDesc ?? "Abhinaya Indo Group offers intuitive IT solutions, cre
                 }
                 
                 if(ctaBtn) {
-                    ctaBtn.classList.remove('text-slate-900', 'border-slate-900', 'hover:bg-slate-900', 'focus:ring-slate-900');
-                    ctaBtn.classList.add('text-white', 'border-white', 'hover:bg-white', 'focus:ring-white');
+                    ctaBtn.classList.remove('text-slate-900', 'border-slate-900', 'hover:bg-slate-900', 'hover:text-white', 'focus:ring-slate-900');
+                    ctaBtn.classList.add('text-white', 'border-white', 'hover:bg-white', 'hover:text-slate-900', 'focus:ring-white');
                 }
                 
                 if(mobileBtn) {

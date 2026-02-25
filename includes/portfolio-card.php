@@ -30,6 +30,7 @@ $button_texts = [
 $cat_name = $cat_names[$cat_slug] ?? ucfirst($cat_slug);
 $cat_class = $cat_colors[$cat_slug] ?? $cat_colors['general'];
 $button_text = $button_texts[$cat_slug] ?? $button_texts['general'];
+$aspect_class = ($cat_slug === 'techno') ? 'aspect-video' : 'aspect-[3/4]';
 
 // Image path handling
 $image_url = 'admin/uploads/portfolio/' . htmlspecialchars($project['image']);
@@ -39,14 +40,14 @@ if (empty($project['image'])) {
 ?>
 
 <div class="group bg-white rounded-[2rem] overflow-hidden shadow-hostinger border border-gray-100 flex flex-col h-full hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300" data-aos="fade-up">
-    <!-- Image Container (Dynamic Ratio without clipping) -->
-    <div class="relative flex justify-center items-center overflow-hidden bg-slate-100 border-b border-gray-100">
+    <!-- Image Container -->
+    <div class="relative w-full overflow-hidden bg-slate-100 border-b border-gray-100 <?php echo $aspect_class; ?>">
         <img src="<?php echo $image_url; ?>" 
              alt="<?php echo htmlspecialchars($project['title']); ?>" 
-             class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105">
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
         
         <!-- Category Badge Floating -->
-        <span class="absolute top-6 left-6 inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest backdrop-blur-md bg-white/90 shadow-sm text-slate-800">
+        <span class="absolute top-6 left-6 inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest backdrop-blur-md bg-white/90 shadow-sm text-slate-800 z-10">
             <?php echo $cat_name; ?>
         </span>
     </div>
@@ -68,6 +69,14 @@ if (empty($project['image'])) {
                    target="_blank" 
                    class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
                     <?php echo $button_text; ?>
+                </a>
+            </div>
+        <?php else: ?>
+            <div class="mt-auto">
+                <a href="https://instagram.com/abhinaya_indo_group" 
+                   target="_blank" 
+                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+                    Visit Our Instagram
                 </a>
             </div>
         <?php endif; ?>

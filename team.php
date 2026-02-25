@@ -2,7 +2,7 @@
 require_once 'config/database.php';
 
 // Ambil data team
-$team_query = "SELECT * FROM team ORDER BY COALESCE(division, 'general'), name ASC";
+$team_query = "SELECT * FROM team ORDER BY FIELD(COALESCE(division, 'general'), 'general', 'creative', 'techno', 'publisher'), name ASC";
 $team_result = $conn->query($team_query);
 $teams_by_division = [];
 if ($team_result) {
@@ -28,15 +28,15 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden pt-20 bg-secondary-50 border-b border-secondary-100 text-center">
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMwZjk0ODgiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-0"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-secondary-50 via-transparent to-transparent z-0"></div>
+<section class="relative w-full py-24 md:py-32 bg-slate-900 overflow-hidden text-center min-h-[50vh] flex items-center justify-center">
+    <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-primary-900/50 to-transparent z-0 opacity-20"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMwZjk0ODgiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-0 hidden"></div>
 
     <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-        <h1 class="text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-tight text-secondary-900 tracking-tight">
-            Meet the <span class="text-primary-600">Team</span>
+        <h1 class="text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-tight text-white tracking-tight">
+            Meet the <span class="text-primary-400">Team</span>
         </h1>
-        <p class="text-lg md:text-xl text-secondary-500 font-light max-w-2xl mx-auto">
+        <p class="text-lg md:text-xl text-slate-300 font-medium max-w-2xl mx-auto">
             The distinct talent driving innovation across our divisions.
         </p>
     </div>

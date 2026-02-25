@@ -5,15 +5,17 @@ require_once 'config/database.php';
 $form_submitted = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
+    // $email = $_POST['email'] ?? '';
     $subject = $_POST['subject'] ?? '';
     $message = $_POST['message'] ?? '';
     
     // Basic validation
-    if (!empty($name) && !empty($email) && !empty($message)) {
-        // Here you would typically send an email or save to database
-        $success_message = "Thank you for contacting us! We'll get back to you soon.";
-        $form_submitted = true;
+    if (!empty($name) && !empty($message)) {
+        // Route to WhatsApp
+        $wa_number = "6285646603602";
+        $wa_text = urlencode("Halo, nama saya $name. Saya ingin menanyakan tentang *$subject*.\n\nPesan:\n$message");
+        header("Location: https://api.whatsapp.com/send?phone=$wa_number&text=$wa_text");
+        exit();
     } else {
         $error_message = "Please fill in all required fields.";
         $form_submitted = true;
@@ -26,15 +28,15 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden pt-20 bg-secondary-50 border-b border-secondary-100">
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMwZjk0ODgiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-0"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-secondary-50 via-transparent to-transparent z-0"></div>
+<section class="relative w-full py-24 md:py-32 bg-slate-900 overflow-hidden text-center min-h-[50vh] flex items-center justify-center">
+    <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-primary-900/50 to-transparent z-0 opacity-20"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMwZjk0ODgiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-0 hidden"></div>
     
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-        <h1 class="text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-tight text-secondary-900 tracking-tight">
-            Contact <span class="text-primary-600">Us</span>
+        <h1 class="text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-tight text-white tracking-tight">
+            Contact <span class="text-primary-400">Us</span>
         </h1>
-        <p class="text-lg text-secondary-500 max-w-2xl mx-auto font-light">
+        <p class="text-lg text-slate-300 max-w-2xl mx-auto font-medium">
             We'd love to hear from you. Let's discuss how we can help transform your vision into reality.
         </p>
     </div>
@@ -67,7 +69,7 @@ include 'includes/header.php';
                                 <svg class="w-6 h-6 text-primary-400 mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13 2.257a1 1 0 001.21.502l4.493 1.498a1 1 0 00.684-.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                 <div class="ml-4">
                                     <h4 class="text-sm font-semibold mb-1 text-secondary-200">Phone</h4>
-                                    <p class="text-white">+62 8564-6603-602</p>
+                                    <p class="text-white"><a href="https://wa.me/6285646603602" target="_blank" class="hover:text-primary-300 transition-colors">+62 8564-6603-602</a></p>
                                 </div>
                             </div>
                             
