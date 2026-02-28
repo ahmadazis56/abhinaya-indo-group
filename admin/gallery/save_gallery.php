@@ -98,10 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
     
-    // Insert into database with default values
-    $title = 'Gallery_' . time(); // Generate default title
-    $description = ''; // Empty description
-    $category = 'other'; // Default category
+    // Insert into database with form values
+    $title = isset($_POST['title']) ? $_POST['title'] : ('Gallery_' . time());
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $category = isset($_POST['category']) ? $_POST['category'] : 'other';
 
     $hasSortOrder = $conn->query("SHOW COLUMNS FROM gallery LIKE 'sort_order'");
     if ($hasSortOrder && $hasSortOrder->num_rows > 0) {

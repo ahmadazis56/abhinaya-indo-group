@@ -7,9 +7,9 @@ require_once 'includes/news-fetch.php';
 $clients = getLogos('client'); 
 $partners = getLogos('partner');
 $events = getEvents(3); 
-$total_projects = 470;
-$total_team = 47;
-$total_years = 13;
+$total_projects = 50;
+$total_team = 10;
+$total_years = 3;
 $satisfaction_rate = 98;
 
 $featuredPortfolio = getPortfolio(6);
@@ -81,19 +81,19 @@ include 'includes/header.php';
                 <div class="w-6 h-6 rounded-full bg-primary-500/20 flex items-center justify-center mr-2">
                     <svg class="w-3.5 h-3.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 </div>
-                13+ Years Excellence
+                3+ Years Excellence
             </div>
             <div class="flex items-center bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
                 <div class="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center mr-2">
                     <svg class="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
                 </div>
-                500+ Global Clients
+                50+ Projects Delivered
             </div>
             <div class="flex items-center bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
                 <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mr-2">
                     <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
-                ISO Certified
+                10+ Expert Team
             </div>
         </div>
         
@@ -249,7 +249,7 @@ include 'includes/header.php';
     <div class="max-w-[1300px] mx-auto px-4 sm:px-6 relative z-10 w-full">
         
         <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-24" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6 leading-tight">Proof of capability.</h2>
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6 leading-tight">Our Portofolio</h2>
             <p class="text-lg text-slate-600 font-medium">Explore a selection of our most impactful projects that transformed businesses and delighted users.</p>
         </div>
 

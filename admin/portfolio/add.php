@@ -127,7 +127,7 @@ include '../includes/sidebar.php';
                         </div>
 
                         <div id="linkField" class="hidden">
-                            <label for="link" class="block text-sm font-semibold text-slate-700 mb-2">Tautan Proyek (Project Link)</label>
+                            <label for="link" id="linkLabel" class="block text-sm font-semibold text-slate-700 mb-2">Tautan Proyek (Project Link)</label>
                             <input type="url" id="link" name="link" placeholder="https://example.com" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
                         </div>
 
@@ -205,8 +205,14 @@ include '../includes/sidebar.php';
 <script>
 function toggleFields(category) {
     const linkField = document.getElementById('linkField');
-    if (category === 'techno' || category === 'publisher') {
+    const linkLabel = document.getElementById('linkLabel');
+    if (category === 'techno' || category === 'publisher' || category === 'creative') {
         linkField.classList.remove('hidden');
+        if (category === 'creative') {
+            linkLabel.textContent = 'Link Instagram (Visit Our Instagram)';
+        } else {
+            linkLabel.textContent = 'Tautan Proyek (Project Link)';
+        }
     } else {
         linkField.classList.add('hidden');
         document.getElementById('link').value = '';

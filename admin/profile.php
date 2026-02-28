@@ -21,36 +21,50 @@ $conn = new mysqli($host, $username, $password, $database);
 $success = '';
 $error = '';
 
+$user_id = $_SESSION['admin_id'] ?? 1;
+
+// Fetch current user details initially
+$current_admin_username = '';
+if(isset($_SESSION['admin_username']) && !isset($_SESSION['admin_id'])) {
+    $u_stmt = $conn->prepare("SELECT id, username FROM admin_users WHERE username = ?");
+    if($u_stmt) {
+        $u_stmt->bind_param("s", $_SESSION['admin_username']);
+        $u_stmt->execute();
+        $u_res = $u_stmt->get_result();
+        if($u_row = $u_res->fetch_assoc()) {
+            $user_id = $u_row['id'];
+            $current_admin_username = $u_row['username'];
+        }
+        $u_stmt->close();
+    }
+} else {
+    $u_stmt = $conn->prepare("SELECT username FROM admin_users WHERE id = ?");
+    if($u_stmt) {
+        $u_stmt->bind_param("i", $user_id);
+        $u_stmt->execute();
+        $u_res = $u_stmt->get_result();
+        if($u_row = $u_res->fetch_assoc()) {
+            $current_admin_username = $u_row['username'];
+        }
+        $u_stmt->close();
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $new_username = $_POST['username'] ?? '';
     $current_password = $_POST['current_password'] ?? '';
     $new_password = $_POST['new_password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     
-    // Validate
-    if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
-        $error = "Semua field harus diisi.";
-    } elseif ($new_password !== $confirm_password) {
+    if (empty($current_password)) {
+        $error = "Password saat ini diperlukan untuk menyimpan perubahan.";
+    } elseif (!empty($new_password) && $new_password !== $confirm_password) {
         $error = "Konfirmasi password baru tidak cocok.";
-    } elseif (strlen($new_password) < 6) {
+    } elseif (!empty($new_password) && strlen($new_password) < 6) {
         $error = "Password baru minimal 6 karakter.";
+    } elseif (empty($new_username)) {
+        $error = "Username tidak boleh kosong.";
     } else {
-        // Fetch current user
-        $user_id = $_SESSION['admin_id'] ?? 1; // Fallback to 1 if session ID not set properly in older login scripts. Default admin ID is usually 1.
-        
-        // If we only store username in session, find ID
-        if(isset($_SESSION['admin_username']) && !isset($_SESSION['admin_id'])) {
-            $u_stmt = $conn->prepare("SELECT id FROM admin_users WHERE username = ?");
-            if($u_stmt) {
-                $u_stmt->bind_param("s", $_SESSION['admin_username']);
-                $u_stmt->execute();
-                $u_res = $u_stmt->get_result();
-                if($u_row = $u_res->fetch_assoc()) {
-                    $user_id = $u_row['id'];
-                }
-                $u_stmt->close();
-            }
-        }
-
         $stmt = $conn->prepare("SELECT password FROM admin_users WHERE id = ?");
         if ($stmt) {
             $stmt->bind_param("i", $user_id);
@@ -60,16 +74,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($row = $result->fetch_assoc()) {
                 if (password_verify($current_password, $row['password'])) {
                     // Password matches, update it
-                    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                    $update_stmt = $conn->prepare("UPDATE admin_users SET password = ? WHERE id = ?");
-                    if ($update_stmt) {
-                        $update_stmt->bind_param("si", $hashed_password, $user_id);
-                        if ($update_stmt->execute()) {
-                            $success = "Password berhasil diperbarui.";
-                        } else {
-                            $error = "Gagal memperbarui password. Silakan coba lagi.";
+                    if (!empty($new_password)) {
+                        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+                        $update_stmt = $conn->prepare("UPDATE admin_users SET username = ?, password = ? WHERE id = ?");
+                        if ($update_stmt) {
+                            $update_stmt->bind_param("ssi", $new_username, $hashed_password, $user_id);
+                            if ($update_stmt->execute()) {
+                                $success = "Profil dan password berhasil diperbarui.";
+                                $_SESSION['admin_username'] = $new_username;
+                                $current_admin_username = $new_username;
+                            } else {
+                                $error = "Gagal memperbarui profil. Username mungkin sudah digunakan.";
+                            }
+                            $update_stmt->close();
                         }
-                        $update_stmt->close();
+                    } else {
+                        $update_stmt = $conn->prepare("UPDATE admin_users SET username = ? WHERE id = ?");
+                        if ($update_stmt) {
+                            $update_stmt->bind_param("si", $new_username, $user_id);
+                            if ($update_stmt->execute()) {
+                                $success = "Profil berhasil diperbarui.";
+                                $_SESSION['admin_username'] = $new_username;
+                                $current_admin_username = $new_username;
+                            } else {
+                                $error = "Gagal memperbarui profil. Username mungkin sudah digunakan.";
+                            }
+                            $update_stmt->close();
+                        }
                     }
                 } else {
                     $error = "Password saat ini salah.";
@@ -88,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="mb-8">
             <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Pengaturan Profil</h1>
-            <p class="text-slate-500 mt-1 text-sm">Ubah password untuk akun admin Anda.</p>
+            <p class="text-slate-500 mt-1 text-sm">Ubah profil dan password untuk akun admin Anda.</p>
         </div>
 
         <?php if (!empty($success)): ?>
@@ -110,24 +141,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
                     <i class="fas fa-user-shield text-lg"></i>
                 </div>
-                <h2 class="text-lg font-semibold text-slate-900">Ubah Password</h2>
+                <h2 class="text-lg font-semibold text-slate-900">Ubah Profil & Password</h2>
             </div>
             
             <form action="" method="POST" class="p-6 space-y-6">
                 <div>
-                    <label for="current_password" class="block text-sm font-semibold text-slate-700 mb-2">Password Saat Ini</label>
+                    <label for="username" class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($current_admin_username); ?>" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none">
+                </div>
+                
+                <div>
+                    <label for="current_password" class="block text-sm font-semibold text-slate-700 mb-2">Password Saat Ini (Wajib untuk menyimpan perubahan)</label>
                     <input type="password" id="current_password" name="current_password" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="new_password" class="block text-sm font-semibold text-slate-700 mb-2">Password Baru</label>
-                        <input type="password" id="new_password" name="new_password" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none">
+                        <label for="new_password" class="block text-sm font-semibold text-slate-700 mb-2">Password Baru (Opsional)</label>
+                        <input type="password" id="new_password" name="new_password" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none" placeholder="Kosongkan jika tidak ubah password">
                     </div>
                     
                     <div>
                         <label for="confirm_password" class="block text-sm font-semibold text-slate-700 mb-2">Konfirmasi Password Baru</label>
-                        <input type="password" id="confirm_password" name="confirm_password" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none">
+                        <input type="password" id="confirm_password" name="confirm_password" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all text-sm outline-none" placeholder="Isi jika ganti password">
                     </div>
                 </div>
 

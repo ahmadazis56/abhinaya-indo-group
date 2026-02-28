@@ -155,6 +155,7 @@ $pageDesc = $pageDesc ?? "Abhinaya Indo Group offers intuitive IT solutions, cre
                 </div>
                 
                 <a href="portfolio.php" class="nav-link text-white hover:text-white/80 px-3 py-2 text-[15px] font-semibold transition-colors duration-300 rounded-lg">Portfolio</a>
+                <a href="gallery.php" class="nav-link text-white hover:text-white/80 px-3 py-2 text-[15px] font-semibold transition-colors duration-300 rounded-lg">Gallery</a>
                 <a href="events.php" class="nav-link text-white hover:text-white/80 px-3 py-2 text-[15px] font-semibold transition-colors duration-300 rounded-lg">Events</a>
                 <a href="https://news.abhinaya.co.id/" target="_blank" rel="noopener" class="nav-link text-white hover:text-white/80 px-3 py-2 text-[15px] font-semibold transition-colors duration-300 rounded-lg">News</a>
                 <a href="about.php" class="nav-link text-white hover:text-white/80 px-3 py-2 text-[15px] font-semibold transition-colors duration-300 rounded-lg">Company</a>
@@ -286,6 +287,7 @@ $pageDesc = $pageDesc ?? "Abhinaya Indo Group offers intuitive IT solutions, cre
             </div>
 
             <a href="portfolio.php" class="text-base font-medium text-secondary-900 hover:text-primary-600">Portfolio</a>
+            <a href="gallery.php" class="text-base font-medium text-secondary-900 hover:text-primary-600">Gallery</a>
             <a href="events.php" class="text-base font-medium text-secondary-900 hover:text-primary-600">Events</a>
             <a href="https://news.abhinaya.co.id/" target="_blank" rel="noopener" class="text-base font-medium text-secondary-900 hover:text-primary-600 flex items-center gap-2">News <svg class="w-3.5 h-3.5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
             <a href="about.php" class="text-base font-medium text-secondary-900 hover:text-primary-600">Company</a>

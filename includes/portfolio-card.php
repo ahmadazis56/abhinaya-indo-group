@@ -22,7 +22,7 @@ $cat_colors = [
 
 $button_texts = [
     'techno' => 'Visit Website',
-    'creative' => 'View Project Case Study',
+    'creative' => 'Visit Our Instagram',
     'publisher' => 'View Journal',
     'general' => 'View Project'
 ];
@@ -30,7 +30,15 @@ $button_texts = [
 $cat_name = $cat_names[$cat_slug] ?? ucfirst($cat_slug);
 $cat_class = $cat_colors[$cat_slug] ?? $cat_colors['general'];
 $button_text = $button_texts[$cat_slug] ?? $button_texts['general'];
-$aspect_class = ($cat_slug === 'techno') ? 'aspect-video' : 'aspect-[3/4]';
+$aspect_class = 'aspect-video';
+
+$button_colors = [
+    'techno' => 'text-blue-600 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white',
+    'creative' => 'text-purple-600 bg-purple-50 group-hover:bg-purple-600 group-hover:text-white',
+    'publisher' => 'text-emerald-600 bg-emerald-50 group-hover:bg-emerald-600 group-hover:text-white',
+    'general' => 'text-slate-600 bg-slate-50 group-hover:bg-slate-600 group-hover:text-white'
+];
+$btn_class = $button_colors[$cat_slug] ?? $button_colors['general'];
 
 // Image path handling
 $image_url = 'admin/uploads/portfolio/' . htmlspecialchars($project['image']);
@@ -67,7 +75,7 @@ if (empty($project['image'])) {
             <div class="mt-auto">
                 <a href="<?php echo htmlspecialchars($project['link']); ?>" 
                    target="_blank" 
-                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide transition-all rounded-xl <?php echo $btn_class; ?>">
                     <?php echo $button_text; ?>
                 </a>
             </div>
@@ -75,7 +83,7 @@ if (empty($project['image'])) {
             <div class="mt-auto">
                 <a href="https://instagram.com/abhinaya_indo_group" 
                    target="_blank" 
-                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide text-primary-600 transition-all bg-primary-50 rounded-xl group-hover:bg-primary-500 group-hover:text-white">
+                   class="inline-flex w-full items-center justify-center px-6 py-4 text-[15px] font-bold tracking-wide transition-all rounded-xl <?php echo $btn_class; ?>">
                     Visit Our Instagram
                 </a>
             </div>

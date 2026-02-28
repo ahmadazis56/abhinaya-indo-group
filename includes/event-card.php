@@ -17,8 +17,8 @@ if (empty($event_image)) {
 ?>
 
 <div class="group bg-white rounded-[2rem] overflow-hidden shadow-hostinger border border-gray-100 flex flex-col h-full hover:-translate-y-2 hover:shadow-hostinger-hover transition-all duration-300" data-aos="fade-up">
-    <!-- Image Container (Hostinger Style 4:3 Ratio) -->
-    <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+    <!-- Image Container (Hostinger Style 3:4 Ratio) -->
+    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
         <img src="<?php echo $image_url; ?>" 
              alt="<?php echo $event_title; ?>" 
              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">

@@ -11,16 +11,39 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
-    
-    // Simple authentication (replace with secure authentication)
-    if ($username === 'admin' && $password === 'admin123') {
-        $_SESSION['admin_logged_in'] = true;
-        $_SESSION['admin_username'] = $username;
-        header('Location: index.php');
-        exit();
-    } else {
-        $error = 'Username atau password salah!';
+    // Database info
+    $host = 'localhost';
+    $db_user = 'root';
+    $db_pass = '';
+    $database = 'abhinaya_admin';
+
+    $conn = new mysqli($host, $db_user, $db_pass, $database);
+
+    // Authentication
+    if (!$conn->connect_error) {
+        $stmt = $conn->prepare("SELECT id, username, password FROM admin_users WHERE username = ?");
+        if ($stmt) {
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                if (password_verify($password, $row['password'])) {
+                    $_SESSION['admin_logged_in'] = true;
+                    $_SESSION['admin_username'] = $row['username'];
+                    $_SESSION['admin_id'] = $row['id'];
+                    header('Location: index.php');
+                    exit();
+                }
+            }
+            $stmt->close();
+        }
+        $conn->close();
     }
+    
+    // Autentikasi default dihapus demi keamanan
+    // Tidak ada lagi akses backdoor (admin/admin123)
+    
+    $error = 'Username atau password salah!';
 }
 ?>
 

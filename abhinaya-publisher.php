@@ -152,9 +152,9 @@ include 'includes/header.php';
                         <span class="text-[15px] text-slate-600 font-medium">3 bulan support</span>
                     </li>
                 </ul>
-                <button class="w-full py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Publisher%3A%20paket%20Basic%20Journal.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
                     GET STARTED
-                </button>
+                </a>
             </div>
 
             <!-- Professional Journal -->
@@ -211,9 +211,9 @@ include 'includes/header.php';
                         <span class="text-[15px] text-slate-600 font-medium">12 bulan support</span>
                     </li>
                 </ul>
-                <button class="w-full py-3.5 bg-[#5a4add] text-white text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-[#4f3fd6] shadow-md transition-all mt-auto">
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Publisher%3A%20paket%20Professional%20Journal.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-3.5 bg-[#5a4add] text-white text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-[#4f3fd6] shadow-md transition-all mt-auto">
                     GET STARTED
-                </button>
+                </a>
             </div>
 
             <!-- Premium Publisher -->
@@ -263,9 +263,9 @@ include 'includes/header.php';
                         <span class="text-[15px] text-slate-600 font-medium">Dedicated publishing team</span>
                     </li>
                 </ul>
-                <button class="w-full py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Publisher%3A%20paket%20Premium%20Publisher.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-3.5 bg-slate-100 text-slate-800 text-[13px] font-bold uppercase tracking-wide rounded-lg hover:bg-slate-200 transition-colors mt-auto">
                     GET STARTED
-                </button>
+                </a>
             </div>
         </div>
     </div>

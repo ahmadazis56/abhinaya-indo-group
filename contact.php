@@ -120,10 +120,24 @@ include 'includes/header.php';
                             <label for="subject" class="block text-sm font-medium text-secondary-700 mb-2">Inquiry Type</label>
                             <select id="subject" name="subject" class="w-full px-4 py-3 bg-secondary-50 border border-secondary-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all outline-none appearance-none">
                                 <option value="">Select a topic</option>
-                                <option value="techno">Technology Solutions (Techno)</option>
-                                <option value="creative">Design & Branding (Creative)</option>
-                                <option value="publisher">Publishing (Publisher)</option>
-                                <option value="general">General Inquiry</option>
+                                <optgroup label="Technology (Techno)">
+                                    <option value="IT Solutions">General IT Solutions</option>
+                                </optgroup>
+                                <optgroup label="Design & Branding (Creative)">
+                                    <option value="Creative Package: Basic Presence">Package: Basic Presence</option>
+                                    <option value="Creative Package: Growth Content">Package: Growth Content</option>
+                                    <option value="Creative Package: Branding & Conversion">Package: Branding & Conversion</option>
+                                    <option value="Custom Creative Package">Custom Creative Package</option>
+                                </optgroup>
+                                <optgroup label="Publishing (Publisher)">
+                                    <option value="Publishing Package: Basic Journal">Package: Basic Journal</option>
+                                    <option value="Publishing Package: Professional Journal">Package: Professional Journal</option>
+                                    <option value="Publishing Package: Premium Publisher">Package: Premium Publisher</option>
+                                    <option value="Custom Publishing Package">Custom Publishing Package</option>
+                                </optgroup>
+                                <optgroup label="General">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                </optgroup>
                             </select>
                         </div>
                         

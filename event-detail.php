@@ -60,8 +60,8 @@ if (empty($event['image'])) {
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Large Cover Image -->
-        <div class="w-full aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden mb-16 shadow-hostinger border border-gray-100 relative -mt-32 md:-mt-40 z-20" data-aos="fade-up" data-aos-delay="100">
-            <img src="<?php echo $image_url; ?>" alt="Event Cover" class="w-full h-full object-cover">
+        <div class="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden mb-16 shadow-hostinger border border-gray-100 relative -mt-32 md:-mt-40 z-20" data-aos="fade-up" data-aos-delay="100">
+            <img src="<?php echo $image_url; ?>" alt="Event Cover" class="w-full h-auto object-cover bg-white">
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12" data-aos="fade-up" data-aos-delay="200">

@@ -31,9 +31,31 @@ include '../includes/messages.php';
 
                     <div class="space-y-6">
                         <div>
-                            <label for="sort_order" class="block text-sm font-semibold text-slate-700 mb-2">Urutan (Sort Order)</label>
-                            <input type="number" id="sort_order" name="sort_order" value="0" class="w-full sm:w-1/3 rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
-                            <p class="mt-1.5 text-xs text-slate-500">Semakin kecil angkanya, semakin awal foto ditampilkan.</p>
+                            <label for="title" class="block text-sm font-semibold text-slate-700 mb-2">Judul Foto *</label>
+                            <input type="text" id="title" name="title" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400">
+                        </div>
+
+                        <div>
+                            <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Foto</label>
+                            <textarea id="description" name="description" rows="4" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium placeholder:text-slate-400 resize-y"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="category" class="block text-sm font-semibold text-slate-700 mb-2">Kategori *</label>
+                                <select id="category" name="category" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                                    <option value="events">Events</option>
+                                    <option value="projects">Projects</option>
+                                    <option value="team">Team</option>
+                                    <option value="office">Office</option>
+                                    <option value="clients">Clients</option>
+                                    <option value="other" selected>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="sort_order" class="block text-sm font-semibold text-slate-700 mb-2">Urutan (Sort Order)</label>
+                                <input type="number" id="sort_order" name="sort_order" value="0" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-4 focus:ring-brand-600/15 focus:border-brand-600 transition-all font-medium">
+                            </div>
                         </div>
                         
                         <div>

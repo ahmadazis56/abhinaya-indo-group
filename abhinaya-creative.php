@@ -149,7 +149,7 @@ include 'includes/header.php';
                         <span>Penjadwalan & 2 kali revisi minor</span>
                     </li>
                 </ul>
-                <button class="w-full py-4 bg-white text-slate-900 font-bold border-2 border-slate-200 rounded-2xl hover:border-purple-600 hover:text-purple-700 transition-colors">Get Started</button>
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Creative%3A%20paket%20Basic%20Presence.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-4 bg-white text-slate-900 font-bold border-2 border-slate-200 rounded-2xl hover:border-purple-600 hover:text-purple-700 transition-colors">Get Started</a>
             </div>
 
             <!-- Growth Package - Highlighted -->
@@ -187,7 +187,7 @@ include 'includes/header.php';
                         <span>3 Revisi & Laporan performa bulanan</span>
                     </li>
                 </ul>
-                <button class="w-full py-4 bg-purple-600 text-white font-bold rounded-2xl hover:bg-purple-700 shadow-md hover:shadow-lg transition-all">Get Started</button>
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Creative%3A%20paket%20Growth%20Content.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-4 bg-purple-600 text-white font-bold rounded-2xl hover:bg-purple-700 shadow-md hover:shadow-lg transition-all">Get Started</a>
             </div>
 
             <!-- Conversion Package -->
@@ -222,7 +222,7 @@ include 'includes/header.php';
                         <span>3 Revisi & Laporan performa bulanan lengkap</span>
                     </li>
                 </ul>
-                <button class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-colors">Get Started</button>
+                <a href="https://wa.me/6285646603602?text=Halo%20Tim%20Abhinaya%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Creative%3A%20paket%20Branding%20%26%20Conversion.%20Boleh%20minta%20informasi%20lebih%20lanjut%3F" target="_blank" class="w-full block text-center py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-colors">Get Started</a>
             </div>
         </div>
     </div>
