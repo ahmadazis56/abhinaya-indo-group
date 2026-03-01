@@ -9,19 +9,8 @@ include '../includes/header.php';
 include '../includes/sidebar.php';
 include '../includes/messages.php';
 
-// Database configuration
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'abhinaya_admin';
-
-// Create connection
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Database connection
+require_once '../../config/database.php';
 
 // Get gallery photos
 $gallery = [];

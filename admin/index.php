@@ -9,19 +9,7 @@ include 'includes/header.php';
 include 'includes/sidebar.php';
 include 'includes/messages.php';
 
-// Database configuration
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'abhinaya_admin';
-
-// Create connection
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once '../config/database.php';
 ?>
 
 <main class="flex-1 lg:ml-72 bg-slate-50 min-h-screen">
@@ -145,7 +133,7 @@ if ($conn->connect_error) {
 <?php include 'includes/footer.php'; ?>
 
 <?php
-// Helper functions
+// Helper functions for dashboard (using $conn from config/database.php)
 function countEvents() {
     global $conn;
     $result = $conn->query("SELECT COUNT(*) as count FROM events");
@@ -157,44 +145,4 @@ function countGallery() {
     $result = $conn->query("SELECT COUNT(*) as count FROM gallery");
     return $result ? $result->fetch_assoc()['count'] : 0;
 }
-
-function getRecentActivity() {
-    global $conn;
-    $activity = [];
-    
-    // Recent events
-    $result = $conn->query("SELECT 'Event' as type, title as description, created_at as time FROM events ORDER BY created_at DESC LIMIT 3");
-    while ($row = $result->fetch_assoc()) {
-        $row['time'] = timeAgo($row['time']);
-        $activity[] = $row;
-    }
-    
-    // Recent gallery
-    $result = $conn->query("SELECT 'Gallery' as type, title as description, created_at as time FROM gallery ORDER BY created_at DESC LIMIT 2");
-    while ($row = $result->fetch_assoc()) {
-        $row['time'] = timeAgo($row['time']);
-        $activity[] = $row;
-    }
-    
-    // Sort by time
-    usort($activity, function($a, $b) {
-        return strtotime($b['time']) - strtotime($a['time']);
-    });
-    
-    return array_slice($activity, 0, 5);
-}
-
-function timeAgo($datetime) {
-    $time = strtotime($datetime);
-    $now = time();
-    $diff = $now - $time;
-    
-    if ($diff < 60) return 'Baru saja';
-    if ($diff < 3600) return floor($diff / 60) . ' menit lalu';
-    if ($diff < 86400) return floor($diff / 3600) . ' jam lalu';
-    if ($diff < 604800) return floor($diff / 86400) . ' hari lalu';
-    return date('d M Y', $time);
-}
-
-$conn->close();
 ?>

@@ -11,13 +11,8 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
-    // Database info
-    $host = 'localhost';
-    $db_user = 'root';
-    $db_pass = '';
-    $database = 'abhinaya_admin';
-
-    $conn = new mysqli($host, $db_user, $db_pass, $database);
+    // Database connection
+    require_once '../config/database.php';
 
     // Authentication
     if (!$conn->connect_error) {

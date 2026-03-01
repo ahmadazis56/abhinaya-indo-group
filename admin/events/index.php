@@ -54,16 +54,7 @@ include '../includes/messages.php';
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="eventsList">
                 <?php
                 // Database connection
-                $host = 'localhost';
-                $username = 'root';
-                $password = '';
-                $database = 'abhinaya_admin';
-                
-                $conn = new mysqli($host, $username, $password, $database);
-                
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+                require_once '../../config/database.php';
                 
                 $sql = "SELECT * FROM events ORDER BY date DESC";
                 $result = $conn->query($sql);

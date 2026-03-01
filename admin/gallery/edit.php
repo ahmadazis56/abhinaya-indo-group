@@ -8,17 +8,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
 // Get photo ID from URL
 $photoId = $_GET['id'] ?? 0;
 
-// Database configuration
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'abhinaya_admin';
-
-$conn = new mysqli($host, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Database connection
+require_once '../../config/database.php';
 
 // Get photo data
 $stmt = $conn->prepare("SELECT * FROM gallery WHERE id = ?");

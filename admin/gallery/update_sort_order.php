@@ -5,15 +5,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit();
 }
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'abhinaya_admin';
-
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Database connection
+require_once '../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
